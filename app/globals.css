@@ -1,26 +1,257 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-orange-50: #fef4ee;
+  --color-orange-100: #fee5d6;
+  --color-orange-200: #fbc8ad;
+  --color-orange-300: #f8a179;
+  --color-orange-400: #f47143;
+  --color-orange-500: #f2572b;
+  --color-orange-600: #e23214;
+  --color-orange-700: #bc2312;
+  --color-orange-800: #951e17;
+  --color-orange-900: #781c16;
+  --color-orange-950: #410a09;
+
+  --color-green-1: #e6ff2a;
+  --color-green-2: #0b4550;
+
+  --color-black: #171717;
+  --color-light-gray: #dedede;
+  --color-dark-gray: #4d4d4d;
+  --color-white: #ffffff;
+  --header-bg-scrolled: rgba(255, 255, 255, 0.9);
+  --header-bg-transparent: rgba(255, 255, 255, 0);
+  --header-shadow-color: rgba(0, 0, 0, 0.1);
+  --header-shadow-color-transparent: rgba(0, 0, 0, 0);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-outfit: var(--font-outfit);
+  --font-rethink-sans: var(--font-rethink-sans);
+  --font-covered-by-your-grace: var(--font-covered-by-your-grace);
+  --breakpoint-xs: 30rem;
+
+  /* ClashDisplay font variables */
+  --font-clash-extralight: "ClashDisplay-Extralight";
+  --font-clash-light: "ClashDisplay-Light";
+  --font-clash-regular: "ClashDisplay-Regular";
+  --font-clash-medium: "ClashDisplay-Medium";
+  --font-clash-semibold: "ClashDisplay-Semibold";
+  --font-clash-bold: "ClashDisplay-Bold";
+
+  /* GeneralSans font variables */
+  --font-general-extralight: "GeneralSans-Extralight";
+  --font-general-extralight-italic: "GeneralSans-ExtralightItalic";
+  --font-general-light: "GeneralSans-Light";
+  --font-general-light-italic: "GeneralSans-LightItalic";
+  --font-general-regular: "GeneralSans-Regular";
+  --font-general-italic: "GeneralSans-Italic";
+  --font-general-medium: "GeneralSans-Medium";
+  --font-general-medium-italic: "GeneralSans-MediumItalic";
+  --font-general-semibold: "GeneralSans-Semibold";
+  --font-general-semibold-italic: "GeneralSans-SemiboldItalic";
+  --font-general-bold: "GeneralSans-Bold";
+  --font-general-bold-italic: "GeneralSans-BoldItalic";
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* .dark {
+  --color-orange-50: #1a194d;
+  --color-orange-100: #222264;
+  --color-orange-200: #2b2b84;
+  --color-orange-300: hsl(233, 30%, 50%);
+  --color-orange-400: hsl(242, 70%, 60%);
+  --color-orange-500: hsl(231, 65%, 71%);
+  --color-orange-600: hsl(231, 85%, 65%);
+  --color-orange-700: #7d8cfc;
+  --color-orange-800: #9faaff;
+  --color-orange-900: #c5d3ff;
+  --color-orange-950: #dfe7ff;
+  --color-slate-50: #020617;
+  --color-slate-100: #0f172a;
+  --color-slate-200: #1e293b;
+  --color-slate-300: #334155;
+  --color-slate-400: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-600: #94a3b8;
+  --color-slate-700: #cbd5e1;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f1f5f9;
+  --color-slate-950: #f8fafc;
+
+  --color-white: #0b1122;
+  --header-bg-scrolled: rgba(17, 24, 39, 0.9);
+  --header-bg-transparent: rgba(17, 24, 39, 0);
+  --header-shadow-color: rgba(0, 0, 0, 0.3);
+  --header-shadow-color-transparent: rgba(0, 0, 0, 0);
+} */
+
+@font-face {
+  font-family: "ClashDisplay-Extralight";
+  src: url("../public/fonts/ClashDisplay-Extralight.woff2") format("woff2"),
+    url("../public/fonts/ClashDisplay-Extralight.woff") format("woff"),
+    url("../public/fonts/ClashDisplay-Extralight.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Light";
+  src: url("../public/fonts/ClashDisplay-Light.woff2") format("woff2"),
+    url("../public/fonts/ClashDisplay-Light.woff") format("woff"),
+    url("../public/fonts/ClashDisplay-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Regular";
+  src: url("../public/fonts/ClashDisplay-Regular.woff2") format("woff2"),
+    url("../public/fonts/ClashDisplay-Regular.woff") format("woff"),
+    url("../public/fonts/ClashDisplay-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Medium";
+  src: url("../public/fonts/ClashDisplay-Medium.woff2") format("woff2"),
+    url("../public/fonts/ClashDisplay-Medium.woff") format("woff"),
+    url("../public/fonts/ClashDisplay-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Semibold";
+  src: url("../public/fonts/ClashDisplay-Semibold.woff2") format("woff2"),
+    url("../public/fonts/ClashDisplay-Semibold.woff") format("woff"),
+    url("../public/fonts/ClashDisplay-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClashDisplay-Bold";
+  src: url("../public/fonts/ClashDisplay-Bold.woff2") format("woff2"),
+    url("../public/fonts/ClashDisplay-Bold.woff") format("woff"),
+    url("../public/fonts/ClashDisplay-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeneralSans-Extralight";
+  src: url("../public/fonts/GeneralSans-Extralight.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-Extralight.woff") format("woff"),
+    url("../public/fonts/GeneralSans-Extralight.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GeneralSans-ExtralightItalic";
+  src: url("../public/fonts/GeneralSans-ExtralightItalic.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-ExtralightItalic.woff") format("woff"),
+    url("../public/fonts/GeneralSans-ExtralightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "GeneralSans-Light";
+  src: url("../public/fonts/GeneralSans-Light.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-Light.woff") format("woff"),
+    url("../public/fonts/GeneralSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GeneralSans-LightItalic";
+  src: url("../public/fonts/GeneralSans-LightItalic.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-LightItalic.woff") format("woff"),
+    url("../public/fonts/GeneralSans-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "GeneralSans-Regular";
+  src: url("../public/fonts/GeneralSans-Regular.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-Regular.woff") format("woff"),
+    url("../public/fonts/GeneralSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GeneralSans-Italic";
+  src: url("../public/fonts/GeneralSans-Italic.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-Italic.woff") format("woff"),
+    url("../public/fonts/GeneralSans-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "GeneralSans-Medium";
+  src: url("../public/fonts/GeneralSans-Medium.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-Medium.woff") format("woff"),
+    url("../public/fonts/GeneralSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GeneralSans-MediumItalic";
+  src: url("../public/fonts/GeneralSans-MediumItalic.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-MediumItalic.woff") format("woff"),
+    url("../public/fonts/GeneralSans-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "GeneralSans-Semibold";
+  src: url("../public/fonts/GeneralSans-Semibold.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-Semibold.woff") format("woff"),
+    url("../public/fonts/GeneralSans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GeneralSans-SemiboldItalic";
+  src: url("../public/fonts/GeneralSans-SemiboldItalic.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-SemiboldItalic.woff") format("woff"),
+    url("../public/fonts/GeneralSans-SemiboldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "GeneralSans-Bold";
+  src: url("../public/fonts/GeneralSans-Bold.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-Bold.woff") format("woff"),
+    url("../public/fonts/GeneralSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GeneralSans-BoldItalic";
+  src: url("../public/fonts/GeneralSans-BoldItalic.woff2") format("woff2"),
+    url("../public/fonts/GeneralSans-BoldItalic.woff") format("woff"),
+    url("../public/fonts/GeneralSans-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "GeneralSans-Regular", sans-serif;
 }

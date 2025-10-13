@@ -1,0 +1,426 @@
+"use client";
+import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import ButtonMain from "./../components/ButtonMain";
+
+export default function Header() {
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [shouldShowIcons, setShouldShowIcons] = useState(true);
+  // const [isScrolled, setIsScrolled] = useState(false);
+  // const scrollDebounceRef = useRef(null);
+  // const menuRef = useRef(null);
+  // const menuButtonRef = useRef(null);
+  // const toggleMenu = () => {
+  //   setIsMenuOpen((prev) => !prev);
+  // };
+  // const { scrollY } = useScroll();
+  // // const headerScale = useTransform(scrollY, [0, 100], [1, 0.95]);
+  // const headerWidth = useTransform(scrollY, [0, 100], ["100%", "60%"]);
+  // const headerPadding = useTransform(
+  //   scrollY,
+  //   [0, 100],
+  //   ["0px 32px", "0px 16px"]
+  // );
+  // const headerPositionY = useTransform(scrollY, [0, 100], ["0px", "10px"]);
+  // const springConfig = {
+  //   stiffness: 100,
+  //   damping: 15,
+  //   bounce: 0.25,
+  // };
+  // // const smoothScale = useSpring(headerScale, springConfig);
+  // const smoothWidth = useSpring(headerWidth, springConfig);
+  // const smoothPadding = useSpring(headerPadding, springConfig);
+  // const smoothPositionY = useSpring(headerPositionY, springConfig);
+  // const pathname = usePathname();
+  // const linkClassText = (href) =>
+  //   pathname === href ? "text-blue-700" : "text-blue-900";
+  // const linkClassBg = (href) =>
+  //   pathname === href ? "bg-blue-700" : "bg-blue-900";
+  // // 🔧 Mesure de la largeur réelle des icônes
+  // const iconsRef = useRef(null);
+  // const [iconsWidth, setIconsWidth] = useState(0);
+  // useEffect(() => {
+  //   if (iconsRef.current) {
+  //     const observer = new ResizeObserver(() => {
+  //       const width = iconsRef.current?.getBoundingClientRect().width || 0;
+  //       setIconsWidth(width);
+  //     });
+  //     observer.observe(iconsRef.current);
+  //     return () => {
+  //       observer.disconnect();
+  //     };
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   // Initialiser les états selon la position de scroll au montage du composant
+  //   const initializeScrollStates = () => {
+  //     const currentScrollY = window.scrollY;
+  //     if (currentScrollY < 10) {
+  //       setShouldShowIcons(true);
+  //     } else {
+  //       setShouldShowIcons(false);
+  //     }
+  //     setIsScrolled(currentScrollY > 20);
+  //   };
+  //   // Exécuter immédiatement
+  //   initializeScrollStates();
+  // }, []);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
+  //     if (currentScrollY < 10) {
+  //       setShouldShowIcons(true);
+  //     } else if (currentScrollY >= 10) {
+  //       setShouldShowIcons(false);
+  //     }
+  //     setIsScrolled(currentScrollY > 20);
+  //     // Fermer le menu mobile lors du scroll seulement si déjà ouvert
+  //     if (isMenuOpen && currentScrollY > 5) {
+  //       setIsMenuOpen(false);
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //     if (scrollDebounceRef.current) {
+  //       clearTimeout(scrollDebounceRef.current);
+  //     }
+  //   };
+  // }, [isMenuOpen]);
+  // // Gestion du clic à l'extérieur pour fermer le menu
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     // Vérifier que le menu est ouvert et que le clic est en dehors du menu et du bouton
+  //     if (
+  //       isMenuOpen &&
+  //       menuRef.current &&
+  //       !menuRef.current.contains(event.target) &&
+  //       menuButtonRef.current &&
+  //       !menuButtonRef.current.contains(event.target)
+  //     ) {
+  //       setIsMenuOpen(false);
+  //     }
+  //   };
+  //   // Ajouter l'écouteur d'événement seulement si le menu est ouvert
+  //   if (isMenuOpen) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   }
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isMenuOpen]);
+  // return (
+  //   <header className="flex justify-center w-full fixed top-0 left-0 z-30">
+  //     <motion.div
+  //       className="hidden lg:flex justify-between items-center mx-auto rounded-lg"
+  //       style={{
+  //         // scale: smoothScale,
+  //         width: smoothWidth,
+  //         position: "relative",
+  //         top: smoothPositionY,
+  //         paddingRight: "32px",
+  //         paddingLeft: "32px",
+  //       }}
+  //       animate={{
+  //         backgroundColor: isScrolled
+  //           ? "var(--header-bg-scrolled)"
+  //           : "var(--header-bg-transparent)",
+  //         boxShadow: isScrolled
+  //           ? "0px 4px 8px var(--header-shadow-color)"
+  //           : "0px 0px 0px var(--header-shadow-color-transparent)",
+  //         backdropFilter: isScrolled ? "blur(8px)" : "blur(0px)",
+  //         WebkitBackdropFilter: isScrolled ? "blur(8px)" : "blur(0px)", // Safari support
+  //         paddingLeft: isScrolled ? "20px" : "32px",
+  //         paddingRight: isScrolled ? "12px" : "32px",
+  //       }}
+  //       transition={{
+  //         backgroundColor: { duration: 0.2 },
+  //         boxShadow: { duration: 0.2 },
+  //         backdropFilter: { duration: 0.2 },
+  //         WebkitBackdropFilter: { duration: 0.2 },
+  //       }}
+  //     >
+  //       <div className="flex items-center gap-6">
+  //         <Link href="/">
+  //           <Image
+  //             src="/arnaud_graciet_pp.webp"
+  //             alt="Photo de Arnaud Graciet"
+  //             width={32}
+  //             height={32}
+  //             priority
+  //             className="rounded-lg"
+  //           />
+  //         </Link>
+  //         <nav className="flex justify-between items-center">
+  //           <ul className="flex gap-8">
+  //             <TextRollover
+  //               href="/"
+  //               text="Accueil"
+  //               isActive={pathname === "/"}
+  //               className="font-normal py-5"
+  //               itemHeight={28}
+  //             />
+  //             <TextRollover
+  //               href="/apropos"
+  //               text="À propos"
+  //               isActive={pathname === "/apropos"}
+  //               className="font-normal py-5"
+  //               itemHeight={28}
+  //             />
+  //             <TextRollover
+  //               href="/creations"
+  //               text="Mes créations"
+  //               isActive={pathname === "/creations"}
+  //               className="font-normal py-5"
+  //               itemHeight={28}
+  //             />
+  //           </ul>
+  //         </nav>
+  //       </div>
+  //       <div className="flex items-center justify-end gap-2">
+  //         {/* Bouton principal : toujours visible */}
+  //         <motion.div
+  //           layout
+  //           transition={{
+  //             layout: {
+  //               type: "spring",
+  //               stiffness: 300,
+  //               damping: 30,
+  //               mass: 1,
+  //             },
+  //           }}
+  //         >
+  //           <ButtonMain
+  //             icon={<Phone size={16} strokeWidth={1.75} />}
+  //             size="sm"
+  //             link="https://cal.com/arnaudgct/prise-de-contact"
+  //             newTab={true}
+  //           >
+  //             Réserver un appel
+  //           </ButtonMain>
+  //         </motion.div>
+  //         {/* Conteneur des icônes sociales : largeur animée */}
+  //         <motion.div
+  //           className="flex items-center"
+  //           animate={{ width: shouldShowIcons ? iconsWidth : 0 }}
+  //           transition={{
+  //             width: {
+  //               type: "spring",
+  //               stiffness: 300,
+  //               damping: 30,
+  //               mass: 1,
+  //             },
+  //           }}
+  //           style={{ overflow: "hidden" }}
+  //         >
+  //           {/* Contenu réel mesuré, mais hors animation de width */}
+  //           <div
+  //             ref={iconsRef}
+  //             className="flex items-stretch gap-2"
+  //             style={{
+  //               opacity: shouldShowIcons ? 1 : 0,
+  //               transition: "opacity 0.3s ease",
+  //             }}
+  //           >
+  //             <ButtonSecondary
+  //               icon={<Mail size={16} strokeWidth={1.75} />}
+  //               size="sm"
+  //               link="mailto:arnaud@arnaudgct.fr"
+  //               newTab={true}
+  //             />
+  //             <ButtonSecondary
+  //               icon={<InstagramIcon className="text-current" size={16} />}
+  //               size="sm"
+  //               link="https://www.instagram.com/arnaud_gct/"
+  //               newTab={true}
+  //             />
+  //             <ButtonSecondary
+  //               icon={<LinkedInIcon className="text-current" />}
+  //               size="sm"
+  //               link="https://www.linkedin.com/in/arnaud-graciet/"
+  //               newTab={true}
+  //             />
+  //             <ButtonSecondary
+  //               icon={<XIcon className="text-current" size={16} />}
+  //               size="sm"
+  //               link="https://x.com/ArnaudGct"
+  //               newTab={true}
+  //             />
+  //             <motion.span
+  //               className="h-5 bg-blue-900 self-center rounded mx-2.5"
+  //               style={{ width: "1px" }}
+  //             />
+  //             <motion.div className="flex items-stretch">
+  //               <ThemeToggle />
+  //             </motion.div>
+  //           </div>
+  //         </motion.div>
+  //       </div>
+  //     </motion.div>
+  //     {/* Version mobile */}
+  //     <div className="lg:hidden relative w-full">
+  //       <div className="flex justify-between items-center px-8 py-4 z-50">
+  //         <div className="flex items-center gap-4 z-50">
+  //           <Link href="/">
+  //             <Image
+  //               src="/arnaud_graciet_pp.webp"
+  //               alt="Photo de Arnaud Graciet"
+  //               width={32}
+  //               height={32}
+  //               priority
+  //               className="rounded-lg"
+  //             />
+  //           </Link>
+  //           <ButtonMain
+  //             icon={<Phone size={16} strokeWidth={1.75} />}
+  //             children="Réserver un appel"
+  //             size="sm"
+  //             link="https://cal.com/arnaudgct/prise-de-contact"
+  //             newTab={true}
+  //           />
+  //         </div>
+  //         <motion.button
+  //           ref={menuButtonRef} // Ajout de la référence au bouton
+  //           whileTap={{ scale: 0.85 }}
+  //           onClick={toggleMenu}
+  //           className="z-50"
+  //         >
+  //           {isMenuOpen ? (
+  //             <X className="text-blue-700" width={26} height={26} />
+  //           ) : (
+  //             <Menu className="text-blue-700" width={26} height={26} />
+  //           )}
+  //         </motion.button>
+  //       </div>
+  //       {/* Menu mobile (overlay) */}
+  //       <AnimatePresence>
+  //         {isMenuOpen ? (
+  //           <div
+  //             ref={menuRef} // Ajout de la référence au menu
+  //             className="fixed flex items-end justify-between z-50 w-full px-8 py-1 gap-8"
+  //           >
+  //             <motion.nav
+  //               className="flex flex-col items-start justify-center gap-4"
+  //               exit={{ opacity: 0, y: -10 }}
+  //               initial={{ opacity: 0, y: -10 }}
+  //               animate={{ opacity: 1, y: 0 }}
+  //               transition={{ ease: "easeOut", duration: 0.2, delay: 0.1 }}
+  //             >
+  //               <Link
+  //                 href="/"
+  //                 className={`${linkClassText("/")} font-normal`}
+  //                 onClick={toggleMenu}
+  //               >
+  //                 Accueil
+  //               </Link>
+  //               <Link
+  //                 href="/apropos"
+  //                 className={`${linkClassText("/apropos")} font-normal`}
+  //                 onClick={toggleMenu}
+  //               >
+  //                 À propos
+  //               </Link>
+  //               <Link
+  //                 href="/creations"
+  //                 className={`${linkClassText("/creations")} font-normal`}
+  //                 onClick={toggleMenu}
+  //               >
+  //                 Mes créations
+  //               </Link>
+  //             </motion.nav>
+  //             <div className="flex flex-col items-end gap-2">
+  //               <motion.div
+  //                 exit={{ opacity: 0 }}
+  //                 initial={{ opacity: 0 }}
+  //                 animate={{ opacity: 1 }}
+  //                 transition={{ ease: "easeOut", duration: 0.3 }}
+  //                 className="flex items-stretch"
+  //               >
+  //                 <ThemeToggle mobile={true} />
+  //               </motion.div>
+  //               <div className="flex gap-1 flex-wrap justify-end">
+  //                 <motion.div
+  //                   exit={{ opacity: 0 }}
+  //                   initial={{ opacity: 0 }}
+  //                   animate={{ opacity: 1 }}
+  //                   transition={{ ease: "easeOut", duration: 0.3 }}
+  //                 >
+  //                   <ButtonSecondary
+  //                     icon={<Mail size={16} strokeWidth={1.75} />}
+  //                     size="sm"
+  //                     link="mailto:arnaud@arnaudgct.fr"
+  //                     newTab={true}
+  //                   />
+  //                 </motion.div>
+  //                 <motion.div
+  //                   exit={{ opacity: 0 }}
+  //                   initial={{ opacity: 0 }}
+  //                   animate={{ opacity: 1 }}
+  //                   transition={{ ease: "easeOut", duration: 0.3 }}
+  //                 >
+  //                   <ButtonSecondary
+  //                     icon={
+  //                       <InstagramIcon className="text-current" size={16} />
+  //                     }
+  //                     size="sm"
+  //                     link="https://www.instagram.com/arnaud_gct/"
+  //                     newTab={true}
+  //                   />
+  //                 </motion.div>
+  //                 <motion.div
+  //                   exit={{ opacity: 0 }}
+  //                   initial={{ opacity: 0 }}
+  //                   animate={{ opacity: 1 }}
+  //                   transition={{ ease: "easeOut", duration: 0.3 }}
+  //                 >
+  //                   <ButtonSecondary
+  //                     icon={<LinkedInIcon className="text-current" size={16} />}
+  //                     size="sm"
+  //                     link="https://www.linkedin.com/in/arnaud-graciet/"
+  //                     newTab={true}
+  //                   />
+  //                 </motion.div>
+  //                 <motion.div
+  //                   exit={{ opacity: 0 }}
+  //                   initial={{ opacity: 0 }}
+  //                   animate={{ opacity: 1 }}
+  //                   transition={{ ease: "easeOut", duration: 0.3 }}
+  //                 >
+  //                   <ButtonSecondary
+  //                     icon={<XIcon className="text-current" size={16} />}
+  //                     size="sm"
+  //                     link="https://x.com/ArnaudGct"
+  //                     newTab={true}
+  //                   />
+  //                 </motion.div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         ) : null}
+  //       </AnimatePresence>
+  //       <motion.div
+  //         initial={{ height: "65px" }}
+  //         animate={{ height: isMenuOpen ? "205px" : "65px" }}
+  //         transition={{ type: "spring", bounce: 0.35 }}
+  //         className="absolute top-0 right-0 w-full z-40"
+  //         style={{
+  //           backgroundColor:
+  //             isMenuOpen || isScrolled
+  //               ? "var(--header-bg-scrolled)"
+  //               : "var(--header-bg-transparent)",
+  //           boxShadow:
+  //             isMenuOpen || isScrolled
+  //               ? "0px 4px 8px var(--header-shadow-color)"
+  //               : "0px 0px 0px var(--header-shadow-color-transparent)",
+  //           transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+  //           WebkitBackdropFilter:
+  //             isMenuOpen || isScrolled ? "blur(8px)" : "blur(0px", // Safari support
+  //           backdropFilter: isMenuOpen || isScrolled ? "blur(8px)" : "blur(0px",
+  //         }}
+  //       />
+  //     </div>
+  //   </header>
+  // );
+}
