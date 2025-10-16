@@ -29,9 +29,6 @@
 }
 
 @theme inline {
-  --font-outfit: var(--font-outfit);
-  --font-rethink-sans: var(--font-rethink-sans);
-  --font-covered-by-your-grace: var(--font-covered-by-your-grace);
   --breakpoint-xs: 30rem;
 
   /* ClashDisplay font variables */
@@ -55,6 +52,8 @@
   --font-general-semibold-italic: "GeneralSans-SemiboldItalic";
   --font-general-bold: "GeneralSans-Bold";
   --font-general-bold-italic: "GeneralSans-BoldItalic";
+
+  --font-jet-brains-mono: var(--font-jet-brains-mono);
 }
 
 /* .dark {
