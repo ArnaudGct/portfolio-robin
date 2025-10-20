@@ -3,6 +3,7 @@ import { Play, Pause, Loader2 } from "lucide-react";
 import Toggl from "../../../components/Toggl";
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Tag from "../../../components/Tag";
 
 export default function CloudinaryPlayer({ infoBoxRef }) {
   const videoRef = useRef(null);
@@ -69,6 +70,19 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
   //   fetchVideoData();
   // }, []);
 
+  // Effet pour détecter si on est en mobile au chargement initial
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const mobile = window.innerWidth < 1024;
+      console.log("Checking isMobile:", mobile, "width:", window.innerWidth);
+      setIsMobile(mobile);
+    };
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
   // Effet pour mesurer la hauteur de la div d'information
   useEffect(() => {
     if (!infoBoxRef?.current) return;
@@ -76,14 +90,18 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
     const element = infoBoxRef.current;
     const observer = new ResizeObserver((entries) => {
       for (let entry of entries) {
-        setInfoBoxHeight(entry.target.offsetHeight);
+        const height = entry.target.offsetHeight;
+        console.log("InfoBox height changed:", height);
+        setInfoBoxHeight(height);
       }
     });
     observer.observe(element);
     // Mesure initiale
-    setInfoBoxHeight(element.offsetHeight);
+    const initialHeight = element.offsetHeight;
+    console.log("InfoBox initial height:", initialHeight);
+    setInfoBoxHeight(initialHeight);
     return () => observer.unobserve(element);
-  }, [infoBoxRef]);
+  }, [infoBoxRef, isMobile]);
 
   // Effet pour détecter la taille de l'écran et changer l'URL vidéo si nécessaire
   useEffect(() => {
@@ -91,7 +109,7 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
     if (!videoData || !videoUrl || !videoUrlMobile || !currentVideoUrl) return;
 
     const checkIsMobile = () => {
-      const mobile = window.innerWidth < 640;
+      const mobile = window.innerWidth < 1024;
       const newVideoUrl = mobile ? videoUrlMobile : videoUrl;
 
       // Seulement changer si l'état mobile change ET que l'URL est différente
@@ -132,16 +150,19 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
   }, [videoData, videoUrl, videoUrlMobile, currentVideoUrl, isMobile]);
 
   // Calculer le style du conteneur vidéo
-  const videoContainerStyle =
-    isMobile && infoBoxHeight > 0
-      ? {
-          top: `${64 + infoBoxHeight}px`,
-          height: `calc(100vh - ${64 + infoBoxHeight}px)`,
-        }
-      : {
-          top: "64px",
-          height: "calc(100vh - 64px)",
-        };
+  const videoContainerStyle = isMobile
+    ? {
+        height: `calc(100vh - 67px - 16px)`,
+      }
+    : {
+        height: "calc(100vh - 84px - 24px)",
+      };
+
+  console.log("Video container style:", {
+    isMobile,
+    infoBoxHeight,
+    style: videoContainerStyle,
+  });
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -320,10 +341,13 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
   });
 
   return (
-    <div className="absolute left-0 w-full z-10" style={videoContainerStyle}>
+    <div
+      className="mx-auto w-[95%] lg:w-[98%] z-10"
+      style={videoContainerStyle}
+    >
       <div
         ref={playerContainerRef}
-        className={`relative w-full h-full overflow-hidden ${
+        className={`relative w-full h-full rounded-sm overflow-hidden ${
           !isMobile && isHoveringVideo && isMuted && !isHoveringControls
             ? "cursor-none"
             : ""
@@ -382,18 +406,38 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
                 exit={{ scale: 0.5, opacity: 0 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <div className="bg-black/60 text-white rounded-full p-3 w-36 h-36 flex items-center justify-center text-center text-sm shadow-lg">
+                <div className="bg-orange-500/60 text-white rounded-full p-3 w-36 h-36 flex items-center justify-center text-center text-sm">
                   Activer le son
                 </div>
               </motion.div>
             )}
         </AnimatePresence>
 
-        <div className="absolute z-[9] left-0 bottom-0 w-full h-full bg-gradient-to-tr from-blue-700 from-0% via-blue-300/0 via-15% to-transparent to-100% opacity-50 pointer-events-none" />
+        <div className="absolute z-[9] left-0 bottom-0 w-full h-full bg-gradient-to-tr from-orange-500 from-0% via-orange-300/0 via-75% to-transparent to-100% opacity-50 pointer-events-none" />
+
+        <div
+          className={`absolute bottom-auto top-6 md:bottom-18 md:top-auto flex flex-col z-10 px-4`}
+        >
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col md:flex-row gap-2">
+              <p className="text-4xl text-gray-50 tracking-tighter">
+                Je m'appelle{" "}
+              </p>
+              <p className="text-4xl font-clash-bold text-orange-500 py-0.5 px-2 bg-orange-500/15 rounded-sm tracking-normal w-fit">
+                Robin Augez
+              </p>
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              <Tag>Réalisateur</Tag>
+              <Tag>Monteur</Tag>
+              <Tag>Motion Designer</Tag>
+            </div>
+          </div>
+        </div>
 
         {/* Boutons de contrôle */}
         <div
-          className={`absolute bottom-4 left-4 flex space-x-4 z-10 transition-opacity duration-300 ${
+          className={`absolute bottom-4 left-4 flex flex-col gap-4 space-x-4 z-10 transition-opacity duration-300 ${
             isLoading ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
           onMouseEnter={() => {
@@ -403,10 +447,23 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
             if (!isMobile) setIsHoveringControls(false);
           }}
         >
-          <div className="flex items-center gap-2">
+          {/* <div className="hidden md:flex flex-col gap-3">
+            <p className="text-4xl text-gray-50 tracking-tighter">
+              Je m'appelle{" "}
+              <span className="font-clash-bold text-orange-500 py-0.5 px-2 bg-orange-500/15 rounded-sm tracking-normal">
+                Robin Augez
+              </span>
+            </p>
+            <div className="flex gap-4">
+              <Tag>Réalisateur</Tag>
+              <Tag>Monteur</Tag>
+              <Tag>Motion Designer</Tag>
+            </div>
+          </div> */}
+          <div className="flex items-center gap-4">
             <button
               onClick={togglePlayPause}
-              className="text-slate-300 p-2 bg-black/30 rounded-full hover:bg-black/50 transition-colors duration-300 cursor-pointer"
+              className="text-orange-500 hover:text-orange-500/50 transitions-colors duration-300 p-2 cursor-pointer"
               aria-label={isPlaying ? "Mettre en pause" : "Lancer la lecture"}
             >
               {isPlaying ? (
@@ -415,15 +472,15 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
                 <Play size={20} strokeWidth={1.75} />
               )}
             </button>
-          </div>
-          <div className="flex items-center gap-1">
-            <Toggl isChecked={isMuted} setIsChecked={toggleMute} />
-            <span
-              className="text-slate-300 text-sm font-normal font-rethink-sans cursor-pointer"
-              onClick={toggleMute}
-            >
-              {isMuted ? "Activer le son" : "Couper le son"}
-            </span>
+            <div className="flex items-center gap-1">
+              <Toggl isChecked={isMuted} setIsChecked={toggleMute} />
+              <span
+                className="text-slate-300 text-xs font-normal font-jet-brains-mono cursor-pointer"
+                onClick={toggleMute}
+              >
+                {isMuted ? "Activer le son" : "Couper le son"}
+              </span>
+            </div>
           </div>
         </div>
       </div>

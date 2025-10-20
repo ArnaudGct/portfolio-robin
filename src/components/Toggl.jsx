@@ -27,7 +27,7 @@ export default function Toggl({ isChecked: initialChecked, setIsChecked }) {
         />
         <div
           className={`box block h-8 w-14 rounded-full ${
-            isChecked ? "bg-slate-300" : "bg-blue-600"
+            isChecked ? "bg-slate-300" : "bg-orange-500"
           }`}
         ></div>
         <div

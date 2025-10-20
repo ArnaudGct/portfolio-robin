@@ -66,7 +66,7 @@ export default function Header() {
   return (
     <header>
       {/* Desktop */}
-      <div className="hidden lg:flex justify-between items-center p-6 w-full">
+      <div className="hidden lg:flex justify-between items-center py-6 w-[98%] mx-auto">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/photo_robin_main.webp"
@@ -130,7 +130,7 @@ export default function Header() {
 
       {/* Version mobile */}
       <div className="lg:hidden relative w-full">
-        <div className="flex justify-between items-center px-8 py-4 z-50">
+        <div className="flex justify-between items-center mx-auto w-[95%] py-4 z-50">
           <Link href="/" className="flex items-center gap-3">
             <Image
               src="/photo_robin_main.webp"
