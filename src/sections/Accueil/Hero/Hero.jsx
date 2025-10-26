@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="overflow-hidden">
+    <section className="overflow-hidden">
       <CloudinaryPlayer />
       <div
         className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10"
@@ -14,6 +14,6 @@ export default function Hero() {
         }}
       ></div>
       <div className="absolute bottom-0 left-0 w-full h-25 bg-gradient-to-b from-white/0 to-white/100 pointer-events-none -z-10"></div>
-    </div>
+    </section>
   );
 }
