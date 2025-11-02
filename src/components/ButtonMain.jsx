@@ -6,10 +6,18 @@ export default function ButtonMain({
   target,
   rel,
   className = "",
+  icon,
 }) {
   const baseClass =
-    "flex justify-center py-2 px-7 bg-orange-500 text-black font-jet-brains-mono rounded-sm text-sm";
+    "flex justify-center items-center gap-2 py-2 px-7 bg-orange-500 text-black font-jet-brains-mono rounded-sm text-sm";
   const classes = `${baseClass} ${className}`.trim();
+
+  const content = (
+    <>
+      {children}
+      {icon && <span className="inline-flex items-center">{icon}</span>}
+    </>
+  );
 
   if (href) {
     const isExternal = /^https?:\/\//.test(href);
@@ -25,14 +33,14 @@ export default function ButtonMain({
         className={classes}
         onClick={onClick}
       >
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
     <button type={type} onClick={onClick} className={classes}>
-      {children}
+      {content}
     </button>
   );
 }
