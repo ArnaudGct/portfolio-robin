@@ -15,12 +15,12 @@
   --color-orange-900: #781c16;
   --color-orange-950: #410a09;
 
-  --color-green-1: #e6ff2a;
-  --color-green-2: #0b4550;
+  --color-green-50: #e6ff2a;
+  --color-green-100: #0b4550;
 
   --color-black: #171717;
-  --color-light-gray: #dedede;
-  --color-dark-gray: #4d4d4d;
+  --color-gray-50: #dedede;
+  --color-gray-100: #4d4d4d;
   --color-white: #ffffff;
   --header-bg-scrolled: rgba(255, 255, 255, 0.9);
   --header-bg-transparent: rgba(255, 255, 255, 0);

@@ -36,7 +36,7 @@ export default function Clients() {
     <section className="w-[95%] max-w-[1440px] mx-auto flex flex-col gap-8">
       <div className="flex items-end gap-4">
         <div className="flex w-fit whitespace-nowrap">
-          <p className="text-2xl text-black font-clash-regular">
+          <p className="text-3xl text-black font-clash-regular">
             Ils m'ont fait{" "}
             <span className="font-clash-bold text-orange-500 tracking-normal">
               confiance.

@@ -17,14 +17,14 @@ module.exports = {
           950: "var(--color-orange-950)",
         },
         green: {
-          50: "var(--color-green-1)",
-          100: "var(--color-green-2)",
+          50: "var(--color-green-50)",
+          100: "var(--color-green-100)",
         },
         white: "var(--color-white)",
         black: "var(--color-black)",
         gray: {
-          50: "var(--color-light-gray)",
-          100: "var(--color-dark-gray)",
+          50: "var(--color-gray-50)",
+          100: "var(--color-gray-100)",
         },
       },
       screens: {

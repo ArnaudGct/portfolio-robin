@@ -3,6 +3,7 @@
 export default function Tag({ children, variant = "default" }) {
   const variants = {
     default: "border-orange-500 text-orange-500",
+    background: "bg-orange-950/60 border-orange-500 text-orange-500",
     primary: "border-blue-500 text-blue-500",
     secondary: "border-orange-500 text-orange-500",
     success: "border-green-500 text-green-500",
