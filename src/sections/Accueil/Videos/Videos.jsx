@@ -75,11 +75,11 @@ export default function Videos() {
         </div>
       </div>
       <div
-        className="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-40"
+        className="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-60"
         style={{
           backgroundImage: "url(/grid_2.svg)",
           backgroundRepeat: "repeat",
-          backgroundSize: "600px",
+          backgroundSize: "450px",
           backgroundPosition: "top",
         }}
       ></div>
