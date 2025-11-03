@@ -8,8 +8,8 @@ export default function Videos() {
   return (
     <section className="bg-[#282828]">
       <div className="relative w-[95%] py-20 max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-2 sm:grid-col-2 lg:grid-cols-4 xl:grid-cols-6 grid-rows-12 sm:grid-rows-[repeat(10,minmax(100px,1fr))_auto] lg:grid-rows-[repeat(9,minmax(100px,1fr))_auto] xl:grid-rows-[repeat(6,minmax(100px,1fr))_auto] gap-2 xl:gap-2">
-          <div class="relative col-start-1 row-start-2 col-span-2 row-span-2 xl:col-start-1 xl:row-start-1 xl:col-span-2 xl:row-span-2 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
+        <div className="grid grid-cols-2 sm:grid-col-2 lg:grid-cols-4 xl:grid-cols-6 grid-rows-12 sm:grid-rows-[repeat(10,minmax(100px,1fr))_auto] lg:grid-rows-[repeat(9,minmax(100px,1fr))_auto] xl:grid-rows-[repeat(6,minmax(100px,1fr))_auto] gap-2 xl:gap-2">
+          <div className="relative col-start-1 row-start-2 col-span-2 row-span-2 xl:col-start-1 xl:row-start-1 xl:col-span-2 xl:row-span-2 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-4 sm:top-1/2 sm:-translate-y-1/2 left-4 sm:left-10 lg:left-6 xl:translate-y-0 xl:top-4 xl:left-4 z-1">
                 <div className="w-38 h-28 sm:w-46 sm:h-38 xl:w-45 xl:h-32">
@@ -31,18 +31,18 @@ export default function Videos() {
               </p>
             </div>
           </div>
-          <div class="row-start-10 col-span-1 col-start-1 row-span-1 lg:row-start-8 lg:col-span-2 lg:col-start-3 lg:row-span-1 xl:col-start-3 xl:row-start-1 xl:col-span-1 xl:row-span-1 flex flex-col justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
+          <div className="row-start-10 col-span-1 col-start-1 row-span-1 lg:row-start-8 lg:col-span-2 lg:col-start-3 lg:row-span-1 xl:col-start-3 xl:row-start-1 xl:col-span-1 xl:row-span-1 flex flex-col justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
             <p className="font-clash-semibold text-orange-500 text-2xl">
               Mise au point
             </p>
             <p className="font-clash-bold text-orange-500 text-5xl">Lidar</p>
           </div>
-          <div class="col-start-1 row-start-1 col-span-2 lg:row-start-1 lg:col-start-1 lg:row-span-1 lg:col-span-4 xl:col-start-3 xl:row-start-2 xl:col-span-2 xl:row-span-4  flex justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
+          <div className="col-start-1 row-start-1 col-span-2 lg:row-start-1 lg:col-start-1 lg:row-span-1 lg:col-span-4 xl:col-start-3 xl:row-start-2 xl:col-span-2 xl:row-span-4  flex justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
             <p className="font-clash-bold text-white text-3xl flex flex-col justify-center items-center">
               Mon<span className="text-orange-500">matériel.</span>
             </p>
           </div>
-          <div class="relative col-start-1 row-start-11 col-span-2 sm:col-start-1 sm:row-start-11 sm:col-span-1 sm:row-span-1 lg:row-start-9 lg:col-span-2 lg:col-start-1 lg:row-span-1 xl:col-start-3 xl:row-start-6 xl:col-span-1 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm overflow-hidden min-h-[100px]">
+          <div className="relative col-start-1 row-start-11 col-span-2 sm:col-start-1 sm:row-start-11 sm:col-span-1 sm:row-span-1 lg:row-start-9 lg:col-span-2 lg:col-start-1 lg:row-span-1 xl:col-start-3 xl:row-start-6 xl:col-span-1 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative w-full h-full">
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-5 md:right-6 lg:right-auto lg:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
                 <div className="h-10 w-10 sm:w-8 sm:h-8 md:w-10 md:h-10">
@@ -64,12 +64,12 @@ export default function Videos() {
               <Tag variant="default">Logiciel de montage</Tag>
             </div>
           </div>
-          <div class="col-start-1 row-start-4 col-span-2 xl:col-start-1 xl:row-start-3 xl:col-span-2 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
+          <div className="col-start-1 row-start-4 col-span-2 xl:col-start-1 xl:row-start-3 xl:col-span-2 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
             <p className="font-clash-bold text-orange-500 text-2xl">
               Jusqu'à 6K
             </p>
           </div>
-          <div class="relative col-start-1 row-start-5 row-span-1 col-span-2 sm:col-span-1 sm:row-span-2 sm:row-start-5 sm:col-start-1 lg:row-start-5 lg:col-start-1 lg:row-span-3 lg:col-span-1 xl:col-start-1 xl:row-start-4 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
+          <div className="relative col-start-1 row-start-5 row-span-1 col-span-2 sm:col-span-1 sm:row-span-2 sm:row-start-5 sm:col-start-1 lg:row-start-5 lg:col-start-1 lg:row-span-3 lg:col-span-1 xl:col-start-1 xl:row-start-4 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-1/2 -translate-y-1/2 left-10 sm:left-auto sm:right-6 lg:top-4 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-24 h-40 sm:w-26 sm:h-40 md:w-34 md:h-40 lg:w-40 lg:h-30">
@@ -89,7 +89,7 @@ export default function Videos() {
               <p className="font-clash-bold text-green-50 text-2xl">S5IIX</p>
             </div>
           </div>
-          <div class="relative col-start-1 row-start-6 row-span-1 col-span-2 sm:col-span-1 sm:col-start-2 sm:row-start-5 sm:row-span-2 lg:row-start-5 lg:col-start-2 lg:row-span-3 lg:col-span-1 xl:col-start-2 xl:row-start-4 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
+          <div className="relative col-start-1 row-start-6 row-span-1 col-span-2 sm:col-span-1 sm:col-start-2 sm:row-start-5 sm:row-span-2 lg:row-start-5 lg:col-start-2 lg:row-span-3 lg:col-span-1 xl:col-start-2 xl:row-start-4 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-1/2 -translate-y-1/2 left-10 sm:left-6 lg:top-4 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-26 h-40 sm:w-28 sm:h-40 md:w-35 md:h-40 lg:w-40 lg:h-30">
@@ -109,7 +109,7 @@ export default function Videos() {
               <p className="font-clash-bold text-green-50 text-2xl">GH5</p>
             </div>
           </div>
-          <div class="relative col-start-1 row-start-7 col-span-2 sm:col-start-1 sm:row-start-7 sm:col-span-1 lg:row-start-2 lg:col-start-3 lg:col-span-1 lg:row-span-3 xl:col-start-5 xl:row-start-1 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
+          <div className="relative col-start-1 row-start-7 col-span-2 sm:col-start-1 sm:row-start-7 sm:col-span-1 lg:row-start-2 lg:col-start-3 lg:col-span-1 lg:row-span-3 xl:col-start-5 xl:row-start-1 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-2 md:right-6 lg:top-4 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-26 h-40 lg:w-40 lg:h-30">
@@ -131,7 +131,7 @@ export default function Videos() {
               </p>
             </div>
           </div>
-          <div class="relative col-start-1 row-start-8 col-span-2 sm:col-start-2 sm:row-start-7 sm:col-span-1 lg:row-start-2 lg:col-start-4 lg:row-span-3 lg:col-span-1 xl:col-start-6 xl:row-start-1 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
+          <div className="relative col-start-1 row-start-8 col-span-2 sm:col-start-2 sm:row-start-7 sm:col-span-1 lg:row-start-2 lg:col-start-4 lg:row-span-3 lg:col-span-1 xl:col-start-6 xl:row-start-1 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-1/2 -translate-y-1/2 right-6 sm:right-auto sm:left-4 md:left-6 lg:top-4 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-18 h-24 lg:w-40 lg:h-30">
@@ -153,12 +153,12 @@ export default function Videos() {
               </p>
             </div>
           </div>
-          <div class="col-start-1 row-start-9 col-span-2 row-span-1 sm:col-start-2 sm:row-start-8 sm:col-span-1 sm:row-span-2 lg:row-start-5 lg:col-start-3 lg:row-span-1 lg:col-span-2 xl:col-start-5 xl:row-start-4 xl:col-span-2 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
+          <div className="col-start-1 row-start-9 col-span-2 row-span-1 sm:col-start-2 sm:row-start-8 sm:col-span-1 sm:row-span-2 lg:row-start-5 lg:col-start-3 lg:row-span-1 lg:col-span-2 xl:col-start-5 xl:row-start-4 xl:col-span-2 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
             <p className="font-clash-bold text-orange-500 text-2xl">
               Stabilisation inégalable
             </p>
           </div>
-          <div class="relative col-start-1 col-span-2 row-start-10 sm:col-start-1 sm:row-start-8 sm:col-span-1 sm:row-span-2 lg:row-start-6 lg:col-start-3 lg:row-span-2 lg:col-span-2 xl:col-start-5 xl:row-start-5 xl:col-span-2 xl:row-span-2 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
+          <div className="relative col-start-1 col-span-2 row-start-10 sm:col-start-1 sm:row-start-8 sm:col-span-1 sm:row-span-2 lg:row-start-6 lg:col-start-3 lg:row-span-2 lg:col-span-2 xl:col-start-5 xl:row-start-5 xl:col-span-2 xl:row-span-2 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full">
               <div className="absolute top-1/2 -translate-y-2/7 sm:-translate-y-2/5 left-2 sm:left-[-10px] md:left-3 lg:left-6 z-1">
                 <div className="w-30 h-30 md:w-30 md:h-40 lg:w-30 lg:h-50">
@@ -178,13 +178,13 @@ export default function Videos() {
               <p className="font-clash-bold text-green-50 text-2xl">DJI RS3</p>
             </div>
           </div>
-          <div class="row-start-10 col-span-1 col-start-2 row-span-1 lg:row-start-8 lg:col-span-2 lg:col-start-1 lg:row-span-1 xl:col-start-4 xl:row-start-1 xl:col-span-1 xl:row-span-1 flex flex-col justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
+          <div className="row-start-10 col-span-1 col-start-2 row-span-1 lg:row-start-8 lg:col-span-2 lg:col-start-1 lg:row-span-1 xl:col-start-4 xl:row-start-1 xl:col-span-1 xl:row-span-1 flex flex-col justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
             <p className="font-clash-semibold text-orange-500 text-2xl">
               Couleurs
             </p>
             <p className="font-clash-bold text-orange-500 text-5xl">10 Bits</p>
           </div>
-          <div class="relative flex col-start-1 row-start-12 col-span-2 sm:col-start-2 sm:row-start-11 sm:col-span-1 sm:row-span-1 lg:row-start-9 lg:col-span-2 lg:col-start-3 lg:row-span-1 lg:flex xl:col-start-4 xl:row-start-6 xl:col-span-1 xl:row-span-1 justify-center items-center bg-[#171717] rounded-sm overflow-hidden min-h-[100px]">
+          <div className="relative flex col-start-1 row-start-12 col-span-2 sm:col-start-2 sm:row-start-11 sm:col-span-1 sm:row-span-1 lg:row-start-9 lg:col-span-2 lg:col-start-3 lg:row-span-1 lg:flex xl:col-start-4 xl:row-start-6 xl:col-span-1 xl:row-span-1 justify-center items-center bg-[#171717] rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative w-full h-full">
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-auto sm:left-5 md:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
                 <div className="h-12 w-12 sm:h-9 sm:w-9 md:w-12 md:h-12">
@@ -206,7 +206,7 @@ export default function Videos() {
               <Tag variant="default">Logiciel de montage</Tag>
             </div>
           </div>
-          <div class="col-start-1 row-start-13 col-span-2 row-span-2 sm:col-start-1 sm:row-start-12 sm:col-span-2 sm:row-span-2 lg:row-start-10 lg:col-span-4 lg:col-start-1 lg:row-span-1 xl:col-start-1 xl:row-start-7 xl:col-span-6 xl:row-span-1 flex flex-col sm:flex-row justify-between items-center bg-[#171717] rounded-sm p-4 gap-4">
+          <div className="col-start-1 row-start-13 col-span-2 row-span-2 sm:col-start-1 sm:row-start-12 sm:col-span-2 sm:row-span-2 lg:row-start-10 lg:col-span-4 lg:col-start-1 lg:row-span-1 xl:col-start-1 xl:row-start-7 xl:col-span-6 xl:row-span-1 flex flex-col sm:flex-row justify-between items-center bg-[#171717] rounded-sm p-4 gap-4">
             <p className="font-clash-semibold text-orange-500 text-xl">
               Et bien + d'accessoires pour rendre vos rendus comme vous
               l'imaginez

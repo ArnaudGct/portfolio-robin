@@ -4,6 +4,9 @@ import Clients from "../src/sections/Accueil/Clients/Clients";
 import Presentation from "../src/sections/Accueil/Presentation/Presentation";
 import Videos from "../src/sections/Accueil/Videos/Videos";
 import Bento from "../src/sections/Accueil/Bento/Bento";
+import Photos from "../src/sections/Accueil/Photos/Photos";
+import FAQ from "../src/sections/Accueil/FAQ/FAQ";
+import Contact from "../src/sections/Accueil/Contact/Contact";
 
 export default function Home() {
   return (
@@ -19,6 +22,9 @@ export default function Home() {
           <Videos />
           <Bento />
         </div>
+        <Photos />
+        <FAQ />
+        <Contact />
       </div>
       <div className="absolute top-0 left-0 w-full h-25 bg-gradient-to-t from-orange-500/0 to-orange-500/60 pointer-events-none -z-10"></div>
     </main>

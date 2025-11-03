@@ -18,22 +18,37 @@ export function ExternalLinkIcon({ className = "", size = 14 }) {
 }
 
 // Icône de flèche vers la droite
-export function ArrowRightIcon({ className = "", size = 16 }) {
+export function Plus({ className = "", size = 14 }) {
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 16 16"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
       <path
-        d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33334M12.6667 8L8.00001 12.6667"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M12 4.125C12.4832 4.125 12.875 4.51675 12.875 5V11.125H19C19.4832 11.125 19.875 11.5168 19.875 12C19.875 12.4832 19.4832 12.875 19 12.875H12.875V19C12.875 19.4832 12.4832 19.875 12 19.875C11.5168 19.875 11.125 19.4832 11.125 19V12.875H5C4.51675 12.875 4.125 12.4832 4.125 12C4.125 11.5168 4.51675 11.125 5 11.125H11.125V5C11.125 4.51675 11.5168 4.125 12 4.125Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+export function Minus({ className = "", size = 14 }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M19 11.25C19.4142 11.25 19.75 11.5858 19.75 12C19.75 12.4142 19.4142 12.75 19 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H19Z"
+        fill="currentColor"
       />
     </svg>
   );
