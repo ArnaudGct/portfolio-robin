@@ -10,9 +10,9 @@ import Contact from "../src/sections/Accueil/Contact/Contact";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full gap-12 md:gap-18 h-[9000px]">
+    <main className="flex flex-col w-full gap-12 md:gap-18">
       <Hero />
-      <div className="flex flex-col w-full gap-18 md:gap-20 mb-28">
+      <div className="flex flex-col w-full gap-18 md:gap-20">
         <div className="hidden sm:block">
           <Carousel />
         </div>

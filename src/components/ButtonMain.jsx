@@ -7,10 +7,12 @@ export default function ButtonMain({
   rel,
   className = "",
   icon,
+  disabled = false,
 }) {
   const baseClass =
-    "flex justify-center items-center gap-2 py-2 px-7 bg-orange-500 text-black font-jet-brains-mono rounded-sm text-sm";
-  const classes = `${baseClass} ${className}`.trim();
+    "flex justify-center items-center gap-2 py-2 px-7 bg-orange-500 text-black font-jet-brains-mono rounded-sm text-sm cursor-pointer transition-opacity";
+  const disabledClass = disabled ? "opacity-50 cursor-not-allowed" : "";
+  const classes = `${baseClass} ${disabledClass} ${className}`.trim();
 
   const content = (
     <>
@@ -39,7 +41,12 @@ export default function ButtonMain({
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classes}
+      disabled={disabled}
+    >
       {content}
     </button>
   );

@@ -2,7 +2,7 @@
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../src/sections/Header";
-// import Footer from "./../src/sections/Footer";
+import Footer from "./../src/sections/Footer";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { themeScript } from "./../lib/themeScript";
@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
       >
         {showHeader && <Header />}
         <div className="flex-grow">{children}</div>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
