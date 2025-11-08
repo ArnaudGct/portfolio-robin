@@ -8,8 +8,6 @@ import Photos from "../src/sections/Accueil/Photos/Photos";
 import FAQ from "../src/sections/Accueil/FAQ/FAQ";
 import Contact from "../src/sections/Accueil/Contact/Contact";
 
-// Test
-
 export default function Home() {
   return (
     <main className="flex flex-col w-full gap-12 md:gap-18">
