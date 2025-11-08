@@ -26,7 +26,7 @@ COPY package*.json ./
 RUN npm install --only=production
 
 # Copier le build et Prisma
-# COPY --from=builder /app ./
+COPY --from=builder /app ./
 
 EXPOSE 3000
 ENV NODE_ENV=production
