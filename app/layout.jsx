@@ -3,6 +3,7 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../src/sections/Header";
 import Footer from "./../src/sections/Footer";
+import ConstructionBanner from "../src/components/ConstructionBanner";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { themeScript } from "./../lib/themeScript";
@@ -43,8 +44,13 @@ export default function RootLayout({ children }) {
         className={`${jetBrainsMono.variable} antialiased flex flex-col min-h-screen bg-white`}
       >
         {showHeader && <Header />}
-        <div className="flex-grow">{children}</div>
+        <div
+          className={`flex-grow ${showHeader ? "pt-[67px] lg:pt-[84px]" : ""}`}
+        >
+          {children}
+        </div>
         <Footer />
+        <ConstructionBanner />
       </body>
     </html>
   );

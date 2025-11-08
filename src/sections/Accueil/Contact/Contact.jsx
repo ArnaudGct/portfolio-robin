@@ -66,7 +66,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="bg-[#282828]">
+    <section id="contact" className="bg-[#282828]">
       <div className="relative w-[95%] max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-center lg:justify-between items-start lg:items-center gap-8 py-20">
         <div className="w-full lg:w-[50%] flex flex-col sm:flex-row lg:flex-col justify-between lg:justify-center gap-8">
           <div className="flex gap-4 items-center">

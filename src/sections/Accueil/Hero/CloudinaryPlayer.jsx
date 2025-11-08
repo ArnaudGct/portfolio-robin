@@ -429,8 +429,8 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
             </div>
             <div className="flex gap-2 flex-wrap">
               <Tag>Réalisateur</Tag>
+              <Tag>Cadreur</Tag>
               <Tag>Monteur</Tag>
-              <Tag>Motion Designer</Tag>
             </div>
           </div>
         </div>
@@ -447,19 +447,6 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
             if (!isMobile) setIsHoveringControls(false);
           }}
         >
-          {/* <div className="hidden md:flex flex-col gap-3">
-            <p className="text-4xl text-gray-50 tracking-tighter">
-              Je m'appelle{" "}
-              <span className="font-clash-bold text-orange-500 py-0.5 px-2 bg-orange-500/15 rounded-sm tracking-normal">
-                Robin Augez
-              </span>
-            </p>
-            <div className="flex gap-4">
-              <Tag>Réalisateur</Tag>
-              <Tag>Monteur</Tag>
-              <Tag>Motion Designer</Tag>
-            </div>
-          </div> */}
           <div className="flex items-center gap-4">
             <button
               onClick={togglePlayPause}

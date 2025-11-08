@@ -32,6 +32,9 @@ export default function Header() {
   };
 
   useEffect(() => {
+    // Initialiser l'état du scroll au montage du composant
+    setIsScrolled(window.scrollY > 10);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -64,73 +67,115 @@ export default function Header() {
   };
 
   return (
-    <header>
+    <header className="fixed top-0 left-0 w-full z-50">
       {/* Desktop */}
-      <div className="hidden lg:flex justify-between items-center py-6 w-[98%] mx-auto">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/photo_robin_main.webp"
-            alt="Logo"
-            width={35}
-            height={35}
-            className="rounded-sm"
-          />
-          <h1 className="font-clash-bold text-lg text-black">
-            Cosmose<span className="text-orange-500">Prod.</span>
-          </h1>
-        </Link>
-        <nav>
-          <ul className="flex gap-8 font-jet-brains-mono font-normal text-sm">
-            <li>
-              <Link
-                href="/"
-                className={isActive("/") ? "text-orange-500" : "text-black"}
-                aria-current={isActive("/") ? "page" : undefined}
-              >
-                Accueil
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/apropos"
-                className={
-                  isActive("/apropos") ? "text-orange-500" : "text-black"
-                }
-                aria-current={isActive("/apropos") ? "page" : undefined}
-              >
-                À propos
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/videos"
-                className={
-                  isActive("/videos") ? "text-orange-500" : "text-black"
-                }
-                aria-current={isActive("/videos") ? "page" : undefined}
-              >
-                Vidéos
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/photos"
-                className={
-                  isActive("/photos") ? "text-orange-500" : "text-black"
-                }
-                aria-current={isActive("/photos") ? "page" : undefined}
-              >
-                Photos
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <ButtonMain href="#contact">Contact</ButtonMain>
+      <div
+        className="hidden lg:block w-full transition-all duration-300"
+        style={{
+          backgroundColor: isScrolled
+            ? "var(--header-bg-scrolled)"
+            : "var(--header-bg-transparent)",
+          boxShadow: isScrolled
+            ? "0px 4px 8px var(--header-shadow-color)"
+            : "0px 0px 0px var(--header-shadow-color-transparent)",
+          backdropFilter: isScrolled ? "blur(8px)" : "blur(0px)",
+          WebkitBackdropFilter: isScrolled ? "blur(8px)" : "blur(0px)",
+        }}
+      >
+        <div className="flex justify-between items-center py-6 w-[98%] mx-auto">
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/photo_robin_main.webp"
+              alt="Logo"
+              width={35}
+              height={35}
+              className="rounded-sm"
+            />
+            <h1 className="font-clash-bold text-lg text-black">
+              Cosmose<span className="text-orange-500">Prod.</span>
+            </h1>
+          </Link>
+          <nav>
+            <ul className="flex gap-8 font-jet-brains-mono font-normal text-sm">
+              <li>
+                <Link
+                  href="/"
+                  className={isActive("/") ? "text-orange-500" : "text-black"}
+                  aria-current={isActive("/") ? "page" : undefined}
+                >
+                  Accueil
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/apropos"
+                  className={
+                    isActive("/apropos") ? "text-orange-500" : "text-black"
+                  }
+                  aria-current={isActive("/apropos") ? "page" : undefined}
+                >
+                  À propos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/videos"
+                  className={
+                    isActive("/videos") ? "text-orange-500" : "text-black"
+                  }
+                  aria-current={isActive("/videos") ? "page" : undefined}
+                >
+                  Vidéos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/photos"
+                  className={
+                    isActive("/photos") ? "text-orange-500" : "text-black"
+                  }
+                  aria-current={isActive("/photos") ? "page" : undefined}
+                >
+                  Photos
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <ButtonMain href="#contact">Contact</ButtonMain>
+        </div>
       </div>
 
       {/* Version mobile */}
       <div className="lg:hidden relative w-full">
-        <div className="flex justify-between items-center mx-auto w-[95%] py-4 z-50">
+        <motion.div
+          initial={{ height: "65px" }}
+          animate={{
+            height: isMenuOpen
+              ? windowWidth <= 480 // Vérifie si le viewport est inférieur ou égal au breakpoint xs (640px)
+                ? "320px" // Hauteur pour les petits écrans
+                : "260px" // Hauteur pour les écrans plus larges
+              : "65px",
+          }}
+          transition={{ type: "spring", bounce: 0.35 }}
+          className="absolute top-0 right-0 w-full z-40"
+          style={{
+            backgroundColor:
+              isMenuOpen || isScrolled
+                ? "var(--header-bg-scrolled)"
+                : "var(--header-bg-transparent)",
+            boxShadow:
+              isMenuOpen || isScrolled
+                ? "0px 4px 8px var(--header-shadow-color)"
+                : "0px 0px 0px var(--header-shadow-color-transparent)",
+            transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+            WebkitBackdropFilter:
+              isMenuOpen || isScrolled ? "blur(8px)" : "blur(0px)", // Safari support
+            backdropFilter:
+              isMenuOpen || isScrolled ? "blur(8px)" : "blur(0px)",
+          }}
+        />
+
+        <div className="flex justify-between items-center mx-auto w-[95%] py-4 z-50 relative">
           <Link href="/" className="flex items-center gap-3">
             <Image
               src="/photo_robin_main.webp"
@@ -147,7 +192,7 @@ export default function Header() {
             ref={menuButtonRef} // Ajout de la référence au bouton
             whileTap={{ scale: 0.85 }}
             onClick={toggleMenu}
-            className="z-50"
+            className="z-50 relative"
           >
             {isMenuOpen ? (
               <X className="text-orange-500" width={26} height={26} />
@@ -162,7 +207,7 @@ export default function Header() {
           {isMenuOpen ? (
             <div
               ref={menuRef}
-              className="fixed flex flex-col xs:flex-row items-center xs:items-end justify-between z-50 w-full px-8 py-1 gap-8"
+              className="flex flex-col xs:flex-row items-center xs:items-end justify-between z-50 w-full px-8 py-1 gap-8 relative"
             >
               <motion.nav
                 className="flex flex-col items-center xs:items-start justify-center gap-4 font-jet-brains-mono"
@@ -212,34 +257,6 @@ export default function Header() {
             </div>
           ) : null}
         </AnimatePresence>
-
-        <motion.div
-          initial={{ height: "65px" }}
-          animate={{
-            height: isMenuOpen
-              ? windowWidth <= 480 // Vérifie si le viewport est inférieur ou égal au breakpoint xs (640px)
-                ? "320px" // Hauteur pour les petits écrans
-                : "260px" // Hauteur pour les écrans plus larges
-              : "65px",
-          }}
-          transition={{ type: "spring", bounce: 0.35 }}
-          className="absolute top-0 right-0 w-full z-40"
-          style={{
-            backgroundColor:
-              isMenuOpen || isScrolled
-                ? "var(--header-bg-scrolled)"
-                : "var(--header-bg-transparent)",
-            boxShadow:
-              isMenuOpen || isScrolled
-                ? "0px 4px 8px var(--header-shadow-color)"
-                : "0px 0px 0px var(--header-shadow-color-transparent)",
-            transition: "background-color 0.3s ease, box-shadow 0.3s ease",
-            WebkitBackdropFilter:
-              isMenuOpen || isScrolled ? "blur(8px)" : "blur(0px)", // Safari support
-            backdropFilter:
-              isMenuOpen || isScrolled ? "blur(8px)" : "blur(0px)",
-          }}
-        />
       </div>
     </header>
   );

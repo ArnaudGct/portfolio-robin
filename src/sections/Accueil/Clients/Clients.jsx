@@ -6,27 +6,32 @@ import Link from "next/link";
 const clients = [
   {
     name: "Sud Ouest",
-    logo: "/clients/sud-ouest.png",
-    url: "",
+    logo: "/clients/sud-ouest.webp",
+    url: "https://www.sudouest.fr/",
   },
   {
     name: "TV7",
-    logo: "/clients/tv7.png",
-    url: "",
+    logo: "/clients/tv7.webp",
+    url: "https://www.sudouest.fr/lachainetv7/",
   },
   {
     name: "Marée Montante",
-    logo: "/clients/maree-montante.png",
-    url: "",
+    logo: "/clients/maree-montante.webp",
+    url: "https://www.mareemontante.fr/",
+  },
+  {
+    name: "BatiFemmes",
+    logo: "/clients/batifemmes.webp",
+    url: "https://www.mareemontante.fr/",
   },
   {
     name: "Yamaha",
-    logo: "/clients/yamaha.png",
-    url: "",
+    logo: "/clients/yamaha.webp",
+    url: "https://www.yamaha-motor.eu/fr/fr/home/",
   },
   {
     name: "Video Danse",
-    logo: "/clients/video-danse.png",
+    logo: "/clients/video-danse.webp",
     url: "",
   },
 ];
@@ -45,7 +50,7 @@ export default function Clients() {
         </div>
         <span className="flex-1 h-[1px] bg-gray-300 mb-1.5"></span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 items-center justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 gap-y-12 sm:gap-8 items-center justify-center">
         {clients.map((client, index) => (
           <Link
             key={index}
