@@ -83,10 +83,10 @@ export default function Contact() {
                 <span className="font-clash-bold text-orange-500">Augez</span>
               </p>
               <Link
-                href="mailto:contact@cosmoseprod.com"
+                href="mailto:robin@cosmoseprod.com"
                 className="underline text-white"
               >
-                contact@cosmoseprod.com
+                robin@cosmoseprod.com
               </Link>
             </div>
           </div>

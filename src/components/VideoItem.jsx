@@ -87,7 +87,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent }) {
       <Link href={`/creations/video/${id}?from=${pageCurrent}`}>
         <div className="w-full flex items-center justify-between">
           <div className="w-[90%] flex flex-col gap-2">
-            <p className="w-full text-xl font-extrabold font-rethink-sans text-blue-900 truncate">
+            <p className="w-full text-xl font-extrabold  text-blue-900 truncate">
               {title}
             </p>
             {tags.length > 0 && (

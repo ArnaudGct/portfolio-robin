@@ -45,10 +45,10 @@ export default function Footer() {
                     </Link>
                   </div>
                   <Link
-                    href="mailto:contact@cosmoseprod.com"
+                    href="mailto:robin@cosmoseprod.com"
                     className="underline text-white"
                   >
-                    contact@cosmoseprod.com
+                    robin@cosmoseprod.com
                   </Link>
                 </div>
               </div>
