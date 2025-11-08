@@ -211,13 +211,13 @@ export default function Videos() {
               Et bien + d'accessoires pour rendre vos rendus comme vous
               l'imaginez
             </p>
-            <ButtonMain
+            {/* <ButtonMain
               href="/materiel"
               className="w-full sm:w-auto whitespace-nowrap shrink-0"
               icon={<ExternalLinkIcon className="text-[#171717]" />}
             >
               Voir la liste complète
-            </ButtonMain>
+            </ButtonMain> */}
           </div>
         </div>
       </div>

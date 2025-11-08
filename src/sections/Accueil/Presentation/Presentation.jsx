@@ -33,9 +33,9 @@ export default function Presentation() {
               excepteur anim in do anim labore dolor.
             </p>
           </div>
-          <ButtonMain href="/apropos" className="w-fit">
+          {/* <ButtonMain href="/apropos" className="w-fit">
             En savoir plus
-          </ButtonMain>
+          </ButtonMain> */}
           <div
             className="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[150%] h-[140%] pointer-events-none -z-10"
             style={{

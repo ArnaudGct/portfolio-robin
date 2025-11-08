@@ -23,9 +23,9 @@ export default function Videos() {
               Des histoires visuelles qui brillent dans le cosmos.
             </p>
           </div>
-          <ButtonMain href="/videos" className="w-fit">
+          {/* <ButtonMain href="/videos" className="w-fit">
             Voir plus
-          </ButtonMain>
+          </ButtonMain> */}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {/* Ligne 1 */}

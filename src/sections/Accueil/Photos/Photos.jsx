@@ -74,9 +74,9 @@ export default function Photos() {
               Des instants figés dans la lumière de notre univers.
             </p>
           </div>
-          <ButtonMain href="/photos" className="w-fit">
+          {/* <ButtonMain href="/photos" className="w-fit">
             Voir plus
-          </ButtonMain>
+          </ButtonMain> */}
         </div>
         <div
           className="w-full overflow-x-auto scrollbar-hide"

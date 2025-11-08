@@ -59,7 +59,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
-                  className={isActive("/") ? "text-orange-500" : "text-black"}
+                  className={isActive("/") ? "text-orange-500" : "text-gray-50"}
                   aria-current={isActive("/") ? "page" : undefined}
                 >
                   Accueil
