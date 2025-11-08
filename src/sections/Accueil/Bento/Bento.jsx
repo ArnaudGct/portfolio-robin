@@ -42,28 +42,6 @@ export default function Videos() {
               Mon<span className="text-orange-500">matériel.</span>
             </p>
           </div>
-          <div className="relative col-start-1 row-start-11 col-span-2 sm:col-start-1 sm:row-start-11 sm:col-span-1 sm:row-span-1 lg:row-start-9 lg:col-span-2 lg:col-start-1 lg:row-span-1 xl:col-start-3 xl:row-start-6 xl:col-span-1 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm overflow-hidden min-h-[100px]">
-            <div className="relative w-full h-full">
-              <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-5 md:right-6 lg:right-auto lg:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
-                <div className="h-10 w-10 sm:w-8 sm:h-8 md:w-10 md:h-10">
-                  <Image
-                    src="/materiels/premiere_pro.webp"
-                    alt="DJI Ronin 4D"
-                    fill
-                    className="object-contain w-full h-full"
-                    priority
-                  />
-                </div>
-              </div>
-              <div className="absolute top-1/2 -translate-y-1/2 right-[-40px] sm:right-[-80px] md:right-[-60px] lg:right-auto lg:left-[-50px] xl:left-1/2 xl:-translate-x-1/2 bg-orange-500 rounded-full h-40 w-40 xl:w-35 xl:h-35 z-0"></div>
-            </div>
-            <div className="flex xl:hidden absolute bottom-1/2 translate-y-1/2 left-6 lg:left-auto lg:right-6 flex-col items-start lg:items-end gap-1">
-              <p className="font-clash-bold text-orange-500 text-2xl">
-                Premiere Pro
-              </p>
-              <Tag variant="default">Logiciel de montage</Tag>
-            </div>
-          </div>
           <div className="col-start-1 row-start-4 col-span-2 xl:col-start-1 xl:row-start-3 xl:col-span-2 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
             <p className="font-clash-bold text-orange-500 text-2xl">
               Jusqu'à 6K
@@ -184,10 +162,32 @@ export default function Videos() {
             </p>
             <p className="font-clash-bold text-orange-500 text-5xl">10 Bits</p>
           </div>
+          <div className="relative col-start-1 row-start-11 col-span-2 sm:col-start-1 sm:row-start-11 sm:col-span-1 sm:row-span-1 lg:row-start-9 lg:col-span-2 lg:col-start-1 lg:row-span-1 xl:col-start-3 xl:row-start-6 xl:col-span-1 xl:row-span-1 flex justify-center items-center bg-[#171717] rounded-sm overflow-hidden min-h-[100px]">
+            <div className="relative w-full h-full">
+              <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-5 md:right-6 lg:right-auto lg:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
+                <div className="h-12 w-12 sm:w-10 sm:h-10 md:w-13 md:h-13">
+                  <Image
+                    src="/materiels/premiere_pro.webp"
+                    alt="DJI Ronin 4D"
+                    fill
+                    className="object-contain w-full h-full"
+                    priority
+                  />
+                </div>
+              </div>
+              <div className="absolute top-1/2 -translate-y-1/2 right-[-40px] sm:right-[-80px] md:right-[-60px] lg:right-auto lg:left-[-50px] xl:left-1/2 xl:-translate-x-1/2 bg-orange-500 rounded-full h-40 w-40 xl:w-35 xl:h-35 z-0"></div>
+            </div>
+            <div className="flex xl:hidden absolute bottom-1/2 translate-y-1/2 left-6 lg:left-auto lg:right-6 flex-col items-start lg:items-end gap-1">
+              <p className="font-clash-bold text-orange-500 text-2xl">
+                Premiere Pro
+              </p>
+              <Tag variant="default">Logiciel de montage</Tag>
+            </div>
+          </div>
           <div className="relative flex col-start-1 row-start-12 col-span-2 sm:col-start-2 sm:row-start-11 sm:col-span-1 sm:row-span-1 lg:row-start-9 lg:col-span-2 lg:col-start-3 lg:row-span-1 lg:flex xl:col-start-4 xl:row-start-6 xl:col-span-1 xl:row-span-1 justify-center items-center bg-[#171717] rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative w-full h-full">
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-auto sm:left-5 md:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
-                <div className="h-12 w-12 sm:h-9 sm:w-9 md:w-12 md:h-12">
+                <div className="h-15 w-15 sm:h-12 sm:w-12 md:w-15 md:h-15">
                   <Image
                     src="/materiels/resolve.webp"
                     alt="DJI Ronin 4D"
