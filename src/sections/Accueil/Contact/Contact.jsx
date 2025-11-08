@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ButtonMain from "@/src/components/ButtonMain";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,8 +17,22 @@ export default function Contact() {
   const [formState, setFormState] = useState({
     isSubmitting: false,
     isSuccess: false,
-    error: null,
+    isError: false,
+    message: "",
   });
+
+  useEffect(() => {
+    if (formState.isSuccess) {
+      const timer = setTimeout(() => {
+        setFormState((prev) => ({
+          ...prev,
+          isSuccess: false,
+          message: "",
+        }));
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [formState.isSuccess]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,21 +45,29 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setFormState({ isSubmitting: true, isSuccess: false, error: null });
-
-    // Simulation d'envoi pour le développement
-    console.log("📧 Données du formulaire:", formData);
+    setFormState({
+      isSubmitting: true,
+      isSuccess: false,
+      isError: false,
+      message: "",
+    });
 
     try {
-      // Simuler un délai d'envoi
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-      // Succès
-      setFormState({ isSubmitting: false, isSuccess: true, error: null });
-      console.log("✅ Message envoyé avec succès!");
+      const result = await response.json();
 
-      // Réinitialiser le formulaire après 2 secondes
-      setTimeout(() => {
+      if (response.ok && result.success) {
+        setFormState({
+          isSubmitting: false,
+          isSuccess: true,
+          isError: false,
+          message: "Message envoyé avec succès !",
+        });
         setFormData({
           firstName: "",
           lastName: "",
@@ -53,15 +75,17 @@ export default function Contact() {
           object: "",
           message: "",
         });
-        setFormState({ isSubmitting: false, isSuccess: false, error: null });
-      }, 2000);
+      } else {
+        throw new Error(result.error?.message || "Erreur lors de l'envoi");
+      }
     } catch (error) {
+      console.error("Erreur lors de l'envoi du formulaire:", error);
       setFormState({
         isSubmitting: false,
         isSuccess: false,
-        error: error.message,
+        isError: true,
+        message: error.message || "Une erreur est survenue.",
       });
-      console.error("❌ Erreur:", error);
     }
   };
 
@@ -173,13 +197,13 @@ export default function Contact() {
                 disabled={formState.isSubmitting || formState.isSuccess}
               >
                 {formState.isSubmitting
-                  ? "Envoi..."
+                  ? "Envoi en cours..."
                   : formState.isSuccess
-                  ? "Envoyé"
+                  ? "Message envoyé !"
                   : "Envoyer le message"}
               </ButtonMain>
-              {formState.error && (
-                <p className="text-red-500 text-sm">{formState.error}</p>
+              {formState.isError && (
+                <p className="text-red-500 text-sm">{formState.message}</p>
               )}
             </div>
           </div>
