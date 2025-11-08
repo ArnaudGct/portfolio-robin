@@ -1,11 +1,17 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 
 export default function Carousel() {
   const carouselRef = useRef(null);
   const trackRef = useRef(null);
+  const animationFrameRef = useRef(null);
+  const lastTimestampRef = useRef(null);
+  const pauseTimeoutRef = useRef(null);
+  const scrollWindowRef = useRef(0);
+  const scrollPositionRef = useRef(0);
+  const isPausedRef = useRef(false);
   const [isPaused, setIsPaused] = useState(false);
 
   const carouselItems = [
@@ -47,19 +53,161 @@ export default function Carousel() {
     },
   ];
 
-  const handleTouchStart = () => {
+  const clearPauseTimeout = () => {
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+      pauseTimeoutRef.current = null;
+    }
+  };
+
+  const handlePause = () => {
+    clearPauseTimeout();
     setIsPaused(true);
   };
 
-  const handleTouchEnd = () => {
-    // Reprendre après 3 secondes d'inactivité
-    setTimeout(() => {
-      setIsPaused(false);
-    }, 3000);
+  const handleResume = (delay = 0) => {
+    clearPauseTimeout();
+    if (delay > 0) {
+      pauseTimeoutRef.current = setTimeout(() => {
+        setIsPaused(false);
+      }, delay);
+      return;
+    }
+    setIsPaused(false);
   };
 
-  // Pas besoin de useEffect pour gérer l'animation
-  // L'animation CSS s'occupe de la boucle infinie
+  const handleTouchStart = () => {
+    handlePause();
+  };
+
+  const handleTouchEnd = () => {
+    handleResume(3000);
+  };
+
+  const handleMouseEnter = () => {
+    handlePause();
+  };
+
+  const handleMouseLeave = () => {
+    handleResume();
+  };
+
+  const updateScrollMetrics = useCallback(() => {
+    const track = trackRef.current;
+    const container = carouselRef.current;
+
+    if (!track || !container) {
+      return;
+    }
+
+    const loopWidth = track.scrollWidth / 2;
+    scrollWindowRef.current = loopWidth;
+
+    if (loopWidth > 0) {
+      const normalizedScroll = container.scrollLeft % loopWidth;
+      container.scrollLeft = normalizedScroll;
+      scrollPositionRef.current = normalizedScroll;
+    } else {
+      scrollPositionRef.current = container.scrollLeft;
+    }
+  }, []);
+
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
+
+  useEffect(() => {
+    updateScrollMetrics();
+
+    const handleResize = () => {
+      updateScrollMetrics();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== "undefined" && trackRef.current) {
+      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(trackRef.current);
+    }
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, [updateScrollMetrics]);
+
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) {
+      return undefined;
+    }
+
+    updateScrollMetrics();
+    scrollPositionRef.current = container.scrollLeft;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    if (prefersReducedMotion.matches) {
+      return () => {};
+    }
+
+    const speed = 0.018; // Pixels per millisecond
+
+    const syncPosition = () => {
+      scrollPositionRef.current = container.scrollLeft;
+    };
+
+    container.addEventListener("scroll", syncPosition, { passive: true });
+
+    const animate = (timestamp) => {
+      if (lastTimestampRef.current == null) {
+        lastTimestampRef.current = timestamp;
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const delta = timestamp - lastTimestampRef.current;
+      lastTimestampRef.current = timestamp;
+
+      if (!isPausedRef.current) {
+        const loopWidth = scrollWindowRef.current;
+        let nextPosition = scrollPositionRef.current + delta * speed;
+
+        if (loopWidth > 0) {
+          nextPosition = nextPosition % loopWidth;
+          if (nextPosition < 0) {
+            nextPosition += loopWidth;
+          }
+        }
+
+        scrollPositionRef.current = nextPosition;
+        container.scrollLeft = nextPosition;
+      }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      container.removeEventListener("scroll", syncPosition);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      lastTimestampRef.current = null;
+    };
+  }, [updateScrollMetrics]);
+
+  useEffect(() => {
+    return () => {
+      clearPauseTimeout();
+    };
+  }, []);
 
   return (
     <section
@@ -67,30 +215,13 @@ export default function Carousel() {
       ref={carouselRef}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
         .carousel-track {
           --carousel-columns: 5;
           display: flex;
-          animation: scroll 60s linear infinite;
-          will-change: transform;
-        }
-
-        .carousel-track:hover {
-          animation-play-state: paused;
-        }
-
-        .carousel-track.paused {
-          animation-play-state: paused;
         }
 
         .scrollbar-hide {
@@ -119,36 +250,29 @@ export default function Carousel() {
         @media (max-width: 1280px) {
           .carousel-track {
             --carousel-columns: 4;
-            animation-duration: 50s;
           }
         }
 
         @media (max-width: 1024px) {
           .carousel-track {
             --carousel-columns: 3;
-            animation-duration: 40s;
           }
         }
 
         @media (max-width: 768px) {
           .carousel-track {
             --carousel-columns: 2.25;
-            animation-duration: 30s;
           }
         }
 
         @media (max-width: 480px) {
           .carousel-track {
             --carousel-columns: 1.9;
-            animation-duration: 25s;
           }
         }
       `}</style>
 
-      <div
-        ref={trackRef}
-        className={`carousel-track ${isPaused ? "paused" : ""}`}
-      >
+      <div ref={trackRef} className="carousel-track">
         {/* Afficher les items originaux */}
         {carouselItems.map((item, index) => {
           const videos = item.type === "videos" ? item.videos ?? [] : [];
