@@ -1,7 +1,7 @@
 "use client";
 import ButtonMain from "@/src/components/ButtonMain";
 import Image from "next/image";
-import { Pin } from "../../../components/Icons/Icons";
+import { Pin } from "./../../../components/icons/Icons";
 
 export default function Presentation() {
   return (
