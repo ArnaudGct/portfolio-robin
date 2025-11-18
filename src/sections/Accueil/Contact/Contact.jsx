@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import ButtonMain from "@/src/components/ButtonMain";
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, LinkedIn } from "@/src/components/icons/Icons";
+import { Instagram, LinkedIn, Pin, Mail } from "@/src/components/icons/Icons";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -97,21 +97,31 @@ export default function Contact() {
             <Image
               src="/photo_robin_main.webp"
               alt="Logo"
-              width={60}
-              height={60}
+              width={70}
+              height={70}
               className="rounded-sm object-cover"
             />
-            <div>
+            <div className="flex flex-col gap-1">
               <p className="font-clash-regular text-white text-2xl">
                 Robin{" "}
                 <span className="font-clash-bold text-orange-500">Augez</span>
               </p>
-              <Link
-                href="mailto:robin@cosmoseprod.com"
-                className="underline text-white"
-              >
-                robin@cosmoseprod.com
-              </Link>
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <Pin className="text-white" />
+                  <p className="text-white">
+                    <span className="font-bold">Bordeaux</span> (+ déplacement
+                    dans toute la France)
+                  </p>
+                </div>
+                <Link
+                  href="mailto:robin@cosmoseprod.com"
+                  className="underline text-white flex items-center gap-1.5"
+                >
+                  <Mail className="text-white" />
+                  <p>robin@cosmoseprod.com</p>
+                </Link>
+              </div>
             </div>
           </div>
           <div className="flex flex-row lg:flex-col gap-5">

@@ -24,11 +24,11 @@ const clients = [
     logo: "/clients/batifemmes.webp",
     url: "https://www.mareemontante.fr/",
   },
-  {
-    name: "Yamaha",
-    logo: "/clients/yamaha.webp",
-    url: "https://www.yamaha-motor.eu/fr/fr/home/",
-  },
+  // {
+  //   name: "Yamaha",
+  //   logo: "/clients/yamaha.webp",
+  //   url: "https://www.yamaha-motor.eu/fr/fr/home/",
+  // },
   {
     name: "Video Danse",
     logo: "/clients/video-danse.webp",
@@ -50,7 +50,7 @@ export default function Clients() {
         </div>
         <span className="flex-1 h-[1px] bg-gray-300 mb-1.5"></span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 gap-y-12 sm:gap-8 items-center justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 gap-y-12 sm:gap-8 items-center justify-center">
         {clients.map((client, index) => (
           <Link
             key={index}

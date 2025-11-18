@@ -1,6 +1,7 @@
 "use client";
 import ButtonMain from "@/src/components/ButtonMain";
 import Image from "next/image";
+import { Pin } from "../../../components/Icons/Icons";
 
 export default function Presentation() {
   return (
@@ -15,12 +16,22 @@ export default function Presentation() {
         />
         <div className="relative flex flex-col gap-12">
           <div className="flex flex-col gap-4">
-            <p className="text-4xl text-black font-clash-regular">
-              Robin{" "}
-              <span className="font-clash-bold text-orange-500 tracking-normal">
-                Augez
-              </span>
-            </p>
+            <div>
+              <p className="text-4xl text-black font-clash-regular">
+                Robin{" "}
+                <span className="font-clash-bold text-orange-500 tracking-normal">
+                  Augez
+                </span>
+              </p>
+              <div className="flex items-center gap-1.5">
+                <Pin className="text-orange-500" />
+                <p className="text-orange-500">
+                  <span className="font-bold">Bordeaux</span> (+ déplacement
+                  dans toute la France)
+                </p>
+              </div>
+            </div>
+
             <p>
               Magna dolor laboris labore elit ullamco ad ut sit et reprehenderit
               minim minim quis fugiat anim. Occaecat dolore cillum excepteur
