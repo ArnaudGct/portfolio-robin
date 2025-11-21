@@ -1,6 +1,6 @@
 "use client";
 
-export default function Tag({ children, variant = "default" }) {
+export default function Tag({ children, variant = "default", className = "" }) {
   const variants = {
     default: "border-orange-500 text-orange-500",
     green: "border-green-50 text-green-50",
@@ -14,7 +14,7 @@ export default function Tag({ children, variant = "default" }) {
     <span
       className={`inline-flex items-center px-3 py-1 rounded-full border ${
         variants[variant] || variants.default
-      } text-sm font-jet-brains-mono`}
+      } text-sm font-jet-brains-mono ${className}`}
     >
       {children}
     </span>

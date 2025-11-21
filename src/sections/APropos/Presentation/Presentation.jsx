@@ -2,33 +2,32 @@
 import ButtonMain from "@/src/components/ButtonMain";
 import Image from "next/image";
 import { Pin } from "./../../../components/icons/Icons";
+import Tag from "@/src/components/Tag";
 
 export default function Presentation() {
   return (
-    <section className="flex py-8 border-t-1 border-b-1 border-dashed border-gray-300 overflow-hidden">
+    <section className="relative flex py-8 border-t-1 border-b-1 border-dashed border-gray-300 overflow-hidden">
       <div className="w-[95%] max-w-[1440px] mx-auto flex flex-col md:flex-row justify-center items-center gap-20">
         <Image
-          src="/photo_robin.webp"
+          src="/photo_robin_regie.webp"
           alt="Photo de Robin"
           width={800}
           height={600}
-          className="w-full md:w-[40%] h-[500px] object-cover rounded-sm"
+          className="w-full md:w-[40%] h-[500px] object-cover rounded-sm object-right"
         />
-        <div className="relative flex flex-col gap-12">
-          <div className="flex flex-col gap-4">
-            <div>
+        <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-2">
               <p className="text-4xl text-black font-clash-regular">
-                Robin{" "}
+                Je m'appelle{" "}
                 <span className="font-clash-bold text-orange-500 tracking-normal">
-                  Augez
+                  Robin Augez
                 </span>
               </p>
               <div className="flex items-center gap-1.5">
-                <Pin className="text-orange-500" />
-                <p className="text-orange-500">
-                  <span className="font-bold">Bordeaux</span> (+ déplacement
-                  dans toute la France)
-                </p>
+                <Tag>Réalisateur</Tag>
+                <Tag>Cadreur</Tag>
+                <Tag>Monteur vidéo</Tag>
               </div>
             </div>
 
@@ -47,15 +46,16 @@ export default function Presentation() {
           {/* <ButtonMain href="/apropos" className="w-fit">
             En savoir plus
           </ButtonMain> */}
-          <div
-            className="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[150%] h-[140%] pointer-events-none -z-10"
-            style={{
-              backgroundImage: "url(/dot_grid.svg)",
-              backgroundRepeat: "repeat",
-              backgroundSize: "auto",
-            }}
-          ></div>
         </div>
+        <div
+          className="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-60"
+          style={{
+            backgroundImage: "url(/grid_2.svg)",
+            backgroundRepeat: "repeat",
+            backgroundSize: "450px",
+            backgroundPosition: "top",
+          }}
+        ></div>
       </div>
     </section>
   );

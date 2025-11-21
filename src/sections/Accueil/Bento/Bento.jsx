@@ -8,7 +8,7 @@ export default function Videos() {
   return (
     <section className="bg-[#282828]">
       <div className="relative w-[95%] py-20 max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-col-2 lg:grid-cols-4 xl:grid-cols-6 grid-rows-12 sm:grid-rows-[repeat(10,minmax(100px,1fr))_auto] lg:grid-rows-[repeat(9,minmax(100px,1fr))_auto] xl:grid-rows-[repeat(6,minmax(100px,1fr))_auto] gap-2 xl:gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 grid-rows-12 sm:grid-rows-[repeat(10,minmax(100px,1fr))_auto] lg:grid-rows-[repeat(9,minmax(100px,1fr))_auto] xl:grid-rows-[repeat(6,minmax(100px,1fr))_auto] gap-2 xl:gap-2">
           <div className="relative col-start-1 row-start-2 col-span-2 row-span-2 xl:col-start-1 xl:row-start-1 xl:col-span-2 xl:row-span-2 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-4 sm:top-1/2 sm:-translate-y-1/2 left-4 sm:left-10 lg:left-6 xl:translate-y-0 xl:top-4 xl:left-4 z-1">
