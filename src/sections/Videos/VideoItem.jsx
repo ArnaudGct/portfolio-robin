@@ -1,9 +1,10 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Tag from "./../../components/Tag";
-import { Maximize2, X } from "lucide-react";
+import { Maximize2, X, SquareArrowOutUpRight } from "lucide-react";
 import { render } from "react-dom";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import ButtonSecondary from "../../components/ButtonSecondary";
 
 export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
   const [loading, setLoading] = useState(true); // Pour gérer l'état de chargement
@@ -128,7 +129,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
           )}
         </div>
         <div
-          className="w-full flex items-center justify-between cursor-pointer"
+          className="group w-full flex items-center justify-between cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
           <div className="w-[90%] flex flex-col gap-1.5">
@@ -145,8 +146,12 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
               </div>
             )}
           </div>
-          <div className="flex justify-center items-center p-2 text-orange-600 min-w-9 w-[10%] hover:text-black transition-colors">
-            <Maximize2 size={16} strokeWidth={1.75} />
+          <div className="flex justify-center items-center p-2 text-orange-600 min-w-9 w-[10%]">
+            <Maximize2
+              size={16}
+              strokeWidth={1.75}
+              className="group-hover:text-black transition-colors duration-300"
+            />
           </div>
         </div>
       </div>
@@ -170,7 +175,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
             {/* Bouton de fermeture */}
             <button
               onClick={handleCloseModal}
-              className="absolute -top-10 right-0 sm:-right-12 text-white hover:text-orange-600 transition-colors z-10 cursor-pointer"
+              className="absolute -top-12 right-0 text-white hover:text-orange-600 transition-colors z-10 cursor-pointer"
               aria-label="Fermer"
             >
               <X size={32} strokeWidth={2} />
@@ -193,27 +198,37 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
             </div>
 
             {/* Informations de la vidéo */}
-            <div className="flex flex-col gap-2 p-4 sm:p-6">
-              <div className="flex flex-col gap-1">
-                <h2 className="text-xl sm:text-2xl font-general-medium text-black">
-                  {title}
-                </h2>
-                {date && (
-                  <p className="text-sm text-gray-600">{formatDate(date)}</p>
+            <div className="flex flex-col sm:flex-row justify-start sm:justify-between items-start gap-6 sm:gap-3 p-4 sm:p-6">
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col">
+                  <h2 className="text-xl sm:text-2xl font-general-medium text-black">
+                    {title}
+                  </h2>
+                  {date && (
+                    <p className="text-sm text-gray-600">{formatDate(date)}</p>
+                  )}
+                </div>
+                {tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {tags.map((t, index) => (
+                      <Tag
+                        key={`modal-${id}-${t}-${index}`}
+                        className="text-xs sm:text-sm"
+                      >
+                        {t}
+                      </Tag>
+                    ))}
+                  </div>
                 )}
               </div>
-              {tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {tags.map((t, index) => (
-                    <Tag
-                      key={`modal-${id}-${t}-${index}`}
-                      className="text-xs sm:text-sm"
-                    >
-                      {t}
-                    </Tag>
-                  ))}
-                </div>
-              )}
+              <ButtonSecondary
+                icon={<SquareArrowOutUpRight />}
+                iconPosition="after"
+                href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                className="w-fit"
+              >
+                Voir sur Youtube
+              </ButtonSecondary>
             </div>
           </div>
         </div>
