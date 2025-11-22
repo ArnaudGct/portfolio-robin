@@ -172,7 +172,6 @@ const MOCK_PHOTOS = [
     tags_recherche: ["Soleil", "Ciel"],
     date: "2024-07-15",
   },
-
   {
     id_pho: 10,
     titre: "Café parisien",
@@ -556,8 +555,8 @@ export default function Photos() {
             <div className="flex flex-col">
               {isVisuallyLoading ? (
                 <>
-                  <div className="h-8 w-80 bg-blue-100/40 rounded-md mb-2"></div>
-                  <div className="h-6 w-72 bg-blue-100/40 rounded-md"></div>
+                  <div className="h-8 w-80 bg-orange-100/40 rounded-md mb-2"></div>
+                  <div className="h-6 w-72 bg-orange-100/40 rounded-md"></div>
                 </>
               ) : (
                 <>
@@ -709,13 +708,13 @@ export default function Photos() {
                   className="rounded-lg overflow-hidden"
                 >
                   <div className="flex flex-col gap-4 rounded-lg">
-                    <div className="relative h-52 w-full overflow-hidden rounded-lg bg-blue-100/40"></div>
+                    <div className="relative h-52 w-full overflow-hidden rounded-lg bg-orange-100/40"></div>
                     <div className="w-full flex flex-col gap-3">
-                      <div className="w-3/4 h-6 bg-blue-100/40 rounded-md"></div>
-                      <div className="w-1/4 h-4 bg-blue-100/40 rounded-md"></div>
+                      <div className="w-3/4 h-6 bg-orange-100/40 rounded-md"></div>
+                      <div className="w-1/4 h-4 bg-orange-100/40 rounded-md"></div>
                       <div className="flex gap-2 mt-1">
-                        <div className="w-16 h-5 bg-blue-100/40 rounded-full"></div>
-                        <div className="w-20 h-5 bg-blue-100/40 rounded-full"></div>
+                        <div className="w-16 h-5 bg-orange-100/40 rounded-full"></div>
+                        <div className="w-20 h-5 bg-orange-100/40 rounded-full"></div>
                       </div>
                     </div>
                   </div>
@@ -723,8 +722,9 @@ export default function Photos() {
               ))}
             </motion.div>
           ) : filteredAlbums.length > 0 ? (
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               <motion.div
+                key={`albums-${selectedTags.join("-")}-${searchQuery}`}
                 className="grid grid-cols-1 gap-2 xs:grid-cols-2 md:grid-cols-3 md:gap-6 xl:grid-cols-4"
                 initial="hidden"
                 animate="visible"
@@ -857,14 +857,14 @@ export default function Photos() {
               {[...Array(8)].map((_, index) => (
                 <div
                   key={`photo-skeleton-${index}`}
-                  className="aspect-[4/3] rounded-lg overflow-hidden bg-blue-100/40"
+                  className="aspect-[4/3] rounded-lg overflow-hidden bg-orange-100/40"
                 ></div>
               ))}
             </motion.div>
           ) : filteredPhotos.length > 0 ? (
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               <motion.div
-                key="photo-grid"
+                key={`photos-${selectedTags.join("-")}-${searchQuery}`}
                 className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4"
                 initial="hidden"
                 animate="visible"
@@ -890,7 +890,7 @@ export default function Photos() {
                     {/* Spinner qui s'affiche pendant le chargement */}
                     {photoLoadingState[photo.id_pho] && (
                       <div className="absolute inset-0 bg-blue-50 rounded-lg z-10">
-                        <div className="w-full h-full bg-blue-100/60 animate-pulse rounded-lg"></div>
+                        <div className="w-full h-full bg-orange-100/60 animate-pulse rounded-lg"></div>
                       </div>
                     )}
                     <Image
