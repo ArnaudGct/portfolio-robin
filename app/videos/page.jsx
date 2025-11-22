@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import VideoItem from "./../../src/sections/Videos/VideoItem";
-import TagCheckbox from "./../../src/sections/Videos/TagCheckbox";
+import TagCheckbox from "../../src/components/TagCheckbox";
 import { motion, AnimatePresence } from "motion/react";
 import NumberFlow from "@number-flow/react";
 
@@ -113,11 +113,11 @@ export default function Videos() {
   };
 
   return (
-    <main className="flex flex-col justify-center items-center gap-16">
+    <main className="flex flex-col justify-center items-center gap-16 mb-20">
       <div className="border border-solid border-b border-t border-r-0 border-l-0 border-gray-50 w-full">
         <div className="flex flex-col gap-6 md:gap-4 w-[95%] max-w-[1440px] mx-auto py-8">
           <div className="flex flex-col gap-6 md:gap-4 md:flex-row justify-between items-start md:items-center">
-            <div className="flex flex-col gap-1 md:gap-0">
+            <div className="flex flex-col">
               {isVisuallyLoading ? (
                 <>
                   <div className="h-8 w-48 bg-orange-100/40 rounded-md mb-2"></div>
@@ -199,7 +199,7 @@ export default function Videos() {
         </div>
       </div>
 
-      <div className="min-h-[calc(100vh-296px)] w-[95%] max-w-[1440px] mx-auto">
+      <div className="w-[95%] max-w-[1440px] mx-auto">
         {isVisuallyLoading ? (
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10"
@@ -275,12 +275,12 @@ export default function Videos() {
             </motion.div>
           </AnimatePresence>
         ) : (
-          <div className="flex flex-col justify-center items-center">
-            <p className="text-xl font-rethink-sans text-orange-600 font-bold">
-              Oh non ! Aucune vidéo ne correspond à vos critères 😭
+          <div className="flex flex-col justify-center items-center py-10">
+            <p className="text-xl text-orange-600 font-general-medium">
+              Aucun contenu disponible pour le moment 😢
             </p>
             <p className="text-base text-black">
-              Essayez de modifier vos filtres ou votre recherche 🔍
+              Essayez de revenir plus tard ou ajustez vos filtres 🔍
             </p>
           </div>
         )}

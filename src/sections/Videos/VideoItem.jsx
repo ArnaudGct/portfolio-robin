@@ -5,6 +5,7 @@ import { Maximize2, X, SquareArrowOutUpRight } from "lucide-react";
 import { render } from "react-dom";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import ButtonSecondary from "../../components/ButtonSecondary";
+import ButtonMain from "../../components/ButtonMain";
 
 export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
   const [loading, setLoading] = useState(true); // Pour gérer l'état de chargement
@@ -173,13 +174,13 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Bouton de fermeture */}
-            <button
+
+            <ButtonMain
               onClick={handleCloseModal}
-              className="absolute -top-12 right-0 text-white hover:text-orange-600 transition-colors z-10 cursor-pointer"
-              aria-label="Fermer"
+              className="absolute -top-12 right-0 text-black z-10 p-3 cursor-pointer"
             >
-              <X size={32} strokeWidth={2} />
-            </button>
+              <X size={16} strokeWidth={2} />
+            </ButtonMain>
 
             {/* Vidéo dans le modal */}
             <div className="relative aspect-video w-full rounded-t-sm rounded-b-none overflow-hidden">

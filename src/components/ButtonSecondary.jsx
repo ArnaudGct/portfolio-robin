@@ -14,23 +14,20 @@ export default function ButtonSecondary({
   size,
 }) {
   const baseClass =
-    "group flex flex-row items-center gap-2 bg-orange-50 text-orange-600 rounded-lg transition duration-300";
+    "border solid border-orange-500 font-jet-brains-mono group flex flex-row items-center gap-2 text-black rounded-sm transition duration-300";
   const paddingClass = children ? "px-4 py-2" : "px-2.5 py-2.5";
   const sizeClass =
-    size === "sm" ? "text-sm" : size === "lg" ? "text-lg" : "text-base";
+    size === "sm" ? "text-sm" : size === "lg" ? "text-lg" : "text-sm";
   const disabledClass = disabled
     ? "cursor-not-allowed opacity-50"
     : "cursor-pointer";
   const classes =
     `${baseClass} ${paddingClass} ${sizeClass} ${disabledClass} ${className}`.trim();
 
-  // Animation pour l'icône si elle est présente
-  const animatedIcon = icon && (
-    <div className="relative flex items-center justify-center h-5 w-5 overflow-hidden">
-      <div className="absolute inset-0 flex items-center justify-center transition-transform duration-400 group-hover:-translate-y-full">
-        {icon}
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-400 group-hover:translate-y-0">
+  // Icône sans animation
+  const staticIcon = icon && (
+    <div className="relative flex items-center justify-center h-5 w-5 overflow-hidden text-orange-500">
+      <div className="absolute inset-0 flex items-center justify-center">
         {icon}
       </div>
     </div>
@@ -39,22 +36,13 @@ export default function ButtonSecondary({
   // Contenu avec positionnement de l'icône
   const content = (
     <>
-      {iconPosition === "before" && animatedIcon}
+      {iconPosition === "before" && staticIcon}
       {children && (
         <span className="relative inline-flex overflow-hidden px-1">
-          <div
-            className={`block translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[130%] group-hover:skew-y-8`}
-          >
-            {children}
-          </div>
-          <div
-            className={`absolute top-0 left-0 translate-y-[130%] skew-y-8 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0`}
-          >
-            {children}
-          </div>
+          <div className="block">{children}</div>
         </span>
       )}
-      {iconPosition === "after" && animatedIcon}
+      {iconPosition === "after" && staticIcon}
     </>
   );
 
