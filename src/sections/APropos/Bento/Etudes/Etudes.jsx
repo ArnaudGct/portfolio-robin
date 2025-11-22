@@ -24,7 +24,7 @@ const etudes = [
 export default function Etudes() {
   return (
     <div className="flex flex-col gap-8 w-fit">
-      <Tag className="w-fit">Mes expériences</Tag>
+      <Tag className="w-fit">Mes études</Tag>
       <div className="relative">
         <div className="border-l-2 border-orange-300 absolute left-2 top-0 bottom-0"></div>
         <div className="flex flex-col gap-10">

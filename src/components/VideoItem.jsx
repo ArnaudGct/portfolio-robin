@@ -56,16 +56,16 @@ export default function VideoItem({ id, title, tags, url, pageCurrent }) {
       <div className="relative aspect-video" ref={videoRef}>
         {/* Skeleton loader */}
         {!isInView || loading ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-50 opacity-70">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-orange-50 opacity-70">
             {/* Skeleton loader */}
-            <div className="w-full h-full bg-gradient-to-r from-blue-200 to-blue-50 rounded-lg animate-pulse opacity-70"></div>
+            <div className="w-full h-full bg-gradient-to-r from-orange-600 to-orange-50 rounded-sm animate-pulse opacity-70"></div>
           </div>
         ) : null}
 
         {/* Lorsque la vidéo est dans la vue, charger l'iframe */}
         {isInView && youtubeId ? (
           // <iframe
-          //   className="w-full h-full rounded-lg shadow-lg transition-all duration-500"
+          //   className="w-full h-full rounded-sm shadow-lg transition-all duration-500"
           //   src={`https://www.youtube.com/embed/${youtubeId}`}
           //   title={title}
           //   frameBorder="0"
@@ -87,7 +87,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent }) {
       <Link href={`/creations/video/${id}?from=${pageCurrent}`}>
         <div className="w-full flex items-center justify-between">
           <div className="w-[95%] flex flex-col gap-2">
-            <p className="w-full text-xl font-extrabold  text-blue-900 truncate">
+            <p className="w-full text-xl font-extrabold  text-black truncate">
               {title}
             </p>
             {tags.length > 0 && (
@@ -102,7 +102,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent }) {
               </div>
             )}
           </div>
-          <div className="flex justify-center items-center p-2 text-blue-700 min-w-9 w-[10%] hover:text-blue-900 transition-colors">
+          <div className="flex justify-center items-center p-2 text-orange-600 min-w-9 w-[10%] hover:text-black transition-colors">
             <SquareArrowOutUpRight size={16} strokeWidth={1.75} />
           </div>
         </div>
