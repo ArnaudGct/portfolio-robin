@@ -560,7 +560,7 @@ export default function Photos() {
                 </>
               ) : (
                 <>
-                  <p className="text-4xl font-extrabold font-clash-bold text-orange-600">
+                  <p className="text-4xl font-extrabold font-clash-bold text-orange-500">
                     <NumberFlow
                       value={
                         // Additionne toutes les photos des albums filtrés + les photos filtrées hors album
@@ -608,7 +608,7 @@ export default function Photos() {
                   placeholder="Rechercher une photo ou album..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full py-2 px-4 bg-gray-200  dark:placeholder:text-orange-600 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-600 md:w-64 lg:w-96"
+                  className="w-full py-2 px-4 bg-gray-200  dark:placeholder:text-orange-500 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500 md:w-64 lg:w-96"
                 />
               </div>
             </div>
@@ -759,8 +759,8 @@ export default function Photos() {
                                 false && (
                                 <div className="absolute inset-0 z-20 bg-slate-100 flex items-center justify-center">
                                   <div className="flex flex-col items-center gap-3">
-                                    <Loader2 className="h-8 w-8 text-orange-600 animate-spin" />
-                                    <p className="text-sm text-orange-600 font-medium">
+                                    <Loader2 className="h-8 w-8 text-orange-500 animate-spin" />
+                                    <p className="text-sm text-orange-500 font-medium">
                                       Chargement de l'aperçu...
                                     </p>
                                   </div>
@@ -805,7 +805,7 @@ export default function Photos() {
                               <p className="w-full text-xl font-general-medium text-black truncate">
                                 {album.titre}
                               </p>
-                              <span className="text-sm text-orange-600">
+                              <span className="text-sm text-orange-500">
                                 {album.photos.length} photo
                                 {album.photos.length > 1 ? "s" : ""}
                               </span>
@@ -824,7 +824,7 @@ export default function Photos() {
                               </div>
                             )}
                           </div>
-                          <div className="flex justify-center items-center p-2 text-orange-600 min-w-9 w-[10%] hover:text-black transition-colors">
+                          <div className="flex justify-center items-center p-2 text-orange-500 min-w-9 w-[10%] hover:text-black transition-colors">
                             <SquareArrowOutUpRight
                               size={16}
                               strokeWidth={1.75}
@@ -921,7 +921,7 @@ export default function Photos() {
           filteredAlbums.length === 0 &&
           filteredPhotos.length === 0 && (
             <div className="flex flex-col justify-center items-center py-10">
-              <p className="text-xl text-orange-600 font-general-medium">
+              <p className="text-xl text-orange-500 font-general-medium">
                 Aucun contenu disponible pour le moment 😢
               </p>
               <p className="text-base text-black">
@@ -981,13 +981,13 @@ export default function Photos() {
                   {/* Spinner pour l'image modale */}
                   {modalImageLoading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-slate-100 z-10">
-                      <Loader2 className="h-12 w-12 text-orange-600 animate-spin" />
+                      <Loader2 className="h-12 w-12 text-orange-500 animate-spin" />
                     </div>
                   )}
 
                   {/* Indicateur de chargement HD */}
                   {!modalImageLoading && !highResLoaded && (
-                    <div className="absolute top-4 left-4 z-20 bg-orange-600 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                    <div className="absolute top-4 left-4 z-20 bg-orange-500 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
                       <Loader2 className="h-4 w-4 animate-spin" />
                       Chargement HD...
                     </div>
@@ -1051,7 +1051,7 @@ export default function Photos() {
                     }`}
                   />
 
-                  <span className="text-orange-600 font-medium">
+                  <span className="text-orange-500 font-medium">
                     {currentPhotoIndex + 1} / {filteredPhotos.length}
                   </span>
 

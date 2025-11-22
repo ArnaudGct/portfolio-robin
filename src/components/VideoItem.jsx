@@ -58,7 +58,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent }) {
         {!isInView || loading ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-orange-50 opacity-70">
             {/* Skeleton loader */}
-            <div className="w-full h-full bg-gradient-to-r from-orange-600 to-orange-50 rounded-sm animate-pulse opacity-70"></div>
+            <div className="w-full h-full bg-gradient-to-r from-orange-500 to-orange-50 rounded-sm animate-pulse opacity-70"></div>
           </div>
         ) : null}
 
@@ -102,7 +102,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent }) {
               </div>
             )}
           </div>
-          <div className="flex justify-center items-center p-2 text-orange-600 min-w-9 w-[10%] hover:text-black transition-colors">
+          <div className="flex justify-center items-center p-2 text-orange-500 min-w-9 w-[10%] hover:text-black transition-colors">
             <SquareArrowOutUpRight size={16} strokeWidth={1.75} />
           </div>
         </div>

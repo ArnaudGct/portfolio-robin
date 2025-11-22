@@ -179,7 +179,7 @@ export default async function AlbumDetails({ params }) {
         </h2>
         <Link
           href="/photos"
-          className="mt-4 flex items-center gap-2 text-orange-600 transition-colors"
+          className="mt-4 flex items-center gap-2 text-orange-500 transition-colors"
         >
           <ArrowLeft size={16} /> Retour aux albums
         </Link>

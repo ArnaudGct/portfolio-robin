@@ -118,7 +118,7 @@ export default function AlbumsGallery({ album }) {
                   {/* Spinner pour les images de la grille */}
                   {loadingImages[photoId] && (
                     <div className="absolute inset-0 flex items-center justify-center bg-slate-100 rounded-lg z-10">
-                      <Loader2 className="h-6 w-6 text-orange-600 animate-spin" />
+                      <Loader2 className="h-6 w-6 text-orange-500 animate-spin" />
                     </div>
                   )}
 
@@ -194,13 +194,13 @@ export default function AlbumsGallery({ album }) {
                   {/* Spinner pour l'image modale */}
                   {modalImageLoading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-slate-100 z-10">
-                      <Loader2 className="h-12 w-12 text-orange-600 animate-spin" />
+                      <Loader2 className="h-12 w-12 text-orange-500 animate-spin" />
                     </div>
                   )}
 
                   {/* Indicateur de chargement HD */}
                   {!modalImageLoading && !highResLoaded && (
-                    <div className="absolute top-4 left-4 z-20 bg-orange-600 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                    <div className="absolute top-4 left-4 z-20 bg-orange-500 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
                       <Loader2 className="h-4 w-4 animate-spin" />
                       Chargement HD...
                     </div>
@@ -260,7 +260,7 @@ export default function AlbumsGallery({ album }) {
                     }`}
                   />
 
-                  <span className="text-orange-600 font-medium">
+                  <span className="text-orange-500 font-medium">
                     {currentPhotoIndex + 1} / {photos.length}
                   </span>
 

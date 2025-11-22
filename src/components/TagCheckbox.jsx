@@ -5,15 +5,15 @@ export default function TagCheckbox({ type, count, selected, onToggle }) {
   return (
     <button
       onClick={() => onToggle(type)}
-      className={`relative border border-orange-600 flex items-center gap-2 px-3 py-1 font-medium rounded-sm text-sm font-rethink-sans cursor-pointer transition
+      className={`relative border border-orange-500 flex items-center gap-2 px-3 py-1 font-medium rounded-sm text-sm font-rethink-sans cursor-pointer transition
         ${
           selected
-            ? "bg-orange-50 text-orange-600"
-            : "bg-white text-orange-600 hover:bg-orange-50"
+            ? "bg-orange-50 text-orange-500"
+            : "bg-white text-orange-500 hover:bg-orange-50"
         }`}
     >
       {/* Case à cocher style carré */}
-      <span className="relative w-4 h-4 border text-orange-600 border-orange-600 rounded-sm flex items-center justify-center bg-white">
+      <span className="relative w-4 h-4 border text-orange-500 border-orange-500 rounded-sm flex items-center justify-center bg-white">
         <AnimatePresence>
           {selected && (
             <motion.div
@@ -38,8 +38,8 @@ export default function TagCheckbox({ type, count, selected, onToggle }) {
       <span
         className={`text-xs font-semibold min-w-[20px] h-5 px-1.5 rounded-full flex items-center justify-center border transition-all duration-200 ${
           selected
-            ? "bg-orange-600 text-orange-50 border-orange-600"
-            : "bg-orange-50 text-orange-600 border-orange-600"
+            ? "bg-orange-500 text-orange-50 border-orange-500"
+            : "bg-orange-50 text-orange-500 border-orange-500"
         }`}
       >
         {count}

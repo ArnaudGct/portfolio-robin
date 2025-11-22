@@ -125,7 +125,7 @@ export default function Videos() {
                 </>
               ) : (
                 <>
-                  <p className="text-4xl font-extrabold font-clash-bold text-orange-600">
+                  <p className="text-4xl font-extrabold font-clash-bold text-orange-500">
                     <NumberFlow value={filteredVideos.length} />{" "}
                     <span className="font-clash-light text-black">
                       vidéo
@@ -142,7 +142,7 @@ export default function Videos() {
                   placeholder="Rechercher une vidéo..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full py-2 px-4 bg-gray-200  dark:placeholder:text-orange-600 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-600 md:w-64 lg:w-96"
+                  className="w-full py-2 px-4 bg-gray-200  dark:placeholder:text-orange-500 rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500 md:w-64 lg:w-96"
                 />
               </div>
             </div>
@@ -222,7 +222,7 @@ export default function Videos() {
                   <div className="relative w-full aspect-video bg-orange-50/40 rounded-sm">
                     {/* Icône de lecture au centre */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-orange-600/50"></div>
+                      <div className="w-12 h-12 rounded-full bg-orange-500/50"></div>
                     </div>
                   </div>
                   <div className="w-full flex flex-col gap-3">
@@ -276,7 +276,7 @@ export default function Videos() {
           </AnimatePresence>
         ) : (
           <div className="flex flex-col justify-center items-center py-10">
-            <p className="text-xl text-orange-600 font-general-medium">
+            <p className="text-xl text-orange-500 font-general-medium">
               Aucun contenu disponible pour le moment 😢
             </p>
             <p className="text-base text-black">
