@@ -13,41 +13,38 @@ export default function Photos() {
   const isPausedRef = useRef(false);
   const [isPaused, setIsPaused] = useState(false);
   const scrollPositionRef = useRef(0);
+  const [carouselItems, setCarouselItems] = useState([]);
 
-  const carouselItems = [
-    {
-      src: "/sunset.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      src: "/flower.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      src: "/sunset.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      src: "/flower.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      src: "/sunset.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      src: "/flower.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      src: "/sunset.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      src: "/flower.png",
-      alt: "Dot Grid Background",
-    },
-  ];
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchPhotos = async () => {
+      try {
+        const res = await fetch("/api/accueil/photos");
+        if (!res.ok) {
+          console.error("Erreur fetching photos:", res.status);
+          return;
+        }
+        const data = await res.json();
+        if (!mounted || !Array.isArray(data)) return;
+
+        const items = data.map((p) => ({
+          src: p.lien_low || p.lien_high || "",
+          alt: p.alt || "",
+        }));
+
+        setCarouselItems(items);
+      } catch (err) {
+        console.error("Erreur lors de la récupération des photos:", err);
+      }
+    };
+
+    fetchPhotos();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const clearPauseTimeout = () => {
     if (pauseTimeoutRef.current) {

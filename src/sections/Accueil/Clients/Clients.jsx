@@ -1,42 +1,28 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const clients = [
-  {
-    name: "Sud Ouest",
-    logo: "/clients/sud-ouest.webp",
-    url: "https://www.sudouest.fr/",
-  },
-  {
-    name: "TV7",
-    logo: "/clients/tv7.webp",
-    url: "https://www.sudouest.fr/lachainetv7/",
-  },
-  {
-    name: "Marée Montante",
-    logo: "/clients/maree-montante.webp",
-    url: "https://www.mareemontante.fr/",
-  },
-  {
-    name: "BatiFemmes",
-    logo: "/clients/batifemmes.webp",
-    url: "https://www.mareemontante.fr/",
-  },
-  // {
-  //   name: "Yamaha",
-  //   logo: "/clients/yamaha.webp",
-  //   url: "https://www.yamaha-motor.eu/fr/fr/home/",
-  // },
-  {
-    name: "Video Danse",
-    logo: "/clients/video-danse.webp",
-    url: "",
-  },
-];
-
 export default function Clients() {
+  const [clients, setClients] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const response = await fetch("/api/accueil/clients");
+        const data = await response.json();
+        setClients(data);
+      } catch (error) {
+        console.error("Erreur lors du chargement des clients:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchClients();
+  }, []);
   return (
     <section className="w-[95%] max-w-[1440px] mx-auto flex flex-col gap-8">
       <div className="flex items-end gap-4">
@@ -50,24 +36,44 @@ export default function Clients() {
         </div>
         <span className="flex-1 h-[1px] bg-gray-300 mb-1.5"></span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 gap-y-12 sm:gap-8 items-center justify-center">
-        {clients.map((client, index) => (
-          <Link
-            key={index}
-            href={client.url}
-            target="_blank"
-            className="flex justify-center items-center cursor-pointer grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-          >
-            <Image
-              src={client.logo}
-              alt={client.name}
-              width={200}
-              height={48}
-              className="max-h-10 object-contain"
-            />
-          </Link>
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="flex justify-center items-center h-32">
+          <p>Chargement...</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 gap-y-12 sm:gap-8 items-center justify-center">
+          {clients.map((client, index) => {
+            const imageElement = (
+              <Image
+                src={client.logo}
+                alt={client.alt}
+                width={200}
+                height={48}
+                className="max-h-10 object-contain"
+              />
+            );
+
+            return client.url ? (
+              <Link
+                key={index}
+                href={client.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex justify-center items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              >
+                {imageElement}
+              </Link>
+            ) : (
+              <div
+                key={index}
+                className="flex justify-center items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              >
+                {imageElement}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

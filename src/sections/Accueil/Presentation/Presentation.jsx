@@ -1,15 +1,50 @@
 "use client";
+import { useState, useEffect } from "react";
 import ButtonMain from "@/src/components/ButtonMain";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 import { Pin } from "./../../../components/icons/Icons";
 
 export default function Presentation() {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/accueil/general");
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error("Erreur lors du chargement des données:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className="flex py-8 border-t-1 border-b-1 border-dashed border-gray-300 overflow-hidden">
+        <div className="w-[95%] max-w-[1440px] mx-auto flex justify-center items-center h-64">
+          <p>Chargement...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <section className="flex py-8 border-t-1 border-b-1 border-dashed border-gray-300 overflow-hidden">
       <div className="w-[95%] max-w-[1440px] mx-auto flex flex-col md:flex-row justify-center items-center gap-20">
         <Image
-          src="/photo_robin.webp"
-          alt="Photo de Robin"
+          src={data.photo}
+          alt={data.photo_alt}
           width={800}
           height={600}
           className="w-full md:w-[40%] h-[500px] object-cover rounded-sm"
@@ -26,23 +61,12 @@ export default function Presentation() {
               <div className="flex items-center gap-1.5">
                 <Pin className="text-orange-500" />
                 <p className="text-orange-500">
-                  <span className="font-bold">Bordeaux</span> (+ déplacement
-                  dans toute la France)
+                  <span className="font-bold">{data.localisation}</span>
                 </p>
               </div>
             </div>
 
-            <p>
-              Magna dolor laboris labore elit ullamco ad ut sit et reprehenderit
-              minim minim quis fugiat anim. Occaecat dolore cillum excepteur
-              Lorem aliqua commodo culpa nisi sint exercitation.
-              <br />
-              <br />
-              Excepteur est exercitation do id velit dolore dolor amet.
-              Consectetur pariatur proident non mollit ut Lorem aute et nostrud
-              sint. Cillum commodo ipsum excepteur labore esse enim Lorem nisi
-              excepteur anim in do anim labore dolor.
-            </p>
+            <ReactMarkdown>{data.description}</ReactMarkdown>
           </div>
           {/* <ButtonMain href="/apropos" className="w-fit">
             En savoir plus

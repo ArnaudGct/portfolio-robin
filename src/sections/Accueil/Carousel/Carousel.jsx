@@ -13,45 +13,28 @@ export default function Carousel() {
   const scrollPositionRef = useRef(0);
   const isPausedRef = useRef(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [carouselItems, setCarouselItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const carouselItems = [
-    {
-      type: "image",
-      src: "/sunset.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      type: "videos",
-      videos: [
-        { id: "EYgwZB95jqI", title: "test" },
-        { id: "JX8m-UuFzcc", title: "test" },
-      ],
-    },
-    {
-      type: "image",
-      src: "/flower.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      type: "videos",
-      videos: [
-        { id: "ZadUN_Vl2RA", title: "test" },
-        { id: "11L3nrAk8HY", title: "test" },
-      ],
-    },
-    {
-      type: "image",
-      src: "/sunset.png",
-      alt: "Dot Grid Background",
-    },
-    {
-      type: "videos",
-      videos: [
-        { id: "EYgwZB95jqI", title: "test" },
-        { id: "EYgwZB95jqI", title: "test" },
-      ],
-    },
-  ];
+  // Récupérer les données du carousel depuis l'API
+  useEffect(() => {
+    const fetchCarouselData = async () => {
+      try {
+        const response = await fetch("/api/accueil/carousel");
+        const data = await response.json();
+        setCarouselItems(data);
+      } catch (error) {
+        console.error(
+          "Erreur lors du chargement des données du carousel:",
+          error
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCarouselData();
+  }, []);
 
   const clearPauseTimeout = () => {
     if (pauseTimeoutRef.current) {
@@ -272,115 +255,121 @@ export default function Carousel() {
         }
       `}</style>
 
-      <div ref={trackRef} className="carousel-track">
-        {/* Afficher les items originaux */}
-        {carouselItems.map((item, index) => {
-          const videos = item.type === "videos" ? item.videos ?? [] : [];
-          const firstVideo = videos[0];
-          const secondVideo = videos[1];
+      {isLoading ? (
+        <div className="flex justify-center items-center h-64">
+          <p>Chargement...</p>
+        </div>
+      ) : (
+        <div ref={trackRef} className="carousel-track">
+          {/* Afficher les items originaux */}
+          {carouselItems.map((item, index) => {
+            const videos = item.type === "videos" ? item.videos ?? [] : [];
+            const firstVideo = videos[0];
+            const secondVideo = videos[1];
 
-          return (
-            <div
-              key={`original-${index}`}
-              className={`carousel-item ${
-                item.type === "image" ? "image-item" : "video-item"
-              } flex-shrink-0`}
-            >
-              {item.type === "image" ? (
-                <div className="w-full h-full px-4">
-                  <div className="relative w-full h-full overflow-hidden rounded-md aspect-[580/269]">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
+            return (
+              <div
+                key={`original-${index}`}
+                className={`carousel-item ${
+                  item.type === "image" ? "image-item" : "video-item"
+                } flex-shrink-0`}
+              >
+                {item.type === "image" ? (
+                  <div className="w-full h-full px-4">
+                    <div className="relative w-full h-full overflow-hidden rounded-md aspect-[580/269]">
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
                   </div>
-                </div>
-              ) : firstVideo ? (
-                <div className="video-stack flex flex-col gap-4 px-4 border-l-1 border-r-1 border-dashed border-gray-300">
-                  <div className="video-embed relative aspect-video rounded-md overflow-hidden">
-                    <LiteYouTubeEmbed
-                      id={firstVideo.id}
-                      title={firstVideo.title}
-                      poster="hqdefault"
-                      webp
-                    />
+                ) : firstVideo ? (
+                  <div className="video-stack flex flex-col gap-4 px-4 border-l-1 border-r-1 border-dashed border-gray-300">
+                    <div className="video-embed relative aspect-video rounded-md overflow-hidden">
+                      <LiteYouTubeEmbed
+                        id={firstVideo.id}
+                        title={firstVideo.title}
+                        poster="hqdefault"
+                        webp
+                      />
+                    </div>
+                    {secondVideo && (
+                      <>
+                        <div className="divider border-t-1 border-dashed border-gray-300"></div>
+                        <div className="video-embed relative aspect-video rounded-md overflow-hidden">
+                          <LiteYouTubeEmbed
+                            id={secondVideo.id}
+                            title={secondVideo.title}
+                            poster="hqdefault"
+                            webp
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
-                  {secondVideo && (
-                    <>
-                      <div className="divider border-t-1 border-dashed border-gray-300"></div>
-                      <div className="video-embed relative aspect-video rounded-md overflow-hidden">
-                        <LiteYouTubeEmbed
-                          id={secondVideo.id}
-                          title={secondVideo.title}
-                          poster="hqdefault"
-                          webp
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              ) : null}
-            </div>
-          );
-        })}
+                ) : null}
+              </div>
+            );
+          })}
 
-        {/* Dupliquer les items pour l'effet de boucle infinie */}
-        {carouselItems.map((item, index) => {
-          const videos = item.type === "videos" ? item.videos ?? [] : [];
-          const firstVideo = videos[0];
-          const secondVideo = videos[1];
+          {/* Dupliquer les items pour l'effet de boucle infinie */}
+          {carouselItems.map((item, index) => {
+            const videos = item.type === "videos" ? item.videos ?? [] : [];
+            const firstVideo = videos[0];
+            const secondVideo = videos[1];
 
-          return (
-            <div
-              key={`duplicate-${index}`}
-              className={`carousel-item ${
-                item.type === "image" ? "image-item" : "video-item"
-              } flex-shrink-0`}
-              aria-hidden="true"
-            >
-              {item.type === "image" ? (
-                <div className="w-full h-full px-4">
-                  <div className="relative w-full h-full overflow-hidden rounded-md aspect-[580/269]">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      className="object-cover"
-                    />
+            return (
+              <div
+                key={`duplicate-${index}`}
+                className={`carousel-item ${
+                  item.type === "image" ? "image-item" : "video-item"
+                } flex-shrink-0`}
+                aria-hidden="true"
+              >
+                {item.type === "image" ? (
+                  <div className="w-full h-full px-4">
+                    <div className="relative w-full h-full overflow-hidden rounded-md aspect-[580/269]">
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
-              ) : firstVideo ? (
-                <div className="video-stack flex flex-col gap-4 px-4 border-l-1 border-r-1 border-dashed border-gray-300">
-                  <div className="video-embed relative aspect-video rounded-md overflow-hidden">
-                    <LiteYouTubeEmbed
-                      id={firstVideo.id}
-                      title={firstVideo.title}
-                      poster="hqdefault"
-                      webp
-                    />
+                ) : firstVideo ? (
+                  <div className="video-stack flex flex-col gap-4 px-4 border-l-1 border-r-1 border-dashed border-gray-300">
+                    <div className="video-embed relative aspect-video rounded-md overflow-hidden">
+                      <LiteYouTubeEmbed
+                        id={firstVideo.id}
+                        title={firstVideo.title}
+                        poster="hqdefault"
+                        webp
+                      />
+                    </div>
+                    {secondVideo && (
+                      <>
+                        <div className="divider border-t-1 border-dashed border-gray-300"></div>
+                        <div className="video-embed relative aspect-video rounded-md overflow-hidden">
+                          <LiteYouTubeEmbed
+                            id={secondVideo.id}
+                            title={secondVideo.title}
+                            poster="hqdefault"
+                            webp
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
-                  {secondVideo && (
-                    <>
-                      <div className="divider border-t-1 border-dashed border-gray-300"></div>
-                      <div className="video-embed relative aspect-video rounded-md overflow-hidden">
-                        <LiteYouTubeEmbed
-                          id={secondVideo.id}
-                          title={secondVideo.title}
-                          poster="hqdefault"
-                          webp
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              ) : null}
-            </div>
-          );
-        })}
-      </div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

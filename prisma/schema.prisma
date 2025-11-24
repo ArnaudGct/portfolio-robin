@@ -1,0 +1,298 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./app/generated/prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model account {
+  id                    String    @id
+  accountId             String    @db.Text
+  providerId            String    @db.Text
+  userId                String
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?   @db.Text
+  password              String?   @db.Text
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@index([userId], map: "account_userId_fkey")
+}
+
+model accueil_general {
+  id_gen        Int    @id @default(autoincrement())
+  video_desktop String @db.VarChar(255)
+  video_mobile  String @db.VarChar(255)
+  video_cover   String @db.VarChar(255)
+  photo         String @db.VarChar(255)
+  photo_alt     String @db.VarChar(255)
+  description   String @db.VarChar(1024)
+  localisation  String @db.VarChar(255)
+}
+
+model apropos_etudes {
+  id_etu     Int       @id @default(autoincrement())
+  date_debut DateTime  @db.Date
+  date_fin   DateTime? @db.Date
+  titre      String    @db.VarChar(255)
+  nom_ecole  String    @db.VarChar(255)
+  lien_ecole String    @db.VarChar(255)
+  afficher   Boolean
+}
+
+model apropos_experiences {
+  id_exp          Int       @id @default(autoincrement())
+  date_debut      DateTime  @db.Date
+  date_fin        DateTime? @db.Date
+  titre           String    @db.VarChar(255)
+  nom_entreprise  String    @db.VarChar(255)
+  lien_entreprise String    @db.VarChar(255)
+  afficher        Boolean
+}
+
+model apropos_general {
+  id_gen      Int    @id @default(autoincrement())
+  photo       String @db.VarChar(255)
+  photo_alt   String @db.VarChar(255)
+  description String @db.VarChar(1024)
+}
+
+model apropos_outils {
+  id_outil            Int     @id @default(autoincrement())
+  type_outil          String  @default("detaille") @db.VarChar(20)
+  titre               String  @db.VarChar(255)
+  description         String  @db.VarChar(255)
+  icone               String  @db.VarChar(255)
+  icone_alt           String  @db.VarChar(255)
+  icone_rounded       Boolean
+  lien                String  @db.VarChar(255)
+  couleur_fond        String  @db.VarChar(7)
+  couleur_titre       String  @db.VarChar(7)
+  couleur_description String  @db.VarChar(7)
+  ordre               Int
+  afficher            Boolean
+}
+
+model autre {
+  id_autre              Int               @id @default(autoincrement())
+  titre                 String            @db.VarChar(100)
+  description           String            @db.VarChar(3500)
+  miniature             String            @db.VarChar(500)
+  lien_github           String            @db.VarChar(500)
+  lien_figma            String            @db.VarChar(500)
+  lien_site             String            @db.VarChar(500)
+  categorie             String            @db.VarChar(50)
+  tags                  String            @db.VarChar(50)
+  date                  DateTime          @db.Date
+  afficher              Boolean
+  derniere_modification DateTime          @db.DateTime(0)
+  autre_tags_link       autre_tags_link[]
+}
+
+model autre_tags {
+  id_tags         Int               @id @default(autoincrement())
+  titre           String            @db.VarChar(50)
+  important       Boolean
+  autre_tags_link autre_tags_link[]
+}
+
+model autre_tags_link {
+  id_autre   Int
+  id_tags    Int
+  autre      autre      @relation(fields: [id_autre], references: [id_autre], onDelete: Cascade, map: "fk_autre")
+  autre_tags autre_tags @relation(fields: [id_tags], references: [id_tags], onDelete: Cascade, map: "fk_autre_tags")
+
+  @@id([id_autre, id_tags])
+  @@index([id_tags], map: "fk_autre_tags")
+}
+
+model clients {
+  id_client   Int     @id @default(autoincrement())
+  client      String  @db.VarChar(150)
+  logo        String  @db.VarChar(500)
+  alt_logo    String  @db.VarChar(255)
+  lien_client String  @db.VarChar(255)
+  afficher    Boolean
+}
+
+model faq {
+  id_faq   Int     @id @default(autoincrement())
+  titre    String  @db.VarChar(250)
+  contenu  String  @db.VarChar(1000)
+  afficher Boolean
+}
+
+model photos {
+  id_pho                     Int                          @id @default(autoincrement())
+  lien_high                  String                       @db.VarChar(500)
+  lien_low                   String                       @db.VarChar(500)
+  largeur                    Int
+  hauteur                    Int
+  alt                        String                       @db.VarChar(500)
+  date                       DateTime                     @db.Date
+  afficher_carrousel_main    Boolean                      @default(false)
+  afficher_carrousel_photos  Boolean                      @default(false)
+  afficher                   Boolean
+  derniere_modification      DateTime                     @db.DateTime(0)
+  photos_albums_link         photos_albums_link[]
+  photos_tags_link           photos_tags_link[]
+  photos_tags_recherche_link photos_tags_recherche_link[]
+}
+
+model photos_albums {
+  id_alb                  Int                       @id @default(autoincrement())
+  titre                   String                    @db.VarChar(100)
+  lien_cover              String                    @db.VarChar(255)
+  date                    DateTime                  @db.Date
+  afficher                Boolean
+  derniere_modification   DateTime                  @db.DateTime(0)
+  photos_albums_link      photos_albums_link[]
+  photos_albums_tags_link photos_albums_tags_link[]
+}
+
+model photos_albums_link {
+  id_pho        Int
+  id_alb        Int
+  position      Int?          @default(0)
+  photos        photos        @relation(fields: [id_pho], references: [id_pho], onDelete: Cascade, map: "fk_photos2")
+  photos_albums photos_albums @relation(fields: [id_alb], references: [id_alb], onDelete: Cascade, map: "fk_photos_albums")
+
+  @@id([id_pho, id_alb])
+  @@index([id_alb], map: "fk_photos_albums")
+}
+
+model photos_albums_tags_link {
+  id_alb        Int
+  id_tags       Int
+  photos_albums photos_albums @relation(fields: [id_alb], references: [id_alb], onDelete: Cascade, map: "fk_album")
+  photos_tags   photos_tags   @relation(fields: [id_tags], references: [id_tags], onDelete: Cascade, map: "fk_photos_albums_tags")
+
+  @@id([id_alb, id_tags])
+  @@index([id_tags], map: "fk_photos_albums_tags")
+}
+
+model photos_experiences {
+  id_photo Int    @id @default(autoincrement())
+  titre    String @db.VarChar(100)
+  url      String @db.VarChar(1000)
+  date     String @db.VarChar(50)
+}
+
+model photos_tags {
+  id_tags                 Int                       @id @default(autoincrement())
+  titre                   String                    @db.VarChar(50)
+  important               Boolean
+  photos_albums_tags_link photos_albums_tags_link[]
+  photos_tags_link        photos_tags_link[]
+}
+
+model photos_tags_link {
+  id_pho      Int
+  id_tags     Int
+  photos      photos      @relation(fields: [id_pho], references: [id_pho], onDelete: Cascade, map: "fk_photos")
+  photos_tags photos_tags @relation(fields: [id_tags], references: [id_tags], onDelete: Cascade, map: "fk_photos_tags")
+
+  @@id([id_pho, id_tags])
+  @@index([id_tags], map: "fk_photos_tags")
+}
+
+model photos_tags_recherche {
+  id_tags                    Int                          @id @default(autoincrement())
+  titre                      String                       @db.VarChar(50)
+  important                  Boolean
+  photos_tags_recherche_link photos_tags_recherche_link[]
+}
+
+model photos_tags_recherche_link {
+  id_pho                Int
+  id_tags               Int
+  photos                photos                @relation(fields: [id_pho], references: [id_pho], onDelete: Cascade, map: "fk_photos3")
+  photos_tags_recherche photos_tags_recherche @relation(fields: [id_tags], references: [id_tags], onDelete: Cascade, map: "fk_photos_tags_recherche")
+
+  @@id([id_pho, id_tags])
+  @@index([id_tags], map: "fk_photos_tags_recherche")
+}
+
+model session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?  @db.Text
+  userAgent String?  @db.Text
+  userId    String
+
+  @@index([userId], map: "session_userId_fkey")
+}
+
+model user {
+  id            String   @id
+  name          String   @db.Text
+  email         String   @unique
+  emailVerified Boolean
+  image         String?  @db.Text
+  createdAt     DateTime
+  updatedAt     DateTime
+}
+
+model utilisateurs {
+  id_user  Int     @id @default(autoincrement())
+  img      String  @db.VarChar(250)
+  email    String? @db.VarChar(50)
+  username String  @db.VarChar(50)
+  password String  @db.VarChar(50)
+  role     String  @db.VarChar(10)
+}
+
+model verification {
+  id         String    @id
+  identifier String    @db.Text
+  value      String    @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+}
+
+model videos {
+  id_vid                  Int                @id @default(autoincrement())
+  titre                   String             @db.VarChar(100)
+  description             String             @db.VarChar(3500)
+  tags                    String             @db.VarChar(50)
+  lien                    String             @db.VarChar(500)
+  date                    DateTime           @db.Date
+  media_webm              String             @db.VarChar(100)
+  media_mp4               String             @db.VarChar(100)
+  duree                   String             @db.VarChar(25)
+  afficher_competences    String             @db.VarChar(50)
+  afficher_carrousel_main Boolean            @default(false)
+  afficher_section_videos Boolean            @default(false)
+  tag_section_videos      Int?
+  afficher                Boolean
+  derniere_modification   DateTime           @db.DateTime(0)
+  videos_tags_link        videos_tags_link[]
+}
+
+model videos_tags {
+  id_tags          Int                @id @default(autoincrement())
+  titre            String             @db.VarChar(50)
+  important        Boolean
+  videos_tags_link videos_tags_link[]
+}
+
+model videos_tags_link {
+  id_vid      Int
+  id_tags     Int
+  videos      videos      @relation(fields: [id_vid], references: [id_vid], onDelete: Cascade, map: "fk_videos")
+  videos_tags videos_tags @relation(fields: [id_tags], references: [id_tags], onDelete: Cascade, map: "fk_videos_tags")
+
+  @@id([id_vid, id_tags])
+  @@index([id_tags], map: "fk_videos_tags")
+}
