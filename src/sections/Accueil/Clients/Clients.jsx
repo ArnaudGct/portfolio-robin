@@ -41,7 +41,7 @@ export default function Clients() {
           <p>Chargement...</p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 gap-y-12 sm:gap-8 items-center justify-center">
+        <div className="flex flex-wrap gap-6 gap-y-12 sm:gap-8 items-center justify-between">
           {clients.map((client, index) => {
             const imageElement = (
               <Image
