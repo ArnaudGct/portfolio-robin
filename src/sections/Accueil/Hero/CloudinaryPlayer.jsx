@@ -11,7 +11,7 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
   const [videoData, setVideoData] = useState(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [isHoveringVideo, setIsHoveringVideo] = useState(true);
+  const [isHoveringVideo, setIsHoveringVideo] = useState(false);
   const [isHoveringControls, setIsHoveringControls] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
@@ -356,9 +356,23 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
         }}
         onMouseMove={handleMouseMove}
       >
+        {/* Spinner de chargement */}
+        <AnimatePresence>
+          {isLoading && (
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center bg-orange-950"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Loader2 className="w-12 h-12 text-orange-500 animate-spin" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Image placeholder pendant le chargement */}
         {isLoading && thumbnailUrl && (
-          <motion.div className="absolute inset-0 z-[11]">
+          <motion.div className="absolute inset-0">
             <img
               src={thumbnailUrl}
               alt="Aperçu de la vidéo"
