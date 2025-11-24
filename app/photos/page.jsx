@@ -18,246 +18,6 @@ import Tag from "./../../src/components/Tag";
 import TagCheckbox from "./../../src/components/TagCheckbox";
 import Link from "next/link";
 
-// Données factices pour les albums
-const MOCK_ALBUMS = [
-  {
-    id_alb: 1,
-    titre: "Voyage à Paris",
-    lien_cover:
-      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=600&fit=crop",
-    tags: ["Voyage", "Urbain", "Architecture"],
-    photos: [
-      {
-        id_pho: 1,
-        titre: "Tour Eiffel",
-        lien_low:
-          "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&h=300&fit=crop",
-        lien_high:
-          "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1920&h=1080&fit=crop",
-        alt: "Vue de la Tour Eiffel",
-        largeur: 1920,
-        hauteur: 1080,
-        tags: ["Voyage", "Urbain", "Architecture"],
-        tags_recherche: ["Paris", "Monument", "France"],
-        date: "2024-03-15",
-      },
-      {
-        id_pho: 2,
-        titre: "Louvre",
-        lien_low:
-          "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=500&h=300&fit=crop",
-        lien_high:
-          "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&h=1080&fit=crop",
-        alt: "Musée du Louvre",
-        largeur: 1920,
-        hauteur: 1080,
-        tags: ["Voyage", "Urbain", "Architecture"],
-        tags_recherche: ["Paris", "Musée", "France"],
-        date: "2024-03-16",
-      },
-    ],
-  },
-  {
-    id_alb: 2,
-    titre: "Nature et Paysages",
-    lien_cover:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-    tags: ["Nature", "Paysage"],
-    photos: [
-      {
-        id_pho: 3,
-        titre: "Montagne",
-        lien_low:
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=300&fit=crop",
-        lien_high:
-          "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop",
-        alt: "Paysage de montagne",
-        largeur: 1920,
-        hauteur: 1080,
-        tags: ["Nature", "Paysage"],
-        tags_recherche: ["Montagne", "Alpes"],
-        date: "2024-06-20",
-      },
-      {
-        id_pho: 4,
-        titre: "Forêt",
-        lien_low:
-          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=300&fit=crop",
-        lien_high:
-          "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=1080&fit=crop",
-        alt: "Forêt dense",
-        largeur: 1920,
-        hauteur: 1080,
-        tags: ["Nature", "Paysage"],
-        tags_recherche: ["Forêt", "Arbres"],
-        date: "2024-06-21",
-      },
-    ],
-  },
-  {
-    id_alb: 3,
-    titre: "Portrait Studio",
-    lien_cover:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&h=600&fit=crop",
-    tags: ["Portrait", "Studio"],
-    photos: [
-      {
-        id_pho: 5,
-        titre: "Portrait 1",
-        lien_low:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&h=300&fit=crop",
-        lien_high:
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1920&h=1080&fit=crop",
-        alt: "Portrait studio femme",
-        largeur: 1920,
-        hauteur: 1080,
-        tags: ["Portrait", "Studio"],
-        tags_recherche: ["Modèle", "Photo"],
-        date: "2024-09-10",
-      },
-    ],
-  },
-  {
-    id_alb: 4,
-    titre: "Architecture Moderne",
-    lien_cover:
-      "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop",
-    tags: ["Architecture", "Urbain"],
-    photos: [
-      {
-        id_pho: 6,
-        titre: "Gratte-ciel",
-        lien_low:
-          "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=500&h=300&fit=crop",
-        lien_high:
-          "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&h=1080&fit=crop",
-        alt: "Gratte-ciel moderne",
-        largeur: 1920,
-        hauteur: 1080,
-        tags: ["Architecture", "Urbain"],
-        tags_recherche: ["Bâtiment", "Ville"],
-        date: "2024-08-05",
-      },
-      {
-        id_pho: 7,
-        titre: "Pont moderne",
-        lien_low:
-          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=500&h=300&fit=crop",
-        lien_high:
-          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&h=1080&fit=crop",
-        alt: "Pont architectural",
-        largeur: 1920,
-        hauteur: 1080,
-        tags: ["Architecture", "Urbain"],
-        tags_recherche: ["Pont", "Structure"],
-        date: "2024-08-06",
-      },
-    ],
-  },
-];
-
-// Données factices pour les photos hors albums
-const MOCK_PHOTOS = [
-  {
-    id_pho: 8,
-    titre: "Coucher de soleil",
-    lien_low:
-      "https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=500&h=300&fit=crop",
-    lien_high:
-      "https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=1920&h=1080&fit=crop",
-    alt: "Beau coucher de soleil",
-    largeur: 1920,
-    hauteur: 1080,
-    tags: ["Nature", "Paysage"],
-    tags_recherche: ["Soleil", "Ciel"],
-    date: "2024-07-15",
-  },
-  {
-    id_pho: 10,
-    titre: "Café parisien",
-    lien_low:
-      "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?w=500&h=300&fit=crop",
-    lien_high:
-      "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?w=1920&h=1080&fit=crop",
-    alt: "Terrasse de café à Paris",
-    largeur: 1920,
-    hauteur: 1080,
-    tags: ["Voyage", "Urbain"],
-    tags_recherche: ["Café", "Terrasse", "Paris"],
-    date: "2024-04-10",
-  },
-  {
-    id_pho: 11,
-    titre: "Fleurs sauvages",
-    lien_low:
-      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&h=300&fit=crop",
-    lien_high:
-      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1920&h=1080&fit=crop",
-    alt: "Champ de fleurs",
-    largeur: 1920,
-    hauteur: 1080,
-    tags: ["Nature"],
-    tags_recherche: ["Fleurs", "Printemps"],
-    date: "2024-05-01",
-  },
-  {
-    id_pho: 12,
-    titre: "Architecture ancienne",
-    lien_low:
-      "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=500&h=300&fit=crop",
-    lien_high:
-      "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1920&h=1080&fit=crop",
-    alt: "Bâtiment historique",
-    largeur: 1920,
-    hauteur: 1080,
-    tags: ["Architecture", "Voyage"],
-    tags_recherche: ["Histoire", "Monument"],
-    date: "2024-06-05",
-  },
-  {
-    id_pho: 13,
-    titre: "Plage tropicale",
-    lien_low:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=300&fit=crop",
-    lien_high:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&h=1080&fit=crop",
-    alt: "Plage avec palmiers",
-    largeur: 1920,
-    hauteur: 1080,
-    tags: ["Nature", "Voyage"],
-    tags_recherche: ["Plage", "Mer", "Vacances"],
-    date: "2024-07-20",
-  },
-  {
-    id_pho: 14,
-    titre: "Marché local",
-    lien_low:
-      "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&h=300&fit=crop",
-    lien_high:
-      "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1920&h=1080&fit=crop",
-    alt: "Étals de marché",
-    largeur: 1920,
-    hauteur: 1080,
-    tags: ["Voyage", "Urbain"],
-    tags_recherche: ["Marché", "Commerce"],
-    date: "2024-08-15",
-  },
-  {
-    id_pho: 15,
-    titre: "Nuit étoilée",
-    lien_low:
-      "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=500&h=300&fit=crop",
-    lien_high:
-      "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&h=1080&fit=crop",
-    alt: "Ciel étoilé",
-    largeur: 1920,
-    hauteur: 1080,
-    tags: ["Nature", "Paysage"],
-    tags_recherche: ["Étoiles", "Nuit"],
-    date: "2024-09-01",
-  },
-];
-
 export default function Photos() {
   const [photos, setPhotos] = useState([]);
   const [albums, setAlbums] = useState([]);
@@ -283,12 +43,18 @@ export default function Photos() {
   }, [isModalOpen]);
 
   useEffect(() => {
-    const loadPhotos = () => {
+    const loadPhotos = async () => {
       try {
         setIsLoading(true);
         setIsVisuallyLoading(true);
 
-        const cleanedData = MOCK_PHOTOS.map((photo) => {
+        const response = await fetch("/api/photos/standalone");
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des photos");
+        }
+
+        const data = await response.json();
+        const cleanedData = data.map((photo) => {
           const tagsRecherche = photo.tags_recherche || [];
 
           return {
@@ -315,14 +81,22 @@ export default function Photos() {
       } catch (err) {
         console.error("Erreur lors de la récupération des photos:", err);
         setIsLoading(false);
+        setIsVisuallyLoading(false);
       }
     };
 
-    const loadAlbums = () => {
+    const loadAlbums = async () => {
       try {
         setIsAlbumsLoading(true);
         setIsAlbumsVisuallyLoading(true);
-        setAlbums(MOCK_ALBUMS);
+
+        const response = await fetch("/api/photos/albums");
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des albums");
+        }
+
+        const data = await response.json();
+        setAlbums(data);
 
         // Marquer que le chargement réel est terminé
         setIsAlbumsLoading(false);
@@ -335,6 +109,7 @@ export default function Photos() {
       } catch (err) {
         console.error("Erreur lors de la récupération des albums:", err);
         setIsAlbumsLoading(false);
+        setIsAlbumsVisuallyLoading(false);
       }
     };
 

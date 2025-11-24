@@ -6,54 +6,8 @@ import { motion, AnimatePresence } from "motion/react";
 import NumberFlow from "@number-flow/react";
 
 export default function Videos() {
-  // Données factices pour les vidéos
-  const videosData = [
-    {
-      id_vid: 1,
-      titre: "Présentation de mon portfolio",
-      lien: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      tags: ["Web", "Portfolio", "Design"],
-      date: "2023-01-15",
-    },
-    {
-      id_vid: 2,
-      titre: "Tutoriel React avancé",
-      lien: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      tags: ["React", "JavaScript", "Web"],
-      date: "2023-02-20",
-    },
-    {
-      id_vid: 3,
-      titre: "Animation avec Framer Motion",
-      lien: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      tags: ["Animation", "React", "Design"],
-      date: "2023-03-10",
-    },
-    {
-      id_vid: 4,
-      titre: "Next.js et le SSR",
-      lien: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      tags: ["Next.js", "React", "Web"],
-      date: "2023-04-05",
-    },
-    {
-      id_vid: 5,
-      titre: "Tailwind CSS - Guide complet",
-      lien: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      tags: ["CSS", "Tailwind", "Design"],
-      date: "2023-05-12",
-    },
-    {
-      id_vid: 6,
-      titre: "API REST avec Node.js",
-      lien: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      tags: ["Node.js", "API", "Backend"],
-      date: "2023-06-18",
-    },
-  ];
-
-  const [videos, setVideos] = useState(videosData);
-  const [filteredVideos, setFilteredVideos] = useState(videosData);
+  const [videos, setVideos] = useState([]);
+  const [filteredVideos, setFilteredVideos] = useState([]);
   const [allTags, setAllTags] = useState([]);
   const [selectedTags, setselectedTags] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,16 +15,37 @@ export default function Videos() {
   const [isVisuallyLoading, setIsVisuallyLoading] = useState(true);
 
   useEffect(() => {
-    // Simuler un chargement initial
-    const uniqueTags = extractUniqueTags(videosData);
-    setAllTags(uniqueTags);
+    let mounted = true;
 
-    // Imposer un délai minimum pour l'affichage du skeleton
-    const minLoadingTime = 300;
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsVisuallyLoading(false);
-    }, minLoadingTime);
+    const fetchVideos = async () => {
+      try {
+        const res = await fetch("/api/videos");
+        if (!res.ok) {
+          console.error("Erreur fetching videos:", res.status);
+          return;
+        }
+        const data = await res.json();
+        if (!mounted) return;
+        setVideos(data);
+        setFilteredVideos(data);
+        setAllTags(extractUniqueTags(data));
+      } catch (err) {
+        console.error("Erreur lors de la récupération des vidéos:", err);
+      } finally {
+        const minLoadingTime = 300;
+        setTimeout(() => {
+          if (!mounted) return;
+          setIsLoading(false);
+          setIsVisuallyLoading(false);
+        }, minLoadingTime);
+      }
+    };
+
+    fetchVideos();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const extractUniqueTags = (videoData) => {

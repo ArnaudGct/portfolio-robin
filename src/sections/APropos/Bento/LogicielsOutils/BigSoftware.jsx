@@ -11,6 +11,8 @@ export default function BigSoftware({
   description,
   titleColor,
   descriptionColor,
+  titleStyle,
+  descriptionStyle,
 }) {
   return (
     <Link
@@ -18,17 +20,29 @@ export default function BigSoftware({
       target="_blank"
       className="flex gap-3 items-center cursor-pointer"
     >
-      <div className="w-10 h-10 relative">
-        <Image
-          src={imageSrc}
-          alt={altText}
-          fill
-          className="object-contain w-full h-full"
-        />
-      </div>
+      {imageSrc && (
+        <div className="w-10 h-10 relative">
+          <Image
+            src={imageSrc}
+            alt={altText}
+            fill
+            className="object-contain w-full h-full"
+          />
+        </div>
+      )}
       <div className="flex flex-col">
-        <p className={`font-general-semibold ${titleColor} text-lg`}>{title}</p>
-        <p className={`${descriptionColor} text-sm`}>{description}</p>
+        <p
+          className={`font-general-semibold text-lg ${titleColor || ""}`}
+          style={titleStyle}
+        >
+          {title}
+        </p>
+        <p
+          className={`${descriptionColor || ""} text-sm`}
+          style={descriptionStyle}
+        >
+          {description}
+        </p>
       </div>
     </Link>
   );

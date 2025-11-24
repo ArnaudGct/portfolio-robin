@@ -21,13 +21,13 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
     return new Date(dateString).toLocaleDateString("fr-FR", options);
   };
 
-  let youtubeId = "";
-  try {
-    const parsedUrl = new URL(url);
-    youtubeId = parsedUrl.searchParams.get("v");
-  } catch (error) {
-    console.error(`❌ URL YouTube invalide (${url}) :`, error);
-  }
+  // let youtubeId = "";
+  // try {
+  //   const parsedUrl = new URL(url);
+  //   youtubeId = parsedUrl.searchParams.get("v");
+  // } catch (error) {
+  //   console.error(`❌ URL YouTube invalide (${url}) :`, error);
+  // }
 
   // Dès que la vidéo est prête (iframe chargée), on arrête l'animation de chargement
   const handleIframeLoad = () => {
@@ -117,17 +117,10 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
           ) : null}
 
           {/* Lorsque la vidéo est dans la vue, charger l'iframe */}
-          {isInView && youtubeId ? (
-            <LiteYouTubeEmbed
-              id={youtubeId}
-              title={title}
-              poster="hqdefault"
-              webp
-            />
+          {isInView && url ? (
+            <LiteYouTubeEmbed id={url} title={title} poster="hqdefault" webp />
           ) : null}
-          {!isInView && !youtubeId && (
-            <p className="text-red-500">Lien invalide</p>
-          )}
+          {!isInView && !url && <p className="text-red-500">Lien invalide</p>}
         </div>
         <div
           className="group w-full flex items-center justify-between cursor-pointer"
@@ -184,10 +177,10 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
 
             {/* Vidéo dans le modal */}
             <div className="relative aspect-video w-full rounded-t-sm rounded-b-none overflow-hidden">
-              {youtubeId ? (
+              {url ? (
                 <iframe
                   className="w-full h-full"
-                  src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
+                  src={`https://www.youtube.com/embed/${url}?autoplay=1`}
                   title={title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -225,7 +218,7 @@ export default function VideoItem({ id, title, tags, url, pageCurrent, date }) {
               <ButtonSecondary
                 icon={<SquareArrowOutUpRight />}
                 iconPosition="after"
-                href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                href={`https://www.youtube.com/watch?v=${url}`}
                 className="w-fit"
               >
                 Voir sur Youtube
