@@ -194,7 +194,7 @@ export default function Videos() {
               >
                 <div className="flex flex-col gap-4">
                   {/* Placeholder pour la miniature vidéo (ratio 16:9) */}
-                  <div className="relative w-full aspect-video bg-orange-50/40 rounded-sm">
+                  <div className="relative w-full aspect-video bg-orange-50 rounded-sm">
                     {/* Icône de lecture au centre */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-12 h-12 rounded-full bg-orange-500/50"></div>
@@ -202,11 +202,11 @@ export default function Videos() {
                   </div>
                   <div className="w-full flex flex-col gap-3">
                     {/* Placeholder pour le titre */}
-                    <div className="w-3/4 h-6 bg-orange-50/40 rounded-md"></div>
+                    <div className="w-3/4 h-6 bg-orange-50 rounded-md"></div>
                     {/* Placeholders pour les tags */}
                     <div className="flex gap-2 mt-1">
-                      <div className="w-16 h-5 bg-orange-50/40 rounded-full"></div>
-                      <div className="w-20 h-5 bg-orange-50/40 rounded-full"></div>
+                      <div className="w-16 h-5 bg-orange-50 rounded-full"></div>
+                      <div className="w-20 h-5 bg-orange-50 rounded-full"></div>
                     </div>
                   </div>
                 </div>

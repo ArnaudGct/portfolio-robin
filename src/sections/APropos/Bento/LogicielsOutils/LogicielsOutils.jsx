@@ -48,10 +48,10 @@ export default function LogicielsOutils() {
           <div className="flex flex-col gap-2">
             {[1, 2].map((i) => (
               <div key={i} className="flex gap-3 items-center">
-                <div className="w-10 h-10 bg-orange-50/40 rounded animate-pulse"></div>
+                <div className="w-10 h-10 bg-orange-50 rounded animate-pulse"></div>
                 <div className="flex flex-col gap-1 flex-1">
-                  <div className="h-5 bg-orange-50/40 rounded w-32 animate-pulse"></div>
-                  <div className="h-4 bg-orange-50/40 rounded w-48 animate-pulse"></div>
+                  <div className="h-5 bg-orange-50 rounded w-32 animate-pulse"></div>
+                  <div className="h-4 bg-orange-50 rounded w-48 animate-pulse"></div>
                 </div>
               </div>
             ))}
@@ -61,7 +61,7 @@ export default function LogicielsOutils() {
             {[1, 2, 3, 4, 5].map((i) => (
               <div
                 key={i}
-                className="h-8 w-24 bg-orange-50/40 rounded-sm animate-pulse"
+                className="h-8 w-24 bg-orange-50 rounded-sm animate-pulse"
               ></div>
             ))}
           </div>
