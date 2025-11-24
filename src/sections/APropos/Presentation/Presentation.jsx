@@ -52,28 +52,28 @@ export default function Presentation() {
       <section className="relative flex py-8 border-t-1 border-b-1 border-dashed border-gray-300 overflow-hidden">
         <div className="w-[95%] max-w-[1440px] mx-auto flex flex-col md:flex-row justify-center items-center gap-20">
           {/* Skeleton de l'image */}
-          <div className="h-[500px] md:h-[500px] w-full md:w-[60%] bg-gray-200 rounded-sm animate-pulse"></div>
+          <div className="h-[500px] md:h-[500px] w-full md:w-[60%] bg-orange-50/40 rounded-sm animate-pulse"></div>
 
           {/* Skeleton du contenu */}
           <div className="flex flex-col gap-12 w-full">
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 {/* Skeleton du titre */}
-                <div className="h-10 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+                <div className="h-10 bg-orange-50/40 rounded w-3/4 animate-pulse"></div>
                 {/* Skeleton des tags */}
                 <div className="flex items-center gap-1.5 mt-2">
-                  <div className="h-6 bg-gray-200 rounded w-24 animate-pulse"></div>
-                  <div className="h-6 bg-gray-200 rounded w-20 animate-pulse"></div>
-                  <div className="h-6 bg-gray-200 rounded w-28 animate-pulse"></div>
+                  <div className="h-6 bg-orange-50/40 rounded w-24 animate-pulse"></div>
+                  <div className="h-6 bg-orange-50/40 rounded w-20 animate-pulse"></div>
+                  <div className="h-6 bg-orange-50/40 rounded w-28 animate-pulse"></div>
                 </div>
               </div>
               {/* Skeleton de la description */}
               <div className="flex flex-col gap-3">
-                <div className="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
-                <div className="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
-                <div className="h-4 bg-gray-200 rounded w-5/6 animate-pulse"></div>
-                <div className="h-4 bg-gray-200 rounded w-full animate-pulse mt-3"></div>
-                <div className="h-4 bg-gray-200 rounded w-4/5 animate-pulse"></div>
+                <div className="h-4 bg-orange-50/40 rounded w-full animate-pulse"></div>
+                <div className="h-4 bg-orange-50/40 rounded w-full animate-pulse"></div>
+                <div className="h-4 bg-orange-50/40 rounded w-5/6 animate-pulse"></div>
+                <div className="h-4 bg-orange-50/40 rounded w-full animate-pulse mt-3"></div>
+                <div className="h-4 bg-orange-50/40 rounded w-4/5 animate-pulse"></div>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Presentation() {
         <div className="relative flex items-stretch h-[500px] md:h-[500px] w-full md:w-[60%]">
           {/* Skeleton pendant le chargement de l'image */}
           {(imageLoading || !data?.photo) && (
-            <div className="absolute inset-0 bg-gray-200 rounded-sm animate-pulse z-10"></div>
+            <div className="absolute inset-0 bg-orange-50/40 rounded-sm animate-pulse z-10"></div>
           )}
 
           {data?.photo && (

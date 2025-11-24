@@ -66,12 +66,12 @@ export default function Etudes() {
           <div className="flex flex-col gap-10">
             {[1, 2].map((i) => (
               <div key={i} className="relative flex items-center">
-                <div className="absolute left-0.5 top-6 w-3.5 h-3.5 bg-gray-200 animate-pulse"></div>
+                <div className="absolute left-0.5 top-6 w-3.5 h-3.5 bg-orange-50/40 animate-pulse"></div>
                 <div className="ml-10 flex flex-col gap-4">
                   <div className="flex flex-col gap-3">
-                    <div className="h-4 bg-gray-200 rounded w-32 animate-pulse"></div>
-                    <div className="h-5 bg-gray-200 rounded w-48 animate-pulse"></div>
-                    <div className="h-6 bg-gray-200 rounded-sm w-36 animate-pulse"></div>
+                    <div className="h-4 bg-orange-50/40 rounded w-32 animate-pulse"></div>
+                    <div className="h-5 bg-orange-50/40 rounded w-48 animate-pulse"></div>
+                    <div className="h-6 bg-orange-50/40 rounded-sm w-36 animate-pulse"></div>
                   </div>
                 </div>
               </div>
