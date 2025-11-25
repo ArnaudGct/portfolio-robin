@@ -28,8 +28,8 @@ RUN npm install --only=production
 # Copier le build et Prisma
 COPY --from=builder /app ./
 
-EXPOSE 3000
+EXPOSE 3002
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=3002
 
 CMD ["npm", "start"]

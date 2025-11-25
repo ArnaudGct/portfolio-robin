@@ -9,7 +9,7 @@ async function getAlbumDetails(id_alb) {
   try {
     const response = await fetch(
       `${
-        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3002"
       }/api/photos/albums/${id_alb}`,
       {
         cache: "no-store", // Pour avoir toujours les données à jour
