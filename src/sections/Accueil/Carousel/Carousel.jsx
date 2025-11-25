@@ -99,6 +99,17 @@ export default function Carousel() {
     isPausedRef.current = isPaused;
   }, [isPaused]);
 
+  // Recalculer les métriques quand les données du carousel changent
+  useEffect(() => {
+    if (carouselItems.length > 0) {
+      // Petit délai pour s'assurer que le DOM est mis à jour
+      const timeoutId = setTimeout(() => {
+        updateScrollMetrics();
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [carouselItems, updateScrollMetrics]);
+
   useEffect(() => {
     updateScrollMetrics();
 
@@ -159,13 +170,18 @@ export default function Carousel() {
 
       if (!isPausedRef.current) {
         const loopWidth = scrollWindowRef.current;
+
+        // Ne pas animer si loopWidth n'est pas encore calculé
+        if (loopWidth <= 0) {
+          animationFrameRef.current = requestAnimationFrame(animate);
+          return;
+        }
+
         let nextPosition = scrollPositionRef.current + delta * speed;
 
-        if (loopWidth > 0) {
-          nextPosition = nextPosition % loopWidth;
-          if (nextPosition < 0) {
-            nextPosition += loopWidth;
-          }
+        nextPosition = nextPosition % loopWidth;
+        if (nextPosition < 0) {
+          nextPosition += loopWidth;
         }
 
         scrollPositionRef.current = nextPosition;
