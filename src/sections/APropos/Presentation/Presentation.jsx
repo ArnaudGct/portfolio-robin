@@ -129,9 +129,6 @@ export default function Presentation() {
 Excepteur est exercitation do id velit dolore dolor amet. Consectetur pariatur proident non mollit ut Lorem aute et nostrud sint. Cillum commodo ipsum excepteur labore esse enim Lorem nisi excepteur anim in do anim labore dolor.`}
             </ReactMarkdown>
           </div>
-          {/* <ButtonMain href="/apropos" className="w-fit">
-            En savoir plus
-          </ButtonMain> */}
         </div>
         <div
           className="absolute inset-0 w-full h-full pointer-events-none -z-10 opacity-60"
