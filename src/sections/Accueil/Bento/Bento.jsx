@@ -52,7 +52,7 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 left-10 sm:left-auto sm:right-6 lg:top-4 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-24 h-40 sm:w-26 sm:h-40 md:w-34 md:h-40 lg:w-40 lg:h-30">
                   <Image
-                    src="/materiels/s5IIx.webp"
+                    src="/materiels/softwares/s5IIx.webp"
                     alt="DJI Ronin 4D"
                     fill
                     className="object-contain w-full h-full"
@@ -189,7 +189,7 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-auto sm:left-5 md:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
                 <div className="h-15 w-15 sm:h-12 sm:w-12 md:w-15 md:h-15">
                   <Image
-                    src="/materiels/resolve.webp"
+                    src="/materiels/softwares/resolve.webp"
                     alt="DJI Ronin 4D"
                     fill
                     className="object-contain w-full h-full"
