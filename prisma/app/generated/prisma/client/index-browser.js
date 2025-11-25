@@ -191,48 +191,6 @@ exports.Prisma.Apropos_outilsScalarFieldEnum = {
   afficher: 'afficher'
 };
 
-exports.Prisma.AutreScalarFieldEnum = {
-  id_autre: 'id_autre',
-  titre: 'titre',
-  description: 'description',
-  miniature: 'miniature',
-  lien_github: 'lien_github',
-  lien_figma: 'lien_figma',
-  lien_site: 'lien_site',
-  categorie: 'categorie',
-  tags: 'tags',
-  date: 'date',
-  afficher: 'afficher',
-  derniere_modification: 'derniere_modification'
-};
-
-exports.Prisma.Autre_tagsScalarFieldEnum = {
-  id_tags: 'id_tags',
-  titre: 'titre',
-  important: 'important'
-};
-
-exports.Prisma.Autre_tags_linkScalarFieldEnum = {
-  id_autre: 'id_autre',
-  id_tags: 'id_tags'
-};
-
-exports.Prisma.ClientsScalarFieldEnum = {
-  id_client: 'id_client',
-  client: 'client',
-  logo: 'logo',
-  alt_logo: 'alt_logo',
-  lien_client: 'lien_client',
-  afficher: 'afficher'
-};
-
-exports.Prisma.FaqScalarFieldEnum = {
-  id_faq: 'id_faq',
-  titre: 'titre',
-  contenu: 'contenu',
-  afficher: 'afficher'
-};
-
 exports.Prisma.PhotosScalarFieldEnum = {
   id_pho: 'id_pho',
   lien_high: 'lien_high',
@@ -265,13 +223,6 @@ exports.Prisma.Photos_albums_linkScalarFieldEnum = {
 exports.Prisma.Photos_albums_tags_linkScalarFieldEnum = {
   id_alb: 'id_alb',
   id_tags: 'id_tags'
-};
-
-exports.Prisma.Photos_experiencesScalarFieldEnum = {
-  id_photo: 'id_photo',
-  titre: 'titre',
-  url: 'url',
-  date: 'date'
 };
 
 exports.Prisma.Photos_tagsScalarFieldEnum = {
@@ -338,14 +289,8 @@ exports.Prisma.VerificationScalarFieldEnum = {
 exports.Prisma.VideosScalarFieldEnum = {
   id_vid: 'id_vid',
   titre: 'titre',
-  description: 'description',
-  tags: 'tags',
   lien: 'lien',
   date: 'date',
-  media_webm: 'media_webm',
-  media_mp4: 'media_mp4',
-  duree: 'duree',
-  afficher_competences: 'afficher_competences',
   afficher_carrousel_main: 'afficher_carrousel_main',
   afficher_section_videos: 'afficher_section_videos',
   tag_section_videos: 'tag_section_videos',
@@ -362,6 +307,24 @@ exports.Prisma.Videos_tagsScalarFieldEnum = {
 exports.Prisma.Videos_tags_linkScalarFieldEnum = {
   id_vid: 'id_vid',
   id_tags: 'id_tags'
+};
+
+exports.Prisma.Accueil_clientsScalarFieldEnum = {
+  id_client: 'id_client',
+  client: 'client',
+  logo: 'logo',
+  alt_logo: 'alt_logo',
+  lien_client: 'lien_client',
+  ordre: 'ordre',
+  afficher: 'afficher'
+};
+
+exports.Prisma.Accueil_faqScalarFieldEnum = {
+  id_faq: 'id_faq',
+  titre: 'titre',
+  contenu: 'contenu',
+  ordre: 'ordre',
+  afficher: 'afficher'
 };
 
 exports.Prisma.SortOrder = {
@@ -426,33 +389,6 @@ exports.Prisma.apropos_outilsOrderByRelevanceFieldEnum = {
   couleur_description: 'couleur_description'
 };
 
-exports.Prisma.autreOrderByRelevanceFieldEnum = {
-  titre: 'titre',
-  description: 'description',
-  miniature: 'miniature',
-  lien_github: 'lien_github',
-  lien_figma: 'lien_figma',
-  lien_site: 'lien_site',
-  categorie: 'categorie',
-  tags: 'tags'
-};
-
-exports.Prisma.autre_tagsOrderByRelevanceFieldEnum = {
-  titre: 'titre'
-};
-
-exports.Prisma.clientsOrderByRelevanceFieldEnum = {
-  client: 'client',
-  logo: 'logo',
-  alt_logo: 'alt_logo',
-  lien_client: 'lien_client'
-};
-
-exports.Prisma.faqOrderByRelevanceFieldEnum = {
-  titre: 'titre',
-  contenu: 'contenu'
-};
-
 exports.Prisma.photosOrderByRelevanceFieldEnum = {
   lien_high: 'lien_high',
   lien_low: 'lien_low',
@@ -462,12 +398,6 @@ exports.Prisma.photosOrderByRelevanceFieldEnum = {
 exports.Prisma.photos_albumsOrderByRelevanceFieldEnum = {
   titre: 'titre',
   lien_cover: 'lien_cover'
-};
-
-exports.Prisma.photos_experiencesOrderByRelevanceFieldEnum = {
-  titre: 'titre',
-  url: 'url',
-  date: 'date'
 };
 
 exports.Prisma.photos_tagsOrderByRelevanceFieldEnum = {
@@ -509,17 +439,23 @@ exports.Prisma.verificationOrderByRelevanceFieldEnum = {
 
 exports.Prisma.videosOrderByRelevanceFieldEnum = {
   titre: 'titre',
-  description: 'description',
-  tags: 'tags',
-  lien: 'lien',
-  media_webm: 'media_webm',
-  media_mp4: 'media_mp4',
-  duree: 'duree',
-  afficher_competences: 'afficher_competences'
+  lien: 'lien'
 };
 
 exports.Prisma.videos_tagsOrderByRelevanceFieldEnum = {
   titre: 'titre'
+};
+
+exports.Prisma.accueil_clientsOrderByRelevanceFieldEnum = {
+  client: 'client',
+  logo: 'logo',
+  alt_logo: 'alt_logo',
+  lien_client: 'lien_client'
+};
+
+exports.Prisma.accueil_faqOrderByRelevanceFieldEnum = {
+  titre: 'titre',
+  contenu: 'contenu'
 };
 
 
@@ -530,16 +466,10 @@ exports.Prisma.ModelName = {
   apropos_experiences: 'apropos_experiences',
   apropos_general: 'apropos_general',
   apropos_outils: 'apropos_outils',
-  autre: 'autre',
-  autre_tags: 'autre_tags',
-  autre_tags_link: 'autre_tags_link',
-  clients: 'clients',
-  faq: 'faq',
   photos: 'photos',
   photos_albums: 'photos_albums',
   photos_albums_link: 'photos_albums_link',
   photos_albums_tags_link: 'photos_albums_tags_link',
-  photos_experiences: 'photos_experiences',
   photos_tags: 'photos_tags',
   photos_tags_link: 'photos_tags_link',
   photos_tags_recherche: 'photos_tags_recherche',
@@ -550,7 +480,9 @@ exports.Prisma.ModelName = {
   verification: 'verification',
   videos: 'videos',
   videos_tags: 'videos_tags',
-  videos_tags_link: 'videos_tags_link'
+  videos_tags_link: 'videos_tags_link',
+  accueil_clients: 'accueil_clients',
+  accueil_faq: 'accueil_faq'
 };
 
 /**

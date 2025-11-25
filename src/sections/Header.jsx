@@ -141,7 +141,7 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-          <ButtonMain href="#contact">Contact</ButtonMain>
+          <ButtonMain href="/#contact">Contact</ButtonMain>
         </div>
       </div>
 
@@ -252,7 +252,7 @@ export default function Header() {
                 transition={{ ease: "easeOut", duration: 0.2, delay: 0.1 }}
                 className="w-full xs:w-auto"
               >
-                <ButtonMain href="#contact">Contact</ButtonMain>
+                <ButtonMain href="/#contact">Contact</ButtonMain>
               </motion.div>
             </div>
           ) : null}

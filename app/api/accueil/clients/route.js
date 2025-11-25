@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const clients = await prisma.clients.findMany({
+    const clients = await prisma.accueil_clients.findMany({
       where: {
         afficher: true,
       },

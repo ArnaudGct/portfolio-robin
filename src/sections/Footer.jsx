@@ -104,7 +104,7 @@ export default function Footer() {
         <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between gap-4">
           <div>
             <p className="text-gray-100 text-xs">
-              © 2025 CosmoseProd – Tous droits réservés
+              © {new Date().getFullYear()} CosmoseProd – Tous droits réservés
             </p>
             <p className="text-gray-100 text-xs">
               Ce site a été designé et développé par{" "}

@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
           {children}
         </div>
         <Footer />
-        <ConstructionBanner />
+        {/* <ConstructionBanner /> */}
       </body>
     </html>
   );

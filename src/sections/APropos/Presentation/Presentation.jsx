@@ -40,12 +40,16 @@ export default function Presentation() {
     };
   }, []);
 
-  const [imageLoading, setImageLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentPhotoSrc, setCurrentPhotoSrc] = useState(null);
 
+  // Réinitialiser l'état de chargement quand la source de l'image change
   useEffect(() => {
-    // whenever the photo source changes, show the loader until it's loaded
-    setImageLoading(true);
-  }, [data?.photo]);
+    if (data?.photo && data.photo !== currentPhotoSrc) {
+      setImageLoaded(false);
+      setCurrentPhotoSrc(data.photo);
+    }
+  }, [data?.photo, currentPhotoSrc]);
 
   if (loading) {
     return (
@@ -87,7 +91,7 @@ export default function Presentation() {
       <div className="w-[95%] max-w-[1440px] mx-auto flex flex-col md:flex-row justify-center items-center gap-20">
         <div className="relative flex items-stretch h-[500px] md:h-[500px] w-full md:w-[60%]">
           {/* Skeleton pendant le chargement de l'image */}
-          {(imageLoading || !data?.photo) && (
+          {!imageLoaded && (
             <div className="absolute inset-0 bg-orange-50 rounded-sm animate-pulse z-10 transition-opacity duration-300"></div>
           )}
 
@@ -98,11 +102,11 @@ export default function Presentation() {
               fill
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-              className={`object-cover rounded-sm object-right transition-opacity duration-300 ${
-                imageLoading ? "opacity-0" : "opacity-100"
+              className={`object-cover rounded-sm transition-opacity duration-300 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
               }`}
-              onLoad={() => setImageLoading(false)}
-              onError={() => setImageLoading(false)}
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
             />
           )}
         </div>

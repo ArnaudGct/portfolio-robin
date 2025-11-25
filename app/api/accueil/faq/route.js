@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const faqs = await prisma.faq.findMany({
+    const faqs = await prisma.accueil_faq.findMany({
       where: {
         afficher: true,
       },

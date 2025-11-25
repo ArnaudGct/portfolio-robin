@@ -11,12 +11,8 @@ export async function GET() {
       select: {
         id_vid: true,
         titre: true,
-        description: true,
         lien: true,
         date: true,
-        media_webm: true,
-        media_mp4: true,
-        duree: true,
         afficher: true,
       },
     });
