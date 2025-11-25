@@ -37,8 +37,16 @@ export default function Clients() {
         <span className="flex-1 h-[1px] bg-gray-300 mb-1.5"></span>
       </div>
       {isLoading ? (
-        <div className="flex justify-center items-center h-32">
-          <p>Chargement...</p>
+        <div className="flex flex-wrap gap-6 gap-y-12 sm:gap-8 items-center justify-between">
+          {/* Skeleton des logos clients */}
+          {[...Array(6)].map((_, index) => (
+            <div
+              key={`skeleton-${index}`}
+              className="flex justify-center items-center"
+            >
+              <div className="h-10 w-32 bg-orange-50 rounded animate-pulse"></div>
+            </div>
+          ))}
         </div>
       ) : (
         <div className="flex flex-wrap gap-6 gap-y-12 sm:gap-8 items-center justify-between">

@@ -272,8 +272,18 @@ export default function Carousel() {
       `}</style>
 
       {isLoading ? (
-        <div className="flex justify-center items-center h-64">
-          <p>Chargement...</p>
+        <div className="carousel-track">
+          {/* Skeleton items */}
+          {[...Array(6)].map((_, index) => (
+            <div
+              key={`skeleton-${index}`}
+              className="carousel-item flex-shrink-0"
+            >
+              <div className="w-full h-full px-4">
+                <div className="relative w-full h-full overflow-hidden rounded-md aspect-[580/269] bg-orange-50 animate-pulse"></div>
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
         <div ref={trackRef} className="carousel-track">

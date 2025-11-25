@@ -5,6 +5,7 @@ import FAQItem from "./FAQItem";
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
   const [faqs, setFaqs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleOpenChange = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -25,6 +26,8 @@ export default function FAQ() {
         setFaqs(data);
       } catch (err) {
         console.error("Erreur lors de la récupération des FAQs:", err);
+      } finally {
+        if (mounted) setIsLoading(false);
       }
     };
 
@@ -53,16 +56,29 @@ export default function FAQ() {
           </p>
         </div>
         <div className="flex flex-col gap-4 w-full lg:w-[50%]">
-          {faqs.map((f, idx) => (
-            <FAQItem
-              key={f.id_faq}
-              title={f.titre}
-              content={f.contenu}
-              index={idx}
-              openIndex={openIndex}
-              onOpenChange={handleOpenChange}
-            />
-          ))}
+          {isLoading
+            ? /* Skeleton des FAQ items */
+              [...Array(4)].map((_, index) => (
+                <div
+                  key={`skeleton-${index}`}
+                  className="border border-gray-50 rounded-sm overflow-hidden"
+                >
+                  <div className="w-full flex items-center gap-3 p-4">
+                    <div className="h-5 w-5 bg-orange-50 rounded animate-pulse"></div>
+                    <div className="h-5 flex-1 bg-orange-50 rounded animate-pulse"></div>
+                  </div>
+                </div>
+              ))
+            : faqs.map((f, idx) => (
+                <FAQItem
+                  key={f.id_faq}
+                  title={f.titre}
+                  content={f.contenu}
+                  index={idx}
+                  openIndex={openIndex}
+                  onOpenChange={handleOpenChange}
+                />
+              ))}
         </div>
       </div>
     </section>

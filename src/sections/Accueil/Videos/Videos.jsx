@@ -48,8 +48,23 @@ export default function Videos() {
           </ButtonMain> */}
         </div>
         {isLoading ? (
-          <div className="flex justify-center items-center h-64">
-            <p>Chargement...</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            {/* Skeleton des vidéos */}
+            {[...Array(3)].map((_, index) => (
+              <div key={`skeleton-${index}`} className="flex flex-col gap-3">
+                {/* Skeleton de la miniature vidéo */}
+                <div className="relative aspect-video rounded-md bg-orange-50 animate-pulse"></div>
+                {/* Skeleton du titre */}
+                <div className="h-5 bg-orange-50 rounded w-3/4 animate-pulse"></div>
+                {/* Skeleton des tags */}
+                <div className="flex gap-2">
+                  <div className="h-6 w-16 bg-orange-50 rounded-full animate-pulse"></div>
+                  <div className="h-6 w-20 bg-orange-50 rounded-full animate-pulse"></div>
+                </div>
+                {/* Skeleton de la date */}
+                <div className="h-4 bg-orange-50 rounded w-24 animate-pulse"></div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
