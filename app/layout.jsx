@@ -39,12 +39,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${jetBrainsMono.variable} antialiased flex flex-col min-h-screen bg-white`}
       >
-        {showHeader && <Header />}
-        <div
-          className={`flex-grow ${showHeader ? "pt-[67px] lg:pt-[84px]" : ""}`}
-        >
-          {children}
-        </div>
+        <Header />
+        <div className="flex-grow pt-[67px] lg:pt-[84px]">{children}</div>
         <Footer />
         {/* <ConstructionBanner /> */}
       </body>
