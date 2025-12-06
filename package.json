@@ -17,10 +17,10 @@
     "dotenv": "^17.2.3",
     "lucide-react": "^0.545.0",
     "motion": "^12.23.24",
-    "next": "15.5.5",
+    "next": "^15.5.7",
     "number-flow": "^0.5.2",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-lite-youtube-embed": "^2.5.6",
     "react-markdown": "^10.1.0",
     "resend": "^6.4.2"
