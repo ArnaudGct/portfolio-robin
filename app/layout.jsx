@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "../src/sections/Header";
 import Footer from "./../src/sections/Footer";
 import ConstructionBanner from "../src/components/ConstructionBanner";
-import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { themeScript } from "./../lib/themeScript";
 
@@ -15,21 +14,6 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
-
-  // Vérifie si l'URL contient /creations/album/[id_alb]
-  const isAlbumPage = pathname.match(/^\/creations\/album\/\d+/);
-  const isVideoPage = pathname.match(/^\/creations\/video\/\d+/);
-  const isAutrePage = pathname.match(/^\/creations\/autre\/\d+/);
-
-  // Exclure la page dynamique de l'affichage du Header
-  const noHeaderRoutes = ["/journal-personnel"];
-  const showHeader =
-    !noHeaderRoutes.includes(pathname) &&
-    !isAlbumPage &&
-    !isVideoPage &&
-    !isAutrePage;
-
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
