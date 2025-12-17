@@ -1,13 +1,42 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FAQItem from "./FAQItem";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [faqs, setFaqs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleOpenChange = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchFaqs = async () => {
+      try {
+        const res = await fetch("/api/accueil/faq");
+        if (!res.ok) {
+          console.error("Erreur fetching FAQs:", res.status);
+          return;
+        }
+        const data = await res.json();
+        if (!mounted || !Array.isArray(data)) return;
+        setFaqs(data);
+      } catch (err) {
+        console.error("Erreur lors de la récupération des FAQs:", err);
+      } finally {
+        if (mounted) setIsLoading(false);
+      }
+    };
+
+    fetchFaqs();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <section className="relative flex overflow-hidden">
@@ -27,27 +56,29 @@ export default function FAQ() {
           </p>
         </div>
         <div className="flex flex-col gap-4 w-full lg:w-[50%]">
-          <FAQItem
-            title="Comment fonctionne votre processus de création ?"
-            content="Je pense ouais"
-            index={0}
-            openIndex={openIndex}
-            onOpenChange={handleOpenChange}
-          />
-          <FAQItem
-            title="Quels sont vos délais de réalisation ?"
-            content="Ça dépend du projet"
-            index={1}
-            openIndex={openIndex}
-            onOpenChange={handleOpenChange}
-          />
-          <FAQItem
-            title="Quels types de projets réalisez-vous ?"
-            content="Tous types de projets vidéo"
-            index={2}
-            openIndex={openIndex}
-            onOpenChange={handleOpenChange}
-          />
+          {isLoading
+            ? /* Skeleton des FAQ items */
+              [...Array(4)].map((_, index) => (
+                <div
+                  key={`skeleton-${index}`}
+                  className="border border-gray-50 rounded-sm overflow-hidden"
+                >
+                  <div className="w-full flex items-center gap-3 p-4">
+                    <div className="h-5 w-5 bg-orange-50 rounded animate-pulse"></div>
+                    <div className="h-5 flex-1 bg-orange-50 rounded animate-pulse"></div>
+                  </div>
+                </div>
+              ))
+            : faqs.map((f, idx) => (
+                <FAQItem
+                  key={f.id_faq}
+                  title={f.titre}
+                  content={f.contenu}
+                  index={idx}
+                  openIndex={openIndex}
+                  onOpenChange={handleOpenChange}
+                />
+              ))}
         </div>
       </div>
     </section>

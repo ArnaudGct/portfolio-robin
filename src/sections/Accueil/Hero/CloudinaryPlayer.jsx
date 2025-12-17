@@ -11,64 +11,60 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
   const [videoData, setVideoData] = useState(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [isHoveringVideo, setIsHoveringVideo] = useState(true);
+  const [isHoveringVideo, setIsHoveringVideo] = useState(false);
   const [isHoveringControls, setIsHoveringControls] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isManuallyPaused, setIsManuallyPaused] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [infoBoxHeight, setInfoBoxHeight] = useState(0);
-  const [currentVideoUrl, setCurrentVideoUrl] = useState(
-    "https://res.cloudinary.com/dx0k6xzqa/video/upload/v1752081661/portfolio/accueil/general/videos/video_1752081640300_a6yp63scr.mp4"
-  ); // Initialisé à null
-  const [videoUrl, setVideoUrl] = useState(
-    "https://res.cloudinary.com/dx0k6xzqa/video/upload/v1752081661/portfolio/accueil/general/videos/video_1752081640300_a6yp63scr.mp4"
-  );
-  const [videoUrlMobile, setVideoUrlMobile] = useState(
-    "https://res.cloudinary.com/dx0k6xzqa/video/upload/v1752081661/portfolio/accueil/general/videos/video_1752081640300_a6yp63scr.mp4"
-  );
-  // const thumbnailUrl = "/uploads/showreel-thumbnail.webp";
+  const [currentVideoUrl, setCurrentVideoUrl] = useState(null);
+  const [videoUrl, setVideoUrl] = useState(null);
+  const [videoUrlMobile, setVideoUrlMobile] = useState(null);
+  const [thumbnailUrl, setThumbnailUrl] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchVideoData = async () => {
-  //     try {
-  //       const response = await fetch("/api/accueil/general");
-  //       const data = await response.json();
-  //       console.log("Données de la vidéo récupérées:", data);
-  //       console.log("video_desktop:", data.video_desktop);
-  //       console.log("video_mobile:", data.video_mobile);
-  //       setVideoData(data);
-  //       setVideoUrl(data.video_desktop);
-  //       setVideoUrlMobile(data.video_mobile);
+  useEffect(() => {
+    const fetchVideoData = async () => {
+      try {
+        const response = await fetch("/api/accueil/general");
+        const data = await response.json();
+        console.log("Données de la vidéo récupérées:", data);
+        console.log("video_desktop:", data.video_desktop);
+        console.log("video_mobile:", data.video_mobile);
+        console.log("video_cover:", data.video_cover);
+        setVideoData(data);
+        setVideoUrl(data.video_desktop);
+        setVideoUrlMobile(data.video_mobile);
+        setThumbnailUrl(data.video_cover);
 
-  //       // Définir immédiatement l'URL appropriée selon la taille d'écran
-  //       const mobile = window.innerWidth < 640;
-  //       const initialVideoUrl = mobile ? data.video_mobile : data.video_desktop;
-  //       console.log(
-  //         "URL vidéo initiale sélectionnée:",
-  //         initialVideoUrl,
-  //         "Mobile:",
-  //         mobile
-  //       );
+        // Définir immédiatement l'URL appropriée selon la taille d'écran
+        const mobile = window.innerWidth < 1024;
+        const initialVideoUrl = mobile ? data.video_mobile : data.video_desktop;
+        console.log(
+          "URL vidéo initiale sélectionnée:",
+          initialVideoUrl,
+          "Mobile:",
+          mobile
+        );
 
-  //       // Vérifier que l'URL n'est pas vide ou null
-  //       if (initialVideoUrl && initialVideoUrl.trim() !== "") {
-  //         setCurrentVideoUrl(initialVideoUrl);
-  //         setIsMobile(mobile);
-  //         // On garde isLoading à true jusqu'à ce que la vidéo soit prête
-  //       } else {
-  //         console.error("URL vidéo invalide:", initialVideoUrl);
-  //         setIsLoading(false);
-  //         return;
-  //       }
-  //     } catch (error) {
-  //       console.error("Erreur lors de la récupération des données:", error);
-  //       setIsLoading(false); // Arrêter le loading en cas d'erreur
-  //     }
-  //   };
+        // Vérifier que l'URL n'est pas vide ou null
+        if (initialVideoUrl && initialVideoUrl.trim() !== "") {
+          setCurrentVideoUrl(initialVideoUrl);
+          setIsMobile(mobile);
+          // On garde isLoading à true jusqu'à ce que la vidéo soit prête
+        } else {
+          console.error("URL vidéo invalide:", initialVideoUrl);
+          setIsLoading(false);
+          return;
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données:", error);
+        setIsLoading(false); // Arrêter le loading en cas d'erreur
+      }
+    };
 
-  //   fetchVideoData();
-  // }, []);
+    fetchVideoData();
+  }, []);
 
   // Effet pour détecter si on est en mobile au chargement initial
   useEffect(() => {
@@ -360,16 +356,30 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
         }}
         onMouseMove={handleMouseMove}
       >
+        {/* Spinner de chargement */}
+        <AnimatePresence>
+          {isLoading && (
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center bg-orange-950"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Loader2 className="w-12 h-12 text-orange-500 animate-spin" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Image placeholder pendant le chargement */}
-        {/* {isLoading && (
-          <motion.div className="absolute inset-0 z-[11]">
+        {isLoading && thumbnailUrl && (
+          <motion.div className="absolute inset-0">
             <img
               src={thumbnailUrl}
               alt="Aperçu de la vidéo"
               className="w-full h-full object-cover"
             />
           </motion.div>
-        )} */}
+        )}
 
         {/* Vidéo HTML */}
         {currentVideoUrl && (

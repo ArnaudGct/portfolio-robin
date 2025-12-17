@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black w-full mt-auto">
-      <div className="flex flex-col justify-center items-start gap-12 py-16 w-[90%] max-w-[1440px] mx-auto">
+      <div className="flex flex-col justify-center items-start gap-12 py-16 w-[95%] max-w-[1440px] mx-auto">
         <div className="w-full flex flex-col justify-center items-start lg:flex-row lg:justify-between lg:items-center gap-12">
           <div className="flex flex-col gap-8 items-start justify-start">
             <div className="flex gap-4 items-center justify-start">
@@ -104,7 +104,7 @@ export default function Footer() {
         <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between gap-4">
           <div>
             <p className="text-gray-100 text-xs">
-              © 2025 CosmoseProd – Tous droits réservés
+              © {new Date().getFullYear()} CosmoseProd – Tous droits réservés
             </p>
             <p className="text-gray-100 text-xs">
               Ce site a été designé et développé par{" "}

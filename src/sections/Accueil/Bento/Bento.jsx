@@ -8,13 +8,13 @@ export default function Videos() {
   return (
     <section className="bg-[#282828]">
       <div className="relative w-[95%] py-20 max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-col-2 lg:grid-cols-4 xl:grid-cols-6 grid-rows-12 sm:grid-rows-[repeat(10,minmax(100px,1fr))_auto] lg:grid-rows-[repeat(9,minmax(100px,1fr))_auto] xl:grid-rows-[repeat(6,minmax(100px,1fr))_auto] gap-2 xl:gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 grid-rows-12 sm:grid-rows-[repeat(10,minmax(100px,1fr))_auto] lg:grid-rows-[repeat(9,minmax(100px,1fr))_auto] xl:grid-rows-[repeat(6,minmax(100px,1fr))_auto] gap-2 xl:gap-2">
           <div className="relative col-start-1 row-start-2 col-span-2 row-span-2 xl:col-start-1 xl:row-start-1 xl:col-span-2 xl:row-span-2 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-4 sm:top-1/2 sm:-translate-y-1/2 left-4 sm:left-10 lg:left-6 xl:translate-y-0 xl:top-4 xl:left-4 z-1">
                 <div className="w-38 h-28 sm:w-46 sm:h-38 xl:w-45 xl:h-32">
                   <Image
-                    src="/materiels/dji_ronin_4d.webp"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088540/dji_ronin_4d_wnr9t1.webp"
                     alt="DJI Ronin 4D"
                     fill
                     className="object-contain w-full h-full"
@@ -52,8 +52,8 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 left-10 sm:left-auto sm:right-6 lg:top-4 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-24 h-40 sm:w-26 sm:h-40 md:w-34 md:h-40 lg:w-40 lg:h-30">
                   <Image
-                    src="/materiels/s5IIx.webp"
-                    alt="DJI Ronin 4D"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088541/s5IIx_qd4c2z.webp"
+                    alt="Photo de S5IIX"
                     fill
                     className="object-contain w-full h-full"
                     priority
@@ -72,8 +72,8 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 left-10 sm:left-6 lg:top-4 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-26 h-40 sm:w-28 sm:h-40 md:w-35 md:h-40 lg:w-40 lg:h-30">
                   <Image
-                    src="/materiels/gh5.webp"
-                    alt="DJI Ronin 4D"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088540/gh5_pbi31t.webp"
+                    alt="Photo de GH5"
                     fill
                     className="object-contain w-full h-full"
                     priority
@@ -92,8 +92,8 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-2 md:right-6 lg:top-4 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-26 h-40 lg:w-40 lg:h-30">
                   <Image
-                    src="/materiels/dji_air_3s.webp"
-                    alt="DJI Ronin 4D"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088539/dji_air_3s_iw2ne4.webp"
+                    alt="Photo de DJI Air 3s"
                     fill
                     className="object-contain w-full h-full"
                     priority
@@ -114,8 +114,8 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 right-6 sm:right-auto sm:left-4 md:left-6 lg:top-4 lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
                 <div className="w-18 h-24 lg:w-40 lg:h-30">
                   <Image
-                    src="/materiels/osmo_action_5_pro.webp"
-                    alt="DJI Ronin 4D"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088540/osmo_action_5_pro_ft8pxj.webp"
+                    alt="Pohoto de Osmo Action 5 Pro"
                     fill
                     className="object-contain w-full h-full"
                     priority
@@ -141,8 +141,8 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-2/7 sm:-translate-y-2/5 left-2 sm:left-[-10px] md:left-3 lg:left-6 z-1">
                 <div className="w-30 h-30 md:w-30 md:h-40 lg:w-30 lg:h-50">
                   <Image
-                    src="/materiels/rs_3.webp"
-                    alt="DJI Ronin 4D"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088541/rs_3_xmxzsn.webp"
+                    alt="Photo de RS3"
                     fill
                     className="object-contain w-full h-full"
                     priority
@@ -167,8 +167,8 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-5 md:right-6 lg:right-auto lg:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
                 <div className="h-12 w-12 sm:w-10 sm:h-10 md:w-13 md:h-13">
                   <Image
-                    src="/materiels/premiere_pro.webp"
-                    alt="DJI Ronin 4D"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088461/premiere_pro_maelag.webp"
+                    alt="Logo de Premiere Pro"
                     fill
                     className="object-contain w-full h-full"
                     priority
@@ -189,8 +189,8 @@ export default function Videos() {
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-auto sm:left-5 md:left-6 xl:left-1/2 xl:-translate-x-1/2 h-full flex items-center z-1">
                 <div className="h-15 w-15 sm:h-12 sm:w-12 md:w-15 md:h-15">
                   <Image
-                    src="/materiels/resolve.webp"
-                    alt="DJI Ronin 4D"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088463/resolve_biemuq.webp"
+                    alt="Logo de Resolve Studio"
                     fill
                     className="object-contain w-full h-full"
                     priority

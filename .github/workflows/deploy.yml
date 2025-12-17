@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main # ou la branche que tu utilises
+      - dev # ou la branche que tu utilises
 
 jobs:
   build:

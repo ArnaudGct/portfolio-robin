@@ -3,8 +3,14 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
+ARG API_TOKEN
+ARG DATABASE_URL
+ARG NEXT_PUBLIC_RESEND_API_KEY
 ARG RESEND_API_KEY
 
+ENV API_TOKEN=$API_TOKEN
+ENV DATABASE_URL=$DATABASE_URL
+ENV NEXT_PUBLIC_RESEND_API_KEY=$NEXT_PUBLIC_RESEND_API_KEY
 ENV RESEND_API_KEY=$RESEND_API_KEY
 
 # Installer deps
@@ -13,7 +19,7 @@ RUN npm install
 
 # Copier le code et générer Prisma + build
 COPY . .
-# RUN npx prisma generate
+RUN npx prisma generate
 RUN npm run build
 
 # Étape 2 : Image de prod
@@ -28,8 +34,8 @@ RUN npm install --only=production
 # Copier le build et Prisma
 COPY --from=builder /app ./
 
-EXPOSE 3000
+EXPOSE 3002
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=3002
 
 CMD ["npm", "start"]

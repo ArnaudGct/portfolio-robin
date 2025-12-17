@@ -1,6 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "@/src/components/icons/Icons";
+import ReactMarkdown from "react-markdown";
 
 export default function FAQItem({
   title,
@@ -39,7 +40,9 @@ export default function FAQItem({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-6 text-black">{content}</div>
+            <div className="px-4 pb-6 text-black">
+              <ReactMarkdown>{content}</ReactMarkdown>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

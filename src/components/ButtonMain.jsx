@@ -9,10 +9,16 @@ export default function ButtonMain({
   icon,
   disabled = false,
 }) {
-  const baseClass =
-    "flex justify-center items-center gap-2 py-2 px-7 bg-orange-500 text-black font-jet-brains-mono rounded-sm text-sm cursor-pointer transition-opacity";
+  const basePadding = "py-2 px-7"; // Padding par défaut
+  const baseClass = `flex justify-center items-center gap-2 bg-orange-500 text-black font-jet-brains-mono rounded-sm text-sm cursor-pointer transition-opacity`;
   const disabledClass = disabled ? "opacity-50 cursor-not-allowed" : "";
-  const classes = `${baseClass} ${disabledClass} ${className}`.trim();
+
+  // Vérifie si des classes de padding sont définies dans className
+  const hasCustomPadding = /p[xytrbl]?-[0-9]/.test(className);
+  const paddingClass = hasCustomPadding ? "" : basePadding;
+
+  const classes =
+    `${baseClass} ${paddingClass} ${disabledClass} ${className}`.trim();
 
   const content = (
     <>

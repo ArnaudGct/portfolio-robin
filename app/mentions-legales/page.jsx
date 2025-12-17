@@ -35,13 +35,13 @@ export default function MentionsLegales() {
               <span className="font-medium">
                 Adresse de localisation du titulaire :
               </span>{" "}
-              17000 - La Rochelle
+              33200 - Bordeaux
             </p>
             <p>
               <span className="font-medium">
                 Le fabriquant du site suivant est :
               </span>{" "}
-              Robin Augez
+              Arnaud Graciet
             </p>
             <p>
               <span className="font-medium">
@@ -64,17 +64,17 @@ export default function MentionsLegales() {
               <span className="font-medium">
                 Le concepteur et développeur est :
               </span>{" "}
-              Robin Augez
+              Arnaud Graciet
             </p>
             <p>
               <span className="font-medium">
                 Pour contacter le développeur :
               </span>{" "}
               <Link
-                href="mailto:robin@cosmoseprod.com"
+                href="mailto:arnaud@arnaudgct.fr"
                 className="text-orange-500 hover:underline"
               >
-                robin@cosmoseprod.com
+                arnaud@arnaudgct.fr
               </Link>
             </p>
           </div>
@@ -104,14 +104,7 @@ export default function MentionsLegales() {
             regroupe plusieurs services, en l'état, mis à disposition des
             usagés. Il est précisé que ceux-ci doivent rester honnête et faire
             preuve de bonne foi tant envers les différents usagés qu'envers le
-            Développeur du site{" "}
-            <Link
-              href="https://cosmoseprod.com"
-              className="text-orange-500 hover:underline"
-            >
-              cosmoseprod.com
-            </Link>
-            . Le site{" "}
+            Développeur du site : Arnaud Graciet. Le site{" "}
             <Link
               href="https://cosmoseprod.com"
               className="text-orange-500 hover:underline"
@@ -154,17 +147,10 @@ export default function MentionsLegales() {
             est habituellement accessible aux usagés H24 7/7, excepté en cas
             d'interruption, programmée ou non, pour les besoins de la
             maintenance ou en cas de force majeure. En cas de service
-            indisponible,{" "}
-            <Link
-              href="https://cosmoseprod.com"
-              className="text-orange-500 hover:underline"
-            >
-              cosmoseprod.com
-            </Link>{" "}
-            s'engage à faire de son mieux pour rétablir l'accès au site et
-            tentera alors d'informer préalablement aux utilisateurs Dates &
-            heures de l'intervention. N'étant subordonné qu'à une obligation de
-            moyen,{" "}
+            indisponible, Robin Augez et Arnaud Graciet s'engagent à faire de
+            leur mieux pour rétablir l'accès au site et tenteront alors
+            d'informer préalablement aux utilisateurs Dates & heures de
+            l'intervention. N'étant subordonné qu'à une obligation de moyen,{" "}
             <Link
               href="https://cosmoseprod.com"
               className="text-orange-500 hover:underline"
@@ -182,10 +168,11 @@ export default function MentionsLegales() {
           </h2>
 
           <p className="text-justify">
-            Robin Augez est propriétaire unique de tous les droits de propriété
-            intellectuelle ou détient les droits et autorisations d'usage sur
-            tous les éléments accessibles sur le site, tant sur la structure que
-            sur les articles et textes, graphismes, logo, sons, logiciels, etc…
+            Robin Augez et Arnaud Graciet sont les propriétaires uniques de tous
+            les droits de propriété intellectuelle ou détiennent les droits et
+            autorisations d'usage sur tous les éléments accessibles sur le site,
+            tant sur la structure que sur les articles et textes, graphismes,
+            logo, sons, logiciels, etc…
           </p>
           <p className="text-justify mt-2">
             Toute reproduction même partielle du site suivant{" "}

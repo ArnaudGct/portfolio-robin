@@ -58,14 +58,14 @@ export default function VideoItem({ title, tags, url }) {
         {!isInView || loading ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-orange-50 opacity-70">
             {/* Skeleton loader */}
-            <div className="w-full h-full bg-gradient-to-r from-orange-200 to-orange-50 rounded-lg animate-pulse opacity-70"></div>
+            <div className="w-full h-full bg-gradient-to-r from-orange-200 to-orange-50 rounded-sm animate-pulse opacity-70"></div>
           </div>
         ) : null}
 
         {/* Lorsque la vidéo est dans la vue, charger l'iframe */}
         {isInView && youtubeId ? (
           // <iframe
-          //   className="w-full h-full rounded-lg shadow-lg transition-all duration-500"
+          //   className="w-full h-full rounded-sm shadow-lg transition-all duration-500"
           //   src={`https://www.youtube.com/embed/${youtubeId}`}
           //   title={title}
           //   frameBorder="0"

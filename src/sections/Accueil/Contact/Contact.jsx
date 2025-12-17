@@ -145,7 +145,7 @@ export default function Contact() {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="w-full lg:w-[50%] rounded-none sm:rounded-lg"
+          className="w-full lg:w-[50%] rounded-none sm:rounded-sm"
         >
           <div className="flex flex-col gap-6 w-full">
             <div className="flex flex-col gap-4">

@@ -30,7 +30,7 @@ export default function ConstructionBanner() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg"
+          className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-orange-500 to-orange-500 text-white shadow-lg"
         >
           <div className="mx-auto px-4 py-3 relative">
             <div className="flex items-center justify-center">
