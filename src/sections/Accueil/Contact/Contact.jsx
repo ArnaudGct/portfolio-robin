@@ -4,8 +4,11 @@ import ButtonMain from "@/src/components/ButtonMain";
 import Image from "next/image";
 import Link from "next/link";
 import { Instagram, LinkedIn, Pin, Mail } from "@/src/components/icons/Icons";
+import SvgIcon from "@/src/components/SvgIcon";
 
 export default function Contact() {
+  const [generalData, setGeneralData] = useState(null);
+  const [contacts, setContacts] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,6 +23,34 @@ export default function Contact() {
     isError: false,
     message: "",
   });
+
+  useEffect(() => {
+    const fetchGeneralData = async () => {
+      try {
+        const response = await fetch("/api/general");
+        const data = await response.json();
+        setGeneralData(data);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données générales:",
+          error,
+        );
+      }
+    };
+
+    const fetchContacts = async () => {
+      try {
+        const response = await fetch("/api/contact");
+        const data = await response.json();
+        setContacts(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des contacts:", error);
+      }
+    };
+
+    fetchGeneralData();
+    fetchContacts();
+  }, []);
 
   useEffect(() => {
     if (formState.isSuccess) {
@@ -109,38 +140,40 @@ export default function Contact() {
               <div>
                 <div className="flex items-center gap-1.5">
                   <Pin className="text-white" />
-                  <p className="text-white">
-                    <span className="font-bold">Bordeaux</span> (+ déplacement
-                    dans toute la France)
+                  <p className="text-white font-bold">
+                    {generalData?.localisation || "Bordeaux"}
                   </p>
                 </div>
-                <Link
-                  href="mailto:robin@cosmoseprod.com"
-                  className="underline text-white flex items-center gap-1.5"
-                >
-                  <Mail className="text-white" />
-                  <p>robin@cosmoseprod.com</p>
-                </Link>
+                {generalData?.email && (
+                  <Link
+                    href={`mailto:${generalData.email}`}
+                    className="underline text-white flex items-center gap-1.5"
+                  >
+                    <Mail className="text-white" />
+                    <p>{generalData.email}</p>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
           <div className="flex flex-row lg:flex-col gap-5">
-            <Link
-              href="https://www.instagram.com/robin_agz/"
-              target="_blank"
-              className="flex gap-2 items-center"
-            >
-              <Instagram className="text-orange-500" />
-              <p className="text-white">Instagram</p>
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/robin-augez/"
-              target="_blank"
-              className="flex gap-2 items-center"
-            >
-              <LinkedIn className="text-orange-500" />
-              <p className="text-white">LinkedIn</p>
-            </Link>
+            {contacts.map((contact) => (
+              <Link
+                key={contact.id_contact}
+                href={contact.lien}
+                target="_blank"
+                className="flex gap-2 items-center w-fit"
+              >
+                <SvgIcon
+                  src={contact.logo}
+                  alt={contact.nom}
+                  width={24}
+                  height={24}
+                  color="#F2572B"
+                />
+                <p className="text-white">{contact.nom}</p>
+              </Link>
+            ))}
           </div>
         </div>
         <form
@@ -209,8 +242,8 @@ export default function Contact() {
                 {formState.isSubmitting
                   ? "Envoi en cours..."
                   : formState.isSuccess
-                  ? "Message envoyé !"
-                  : "Envoyer le message"}
+                    ? "Message envoyé !"
+                    : "Envoyer le message"}
               </ButtonMain>
               {formState.isError && (
                 <p className="text-red-500 text-sm">{formState.message}</p>

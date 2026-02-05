@@ -22,6 +22,7 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
   const [videoUrl, setVideoUrl] = useState(null);
   const [videoUrlMobile, setVideoUrlMobile] = useState(null);
   const [thumbnailUrl, setThumbnailUrl] = useState(null);
+  const [tagsRoles, setTagsRoles] = useState([]);
 
   useEffect(() => {
     const fetchVideoData = async () => {
@@ -44,7 +45,7 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
           "URL vidéo initiale sélectionnée:",
           initialVideoUrl,
           "Mobile:",
-          mobile
+          mobile,
         );
 
         // Vérifier que l'URL n'est pas vide ou null
@@ -64,6 +65,21 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
     };
 
     fetchVideoData();
+  }, []);
+
+  useEffect(() => {
+    const fetchTagsRoles = async () => {
+      try {
+        const response = await fetch("/api/accueil/tags-roles");
+        const data = await response.json();
+        console.log("Tags roles récupérés:", data);
+        setTagsRoles(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des tags roles:", error);
+      }
+    };
+
+    fetchTagsRoles();
   }, []);
 
   // Effet pour détecter si on est en mobile au chargement initial
@@ -134,7 +150,7 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
                 setIsLoading(false);
               }
             },
-            { once: true }
+            { once: true },
           );
         }
       }
@@ -258,12 +274,12 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
       console.log("Checking video state, readyState:", videoElement.readyState);
       if (videoElement.readyState >= 3) {
         console.log(
-          "Video ready (readyState >= 3), setting isLoading to false"
+          "Video ready (readyState >= 3), setting isLoading to false",
         );
         setIsLoading(false);
       } else if (videoElement.readyState >= 1) {
         console.log(
-          "Video metadata loaded (readyState >= 1), setting isLoading to false"
+          "Video metadata loaded (readyState >= 1), setting isLoading to false",
         );
         setIsLoading(false);
       }
@@ -423,8 +439,6 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
             )}
         </AnimatePresence>
 
-        <div className="absolute z-[9] left-0 bottom-0 w-full h-full bg-gradient-to-tr from-orange-500 from-0% via-orange-300/0 via-75% to-transparent to-100% opacity-50 pointer-events-none" />
-
         <div
           className={`absolute bottom-auto top-6 md:bottom-18 md:top-auto flex flex-col z-10 px-4`}
         >
@@ -438,9 +452,9 @@ export default function CloudinaryPlayer({ infoBoxRef }) {
               </p>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <Tag>Réalisateur</Tag>
-              <Tag>Cadreur</Tag>
-              <Tag>Monteur</Tag>
+              {tagsRoles.map((tag) => (
+                <Tag key={tag.id_tag_role}>{tag.nom}</Tag>
+              ))}
             </div>
           </div>
         </div>

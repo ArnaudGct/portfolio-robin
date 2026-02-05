@@ -4,9 +4,41 @@ import Tag from "./../components/Tag";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Instagram, LinkedIn } from "@/src/components/icons/Icons";
+import { useEffect, useState } from "react";
+import SvgIcon from "@/src/components/SvgIcon";
 
 export default function Footer() {
   const pathname = usePathname();
+  const [generalData, setGeneralData] = useState(null);
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    const fetchGeneralData = async () => {
+      try {
+        const response = await fetch("/api/general");
+        const data = await response.json();
+        setGeneralData(data);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données générales:",
+          error,
+        );
+      }
+    };
+
+    const fetchContacts = async () => {
+      try {
+        const response = await fetch("/api/contact");
+        const data = await response.json();
+        setContacts(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des contacts:", error);
+      }
+    };
+
+    fetchGeneralData();
+    fetchContacts();
+  }, []);
 
   const isActive = (path) => {
     return pathname === path;
@@ -29,27 +61,32 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col items-start gap-2">
                   <div className="flex gap-2">
-                    <Link
-                      href="https://www.instagram.com/robin_agz/"
-                      target="_blank"
-                      className="flex gap-2 items-center"
-                    >
-                      <Instagram className="text-gray-50" />
-                    </Link>
-                    <Link
-                      href="https://www.linkedin.com/in/robin-augez/"
-                      target="_blank"
-                      className="flex gap-2 items-center"
-                    >
-                      <LinkedIn className="text-gray-50" />
-                    </Link>
+                    {contacts.map((contact) => (
+                      <Link
+                        key={contact.id_contact}
+                        href={contact.lien}
+                        target="_blank"
+                        className="flex gap-2 items-center group"
+                      >
+                        <SvgIcon
+                          src={contact.logo}
+                          alt={contact.nom}
+                          width={24}
+                          height={24}
+                          color="rgb(249 250 251)"
+                          className="group-hover:text-orange-500"
+                        />
+                      </Link>
+                    ))}
                   </div>
-                  <Link
-                    href="mailto:robin@cosmoseprod.com"
-                    className="underline text-white"
-                  >
-                    robin@cosmoseprod.com
-                  </Link>
+                  {generalData?.email && (
+                    <Link
+                      href={`mailto:${generalData.email}`}
+                      className="underline text-white"
+                    >
+                      {generalData.email}
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

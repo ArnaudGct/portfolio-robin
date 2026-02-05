@@ -10,10 +10,11 @@ import ButtonMain from "./../components/ButtonMain";
 export default function Header() {
   const pathname = usePathname();
   const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
+    typeof window !== "undefined" ? window.innerWidth : 0,
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [generalData, setGeneralData] = useState(null);
   const menuRef = useRef(null);
   const menuButtonRef = useRef(null);
 
@@ -30,6 +31,23 @@ export default function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    const fetchGeneralData = async () => {
+      try {
+        const response = await fetch("/api/general");
+        const data = await response.json();
+        setGeneralData(data);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données générales:",
+          error,
+        );
+      }
+    };
+
+    fetchGeneralData();
+  }, []);
 
   useEffect(() => {
     // Initialiser l'état du scroll au montage du composant
@@ -84,13 +102,15 @@ export default function Header() {
       >
         <div className="flex justify-between items-center py-6 w-[98%] mx-auto">
           <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/photo_robin_main.webp"
-              alt="Logo"
-              width={35}
-              height={35}
-              className="rounded-sm"
-            />
+            {generalData?.logo && (
+              <Image
+                src={generalData.logo}
+                alt="Logo"
+                width={35}
+                height={35}
+                className="rounded-sm"
+              />
+            )}
             <h1 className="font-clash-bold text-lg text-black">
               Cosmose<span className="text-orange-500">Prod.</span>
             </h1>
@@ -177,13 +197,15 @@ export default function Header() {
 
         <div className="flex justify-between items-center mx-auto w-[95%] py-4 z-50 relative">
           <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/photo_robin_main.webp"
-              alt="Logo"
-              width={35}
-              height={35}
-              className="rounded-sm"
-            />
+            {generalData?.logo && (
+              <Image
+                src={generalData.logo}
+                alt="Logo"
+                width={35}
+                height={35}
+                className="rounded-sm"
+              />
+            )}
             <h1 className="font-clash-bold text-lg text-black">
               Cosmose<span className="text-orange-500">Prod.</span>
             </h1>

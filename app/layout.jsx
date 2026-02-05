@@ -6,6 +6,7 @@ import Footer from "./../src/sections/Footer";
 import ConstructionBanner from "../src/components/ConstructionBanner";
 import Script from "next/script";
 import { themeScript } from "./../lib/themeScript";
+import { useState, useEffect } from "react";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -14,9 +15,31 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export default function RootLayout({ children }) {
+  const [generalData, setGeneralData] = useState(null);
+
+  useEffect(() => {
+    const fetchGeneralData = async () => {
+      try {
+        const response = await fetch("/api/general");
+        const data = await response.json();
+        setGeneralData(data);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des données générales:",
+          error,
+        );
+      }
+    };
+
+    fetchGeneralData();
+  }, []);
+
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        {generalData?.logo && (
+          <link rel="icon" href={generalData.logo} type="image/png" />
+        )}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Y5TS2CGPB5"
           strategy="afterInteractive"
