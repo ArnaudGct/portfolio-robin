@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 export default function Presentation() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [tagsRoles, setTagsRoles] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -26,7 +27,7 @@ export default function Presentation() {
       } catch (err) {
         console.error(
           "Erreur lors de la récupération de apropos_general:",
-          err
+          err,
         );
       } finally {
         if (mounted) setLoading(false);
@@ -38,6 +39,20 @@ export default function Presentation() {
     return () => {
       mounted = false;
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchTagsRoles = async () => {
+      try {
+        const response = await fetch("/api/accueil/tags-roles");
+        const data = await response.json();
+        setTagsRoles(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des tags roles:", error);
+      }
+    };
+
+    fetchTagsRoles();
   }, []);
 
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -120,9 +135,9 @@ export default function Presentation() {
                 </span>
               </p>
               <div className="flex items-center gap-1.5">
-                <Tag>Réalisateur</Tag>
-                <Tag>Cadreur</Tag>
-                <Tag>Monteur vidéo</Tag>
+                {tagsRoles.map((tag) => (
+                  <Tag key={tag.id_tag_role}>{tag.nom}</Tag>
+                ))}
               </div>
             </div>
 
