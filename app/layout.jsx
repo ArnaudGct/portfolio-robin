@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
         <title>CosmoseProd</title>
         <meta
           name="description"
-          content="Explorez le portfolio de Arnaud Graciet, monteur vidéo en freelance."
+          content="Explorez le portfolio de Robin Augez."
         />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
