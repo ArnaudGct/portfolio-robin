@@ -10,7 +10,7 @@ export async function GET() {
         afficher: true,
       },
       orderBy: {
-        id_client: "asc",
+        ordre: "asc",
       },
     });
 
@@ -26,7 +26,7 @@ export async function GET() {
     console.error("Erreur lors de la récupération des clients:", error);
     return NextResponse.json(
       { error: "Erreur lors de la récupération des clients" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

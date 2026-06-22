@@ -90,10 +90,10 @@ export default function Videos() {
           <div className="relative col-start-1 row-start-7 col-span-2 sm:col-start-1 sm:row-start-7 sm:col-span-1 lg:row-start-2 lg:col-start-3 lg:col-span-1 lg:row-span-3 xl:col-start-5 xl:row-start-1 xl:col-span-1 xl:row-span-3 bg-green-100 rounded-sm overflow-hidden min-h-[100px]">
             <div className="relative h-full w-full">
               <div className="absolute top-1/2 -translate-y-1/2 right-8 sm:right-2 md:right-6 lg:top-4 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 lg:translate-y-0 z-1">
-                <div className="w-26 h-40 lg:w-40 lg:h-30">
+                <div className="w-26 h-40 lg:w-44 lg:h-30">
                   <Image
-                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1764088539/dji_air_3s_iw2ne4.webp"
-                    alt="Photo de DJI Air 3s"
+                    src="https://res.cloudinary.com/ddit7absq/image/upload/v1782140052/mavic-4-pro_brtvj8.webp"
+                    alt="Photo de DJI Mavic 4 Pro"
                     fill
                     className="object-contain w-full h-full"
                     priority
@@ -105,7 +105,7 @@ export default function Videos() {
             <div className="absolute bottom-1/2 translate-y-1/2 w-fit left-6 sm:left-6 lg:translate-y-0 lg:bottom-6 lg:left-1/2 lg:-translate-x-1/2 flex flex-col items-start lg:items-center gap-1 lg:w-full">
               <Tag variant="green">Drone</Tag>
               <p className="font-clash-bold text-green-50 text-2xl">
-                DJI Air 3S
+                Mavic 4 Pro
               </p>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function Videos() {
             </div>
             <div className="absolute top-1/2 -translate-y-1/2 right-6 flex flex-col items-center gap-1">
               <Tag variant="green">Stabilisateur</Tag>
-              <p className="font-clash-bold text-green-50 text-2xl">DJI RS3</p>
+              <p className="font-clash-bold text-green-50 text-2xl">DJI RS5</p>
             </div>
           </div>
           <div className="row-start-10 col-span-1 col-start-2 row-span-1 lg:row-start-8 lg:col-span-2 lg:col-start-1 lg:row-span-1 xl:col-start-4 xl:row-start-1 xl:col-span-1 xl:row-span-1 flex flex-col justify-center items-center bg-[#171717] rounded-sm min-h-[100px]">
